@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "PowerShell(npx skills@latest add mattpocock/skills)",
+      "Bash(gh auth *)",
+      "Bash(git --version)",
+      "Bash(git init *)",
+      "Bash(git config *)",
+      "Bash(export PATH=\"$HOME/bin/gh_extract/bin:$PATH\")",
+      "Bash(git add *)"
+    ]
+  }
+}
