@@ -1,73 +1,74 @@
-import { NextRequest, NextResponse } from "next/server";
 import { verifyAuth } from "@/lib/session";
-import { generateRecipe } from "@/lib/recipe-generator";
+import { generateRecipeStreaming } from "@/lib/recipe-generator-streaming";
 import { supabase } from "@/lib/supabase";
 import type { Recipe } from "@/types/recipe";
 
-export const maxDuration = 60;
+async function saveRecipe(recipe: Recipe): Promise<void> {
+  const { error } = await supabase.from("recipes").insert({
+    id: recipe.id,
+    title: recipe.title,
+    description: recipe.description,
+    cuisine: recipe.cuisine,
+    category: recipe.category,
+    prep_time: recipe.prepTime,
+    cook_time: recipe.cookTime,
+    total_time: recipe.totalTime,
+    difficulty: recipe.difficulty,
+    servings: recipe.servings,
+    ingredients: recipe.ingredients,
+    steps: recipe.steps,
+    equipment: recipe.equipment,
+    nutrition: recipe.nutrition,
+    tags: recipe.tags,
+    version: recipe.version,
+    theme: recipe.theme,
+    svg_illustrations: recipe.svgIllustrations,
+    source_notes: recipe.sourceNotes,
+    cultural_context: recipe.culturalContext ?? null,
+    pro_tips: recipe.proTips ?? null,
+    storage: recipe.storage ?? null,
+    alternative_methods: recipe.alternativeMethods ?? null,
+    equipment_notes: recipe.equipmentNotes ?? null,
+    original_title: recipe.originalTitle ?? null,
+    html: recipe.html ?? null,
+    created_at: recipe.createdAt,
+    updated_at: recipe.updatedAt,
+  });
+  if (error) console.error("Failed to save recipe:", error);
+}
 
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   if (!(await verifyAuth())) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  let prompt: string;
+  try {
+    const body = await request.json();
+    prompt = body.prompt;
+    if (!prompt || typeof prompt !== "string" || prompt.trim().length === 0) {
+      return Response.json({ error: "Prompt is required" }, { status: 400 });
+    }
+  } catch {
+    return Response.json({ error: "Invalid request" }, { status: 400 });
   }
 
   try {
-    const { prompt } = await request.json();
-    if (!prompt || typeof prompt !== "string" || prompt.trim().length === 0) {
-      return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
-    }
-
-    const recipe = await generateRecipe(prompt.trim());
-
-    // Save to Supabase
-    const { error: dbError } = await supabase.from("recipes").insert({
-      id: recipe.id,
-      title: recipe.title,
-      description: recipe.description,
-      cuisine: recipe.cuisine,
-      category: recipe.category,
-      prep_time: recipe.prepTime,
-      cook_time: recipe.cookTime,
-      total_time: recipe.totalTime,
-      difficulty: recipe.difficulty,
-      servings: recipe.servings,
-      ingredients: recipe.ingredients,
-      steps: recipe.steps,
-      equipment: recipe.equipment,
-      nutrition: recipe.nutrition,
-      tags: recipe.tags,
-      version: recipe.version,
-      theme: recipe.theme,
-      svg_illustrations: recipe.svgIllustrations,
-      source_notes: recipe.sourceNotes,
-      cultural_context: recipe.culturalContext ?? null,
-      pro_tips: recipe.proTips ?? null,
-      storage: recipe.storage ?? null,
-      alternative_methods: recipe.alternativeMethods ?? null,
-      equipment_notes: recipe.equipmentNotes ?? null,
-      original_title: recipe.originalTitle ?? null,
-      html: recipe.html ?? null,
-      created_at: recipe.createdAt,
-      updated_at: recipe.updatedAt,
-    });
-
-    if (dbError) {
-      console.error("Failed to save recipe:", dbError);
-    }
-
-    return NextResponse.json({ recipe }, { status: 201 });
+    const recipe = await generateRecipeStreaming(prompt.trim());
+    await saveRecipe(recipe);
+    return Response.json({ recipe }, { status: 201 });
   } catch (error) {
     console.error("Recipe generation error:", error);
-    return NextResponse.json(
+    return Response.json(
       { error: error instanceof Error ? error.message : "Failed to generate recipe" },
       { status: 500 }
     );
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET(request: Request) {
   if (!(await verifyAuth())) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   const { searchParams } = new URL(request.url);
@@ -96,7 +97,7 @@ export async function GET(request: NextRequest) {
   const { data, error } = await dbQuery;
 
   if (error) {
-    return NextResponse.json({ error: "Failed to fetch recipes" }, { status: 500 });
+    return Response.json({ error: "Failed to fetch recipes" }, { status: 500 });
   }
 
   const recipes: Recipe[] = (data ?? []).map((r: Record<string, unknown>) => ({
@@ -130,5 +131,5 @@ export async function GET(request: NextRequest) {
     updatedAt: r.updated_at as string,
   }));
 
-  return NextResponse.json({ recipes });
+  return Response.json({ recipes });
 }

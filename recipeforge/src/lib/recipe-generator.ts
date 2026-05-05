@@ -249,9 +249,10 @@ export async function generateRecipe(
   const recipeJson = await callLLM(
     RECIPE_SYSTEM_PROMPT,
     buildRecipePrompt(userRequest, searchContext, version),
-    { maxTokens: 3072 }
+    { maxTokens: 8192 }
   );
   const parsed = parseJSON(recipeJson);
+  console.log("Recipe JSON generated successfully");
 
   // 3. Generate SVGs for flagged steps
   const stepsArr = (parsed.steps as Array<Record<string, unknown>>) ?? [];
@@ -273,7 +274,7 @@ export async function generateRecipe(
       const svgJson = await callLLM(
         "You are a cookbook illustrator. Create instructional SVGs. Return ONLY valid JSON.",
         buildSvgPrompt(stepsNeedingSvg),
-        { maxTokens: 3072 }
+        { maxTokens: 4096 }
       );
       svgData = parseJSON(svgJson) as typeof svgData;
     } catch {
