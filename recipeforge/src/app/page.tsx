@@ -175,7 +175,7 @@ export default function Home() {
   if (selectedRecipe) {
     return (
       <div className="relative min-h-screen animate-page-enter">
-        <div className="p-4">
+        <div className="p-4 md:p-6 max-w-4xl mx-auto">
           <Button
             variant="ghost"
             size="sm"
@@ -192,7 +192,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen p-4 pb-24">
+    <div className="min-h-screen p-4 pb-24 md:p-6 md:pb-28 max-w-6xl mx-auto">
       <header className="mb-6 pt-2">
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center w-10 h-10 rounded-full bg-accent">

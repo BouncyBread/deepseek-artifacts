@@ -32,7 +32,7 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
   return (
     <article
       data-testid="recipe-card"
-      className="w-full max-w-lg mx-auto overflow-hidden rounded-2xl shadow-lg animate-page-enter"
+      className="w-full max-w-3xl mx-auto overflow-hidden rounded-2xl shadow-lg animate-page-enter"
       style={
         {
           "--primary": active.theme.primary,
@@ -49,7 +49,7 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
     >
       {/* Header — full bleed */}
       <div
-        className="px-6 pt-6 pb-5"
+        className="px-6 pt-6 pb-5 md:px-8 md:pt-8"
         style={{ backgroundColor: active.theme.primary }}
       >
         <div className="flex flex-wrap gap-2 items-center mb-2">
@@ -77,12 +77,12 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
         </div>
 
         <h1
-          className="text-3xl font-bold mt-2 mb-1 leading-tight"
+          className="text-3xl md:text-4xl font-bold mt-2 mb-1 leading-tight"
           style={{ color: "#fff", fontFamily: "var(--font-heading)" }}
         >
           {active.title}
         </h1>
-        <p className="text-base mt-1 leading-relaxed opacity-90" style={{ color: "rgba(255,255,255,0.9)" }}>
+        <p className="text-base md:text-lg mt-1 leading-relaxed opacity-90" style={{ color: "rgba(255,255,255,0.9)" }}>
           {active.description}
         </p>
 
@@ -99,12 +99,12 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
       {/* Hero illustration */}
       {active.svgIllustrations.length > 0 && (
         <div
-          className="w-full flex justify-center py-6 px-4"
+          className="w-full flex justify-center py-6 px-4 md:py-8"
           style={{ backgroundColor: active.theme.muted }}
         >
           <div
-            className="rounded-xl overflow-hidden"
-            style={{ maxWidth: 320, boxShadow: `0 4px 20px ${active.theme.primary}20` }}
+            className="rounded-xl overflow-hidden w-full max-w-md"
+            style={{ boxShadow: `0 4px 20px ${active.theme.primary}20` }}
             dangerouslySetInnerHTML={{ __html: active.svgIllustrations[0].svg }}
           />
         </div>
@@ -112,7 +112,7 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
 
       {/* Servings */}
       <div
-        className="flex items-center justify-between px-6 py-4"
+        className="flex items-center justify-between px-6 py-4 md:px-8"
         style={{ backgroundColor: active.theme.muted }}
       >
         <span className="text-base font-semibold">
@@ -148,7 +148,7 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
 
       {/* Version toggle */}
       {alternateVersion && (
-        <div className="flex px-6 py-3" style={{ backgroundColor: active.theme.muted }}>
+        <div className="flex px-6 py-3 md:px-8" style={{ backgroundColor: active.theme.muted }}>
           <button
             onClick={() => {
               setShowAlternate(!showAlternate);
@@ -169,155 +169,157 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
       )}
 
       <div className="overflow-y-auto max-h-[55vh] overscroll-contain">
-        <div className="px-6 py-5 space-y-6">
-          {/* Ingredients */}
-          <section>
-            <h2
-              className="text-xl font-bold mb-3"
-              style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
-            >
-              Ingredients
-            </h2>
-            <ul className="space-y-2">
-              {scaledIngredients.map((ing, i) => (
-                <li
-                  key={i}
-                  className="flex justify-between items-baseline text-base py-1.5 border-b border-dashed"
-                  style={{ borderColor: active.theme.muted }}
-                >
-                  <span className="font-medium">{ing.name}</span>
-                  <span className="font-semibold tabular-nums ml-4 shrink-0">
-                    {ing.amount}
-                    {ing.unit}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
+        <div className="px-6 py-5 md:px-8 md:py-6 space-y-6">
 
-          <Separator style={{ backgroundColor: active.theme.muted }} />
+          {/* Mobile: stacked; Desktop: ingredients + instructions side by side */}
+          <div className="md:grid md:grid-cols-5 md:gap-8 md:space-y-0 space-y-6">
 
-          {/* Instructions */}
-          <section>
-            <h2
-              className="text-xl font-bold mb-4"
-              style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
-            >
-              Instructions
-            </h2>
-            <ol className="space-y-5">
-              {active.steps.map((step) => (
-                <li key={step.order} className="flex gap-4">
-                  <span
-                    className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
-                    style={{
-                      backgroundColor: active.theme.primary,
-                      color: "#fff",
-                      boxShadow: `0 2px 6px ${active.theme.primary}30`,
-                    }}
-                  >
-                    {step.order}
-                  </span>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-base leading-relaxed">{step.instruction}</p>
-                    {step.duration && (
-                      <span
-                        className="inline-block mt-1 text-sm font-medium"
-                        style={{ color: active.theme.accent }}
-                      >
-                        ~{step.duration} min
-                      </span>
-                    )}
-                    {step.svg && (
-                      <div
-                        className="mt-3 rounded-xl overflow-hidden"
-                        style={{
-                          boxShadow: `0 2px 12px ${active.theme.primary}15`,
-                          border: `1px solid ${active.theme.muted}`,
-                        }}
-                        dangerouslySetInnerHTML={{ __html: step.svg }}
-                      />
-                    )}
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </section>
-
-          <Separator style={{ backgroundColor: active.theme.muted }} />
-
-          {/* Nutrition */}
-          <section>
-            <h2
-              className="text-xl font-bold mb-3"
-              style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
-            >
-              Nutrition
-            </h2>
-            <div className="grid grid-cols-4 gap-3 text-center">
-              <div
-                className="p-3 rounded-xl"
-                style={{ backgroundColor: active.theme.muted }}
-              >
-                <div className="text-lg font-bold">{active.nutrition.calories}</div>
-                <div className="text-xs font-medium opacity-70">cal</div>
-              </div>
-              <div
-                className="p-3 rounded-xl"
-                style={{ backgroundColor: active.theme.muted }}
-              >
-                <div className="text-lg font-bold">{active.nutrition.protein}g</div>
-                <div className="text-xs font-medium opacity-70">protein</div>
-              </div>
-              <div
-                className="p-3 rounded-xl"
-                style={{ backgroundColor: active.theme.muted }}
-              >
-                <div className="text-lg font-bold">{active.nutrition.carbs}g</div>
-                <div className="text-xs font-medium opacity-70">carbs</div>
-              </div>
-              <div
-                className="p-3 rounded-xl"
-                style={{ backgroundColor: active.theme.muted }}
-              >
-                <div className="text-lg font-bold">{active.nutrition.fat}g</div>
-                <div className="text-xs font-medium opacity-70">fat</div>
-              </div>
-            </div>
-          </section>
-
-          {/* Equipment */}
-          {active.equipment.length > 0 && (
-            <>
-              <Separator style={{ backgroundColor: active.theme.muted }} />
+            {/* Left column: ingredients + nutrition + equipment */}
+            <div className="md:col-span-2 space-y-6">
               <section>
                 <h2
                   className="text-xl font-bold mb-3"
                   style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
                 >
-                  Equipment
+                  Ingredients
                 </h2>
-                <div className="flex flex-wrap gap-2">
-                  {active.equipment.map((item) => (
-                    <Badge
-                      key={item}
-                      variant="outline"
-                      className="text-sm font-medium"
-                      style={{
-                        borderColor: active.theme.secondary,
-                        color: active.theme.text,
-                      }}
+                <ul className="space-y-2">
+                  {scaledIngredients.map((ing, i) => (
+                    <li
+                      key={i}
+                      className="flex justify-between items-baseline text-base py-1.5 border-b border-dashed"
+                      style={{ borderColor: active.theme.muted }}
                     >
-                      {item}
-                    </Badge>
+                      <span className="font-medium">{ing.name}</span>
+                      <span className="font-semibold tabular-nums ml-4 shrink-0">
+                        {ing.amount}
+                        {ing.unit}
+                      </span>
+                    </li>
                   ))}
+                </ul>
+              </section>
+
+              <section>
+                <h2
+                  className="text-xl font-bold mb-3"
+                  style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
+                >
+                  Nutrition
+                </h2>
+                <div className="grid grid-cols-2 gap-2 text-center">
+                  <div
+                    className="p-3 rounded-xl"
+                    style={{ backgroundColor: active.theme.muted }}
+                  >
+                    <div className="text-lg font-bold">{active.nutrition.calories}</div>
+                    <div className="text-xs font-medium opacity-70">cal</div>
+                  </div>
+                  <div
+                    className="p-3 rounded-xl"
+                    style={{ backgroundColor: active.theme.muted }}
+                  >
+                    <div className="text-lg font-bold">{active.nutrition.protein}g</div>
+                    <div className="text-xs font-medium opacity-70">protein</div>
+                  </div>
+                  <div
+                    className="p-3 rounded-xl"
+                    style={{ backgroundColor: active.theme.muted }}
+                  >
+                    <div className="text-lg font-bold">{active.nutrition.carbs}g</div>
+                    <div className="text-xs font-medium opacity-70">carbs</div>
+                  </div>
+                  <div
+                    className="p-3 rounded-xl"
+                    style={{ backgroundColor: active.theme.muted }}
+                  >
+                    <div className="text-lg font-bold">{active.nutrition.fat}g</div>
+                    <div className="text-xs font-medium opacity-70">fat</div>
+                  </div>
                 </div>
               </section>
-            </>
-          )}
+
+              {active.equipment.length > 0 && (
+                <section>
+                  <h2
+                    className="text-xl font-bold mb-3"
+                    style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
+                  >
+                    Equipment
+                  </h2>
+                  <div className="flex flex-wrap gap-2">
+                    {active.equipment.map((item) => (
+                      <Badge
+                        key={item}
+                        variant="outline"
+                        className="text-sm font-medium"
+                        style={{
+                          borderColor: active.theme.secondary,
+                          color: active.theme.text,
+                        }}
+                      >
+                        {item}
+                      </Badge>
+                    ))}
+                  </div>
+                </section>
+              )}
+            </div>
+
+            {/* Right column: instructions */}
+            <div className="md:col-span-3">
+              <section>
+                <h2
+                  className="text-xl font-bold mb-4"
+                  style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
+                >
+                  Instructions
+                </h2>
+                <ol className="space-y-5">
+                  {active.steps.map((step) => (
+                    <li key={step.order} className="flex gap-4">
+                      <span
+                        className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold"
+                        style={{
+                          backgroundColor: active.theme.primary,
+                          color: "#fff",
+                          boxShadow: `0 2px 6px ${active.theme.primary}30`,
+                        }}
+                      >
+                        {step.order}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-base leading-relaxed">{step.instruction}</p>
+                        {step.duration && (
+                          <span
+                            className="inline-block mt-1 text-sm font-medium"
+                            style={{ color: active.theme.accent }}
+                          >
+                            ~{step.duration} min
+                          </span>
+                        )}
+                        {step.svg && (
+                          <div
+                            className="mt-3 rounded-xl overflow-hidden"
+                            style={{
+                              boxShadow: `0 2px 12px ${active.theme.primary}15`,
+                              border: `1px solid ${active.theme.muted}`,
+                            }}
+                            dangerouslySetInnerHTML={{ __html: step.svg }}
+                          />
+                        )}
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            </div>
+          </div>
+
+          <Separator style={{ backgroundColor: active.theme.muted }} />
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-1.5 pt-2">
+          <div className="flex flex-wrap gap-1.5">
             {active.tags.map((tag) => (
               <Badge
                 key={tag}
