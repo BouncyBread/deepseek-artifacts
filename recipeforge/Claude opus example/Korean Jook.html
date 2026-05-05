@@ -1,0 +1,1280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="color-scheme" content="light only" />
+<meta name="supported-color-schemes" content="light" />
+<title>Dakjuk · Homestyle Korean Chicken Rice Porridge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,30..100&family=Newsreader:opsz,wght@6..72,300..700&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+  /* ===== force light mode regardless of viewer / system setting ===== */
+  :root{
+    color-scheme: light only;
+    --paper:#f3ecdd;
+    --paper-2:#ebe2cf;
+    --paper-3:#fbf7ed;
+    --ink:#1f1812;
+    --ink-soft:#4a3d2f;
+    --ink-faint:#7a6951;
+    --rule:#bca783;
+    --rule-soft:#d8cbb1;
+    --red:#9a3329;
+    --red-deep:#71241d;
+    --blue:#2f4d62;
+    --gold:#ad7e2f;
+    --green:#52632e;
+    --shadow: 0 1px 0 rgba(110,80,40,.08), 0 18px 40px -22px rgba(80,50,20,.30);
+  }
+  html{
+    background-color:#f3ecdd !important;
+    color: #1f1812 !important;
+    color-scheme: light only;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:0;
+    font-family:"Newsreader", Georgia, serif;
+    color:#1f1812 !important;
+    background-color:#f3ecdd !important;
+    background-image:
+      radial-gradient(1200px 600px at 80% -10%, rgba(154,51,41,.06), transparent 60%),
+      radial-gradient(900px 500px at -10% 30%, rgba(47,77,98,.06), transparent 60%);
+    line-height:1.55;
+    font-size:17px;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    opacity:.5;
+    background-image:
+      radial-gradient(rgba(120,90,50,.10) 1px, transparent 1.2px),
+      radial-gradient(rgba(120,90,50,.06) 1px, transparent 1.2px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+    mix-blend-mode:multiply;
+    z-index:1;
+  }
+  .page{
+    position:relative;
+    z-index:2;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 28px 18px 96px;
+  }
+
+  /* ========== HERO ========== */
+  .hero{
+    position:relative;
+    border:1px solid var(--rule);
+    background-color: #ebe2cf;
+    background-image: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,0) 60%);
+    padding: 24px 22px 28px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    color:var(--ink);
+  }
+  .hero::before{
+    content:"";
+    position:absolute; inset:8px;
+    border:1px solid var(--rule-soft);
+    pointer-events:none;
+  }
+  .eyebrow{
+    display:flex; align-items:center; gap:10px;
+    font-family:"Fraunces", serif;
+    font-weight:500;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    font-size:11px;
+    color:var(--red-deep);
+  }
+  .eyebrow .dot{
+    width:6px; height:6px; background:var(--red); border-radius:50%;
+    box-shadow: 12px 0 0 var(--blue), 24px 0 0 var(--gold);
+    margin-right:18px;
+  }
+  .hero h1{
+    font-family:"Fraunces", serif;
+    font-weight:400;
+    font-style:italic;
+    font-size: clamp(38px, 7vw, 64px);
+    line-height: 1;
+    margin: 14px 0 6px;
+    color:var(--ink);
+    letter-spacing:-.01em;
+  }
+  .hero h1 em{ font-style:normal; font-weight:600 }
+  .hero .ko{
+    font-family:"Nanum Myeongjo", serif;
+    font-weight:800;
+    font-size: clamp(17px, 2.6vw, 22px);
+    color: var(--red);
+    letter-spacing:.04em;
+  }
+  .hero .sub{
+    font-family:"Newsreader", serif;
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size: 17px;
+    max-width: 56ch;
+    margin-top: 12px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 18px;
+    align-items:center;
+  }
+  @media (max-width:680px){
+    .hero-grid{grid-template-columns:1fr}
+    .hero-svg{order:-1; max-width:240px; margin:0 auto}
+  }
+  .hero-svg{ width:100%; height:auto; display:block }
+
+  .meta{
+    margin-top: 20px;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:0;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+  }
+  .meta > div{
+    padding: 12px 6px;
+    text-align:center;
+    border-right:1px dashed var(--rule-soft);
+  }
+  .meta > div:last-child{border-right:0}
+  .meta .label{
+    font-family:"Fraunces",serif;
+    font-size:10px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    display:block;
+  }
+  .meta .val{
+    font-family:"Fraunces",serif;
+    font-weight:500;
+    font-size:16px;
+    color:var(--ink);
+    margin-top:3px;
+    display:block;
+  }
+  @media (max-width:520px){
+    .meta{grid-template-columns:repeat(2,1fr)}
+    .meta > div:nth-child(2){border-right:0}
+    .meta > div:nth-child(1),.meta > div:nth-child(2){border-bottom:1px dashed var(--rule-soft)}
+  }
+
+  /* ========== INTERACTIVE RICE SCALER ========== */
+  .scaler{
+    position:relative;
+    margin-top: 28px;
+    padding: 22px 20px 20px;
+    background-color: #fbf7ed;
+    border: 1.5px solid var(--red);
+    color: var(--ink);
+    box-shadow: 6px 6px 0 0 rgba(154,51,41,.08);
+  }
+  .scaler::before{
+    content:"";
+    position:absolute; top:8px; left:8px; right:8px; bottom:8px;
+    border: 1px dashed var(--rule);
+    pointer-events:none;
+  }
+  .scaler h3{
+    margin:0 0 4px;
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-style:italic;
+    font-size: 22px;
+    color: var(--red-deep);
+    position:relative;
+  }
+  .scaler .scaler-sub{
+    font-family:"Newsreader",serif;
+    font-style:italic;
+    color: var(--ink-soft);
+    font-size: 14px;
+    margin-bottom: 16px;
+    position:relative;
+  }
+  .tabs{
+    display:flex;
+    gap:0;
+    margin-bottom: 14px;
+    border:1px solid var(--rule);
+    background:#fff;
+    position:relative;
+  }
+  .tabs button{
+    flex:1;
+    padding: 11px 10px;
+    border:0;
+    background: transparent;
+    font-family:"Fraunces",serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    cursor:pointer;
+    transition: all .15s ease;
+  }
+  .tabs button.active{
+    background: var(--red);
+    color:#fff;
+  }
+  .tabs button:not(.active):hover{
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+  .stepper{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 14px;
+    margin: 8px 0 4px;
+    position:relative;
+  }
+  .stepper button{
+    width: 44px; height:44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--red);
+    background: #fff;
+    color: var(--red);
+    font-size: 24px;
+    font-weight: 600;
+    cursor:pointer;
+    line-height: 1;
+    display:flex; align-items:center; justify-content:center;
+    transition: all .15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .stepper button:hover{ background: var(--red); color:#fff }
+  .stepper button:active{ transform: scale(.92) }
+  .stepper input{
+    width: 92px;
+    height: 50px;
+    border: 1px solid var(--rule);
+    background: #fff;
+    text-align:center;
+    font-family:"Fraunces",serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--ink);
+    -moz-appearance: textfield;
+  }
+  .stepper input::-webkit-outer-spin-button,
+  .stepper input::-webkit-inner-spin-button{
+    -webkit-appearance: none; margin:0;
+  }
+  .stepper-unit{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    color:var(--ink-soft);
+    font-size:16px;
+  }
+  .scaler-readout{
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dotted var(--rule-soft);
+    text-align:center;
+    font-family:"Newsreader",serif;
+    font-style:italic;
+    color: var(--ink-soft);
+    font-size: 14px;
+    position:relative;
+  }
+  .scaler-readout strong{
+    color: var(--red-deep);
+    font-weight: 600;
+    font-style: normal;
+    font-family: "Fraunces", serif;
+  }
+
+  /* ========== SECTIONS ========== */
+  section{margin-top: 40px}
+  h2{
+    font-family:"Fraunces", serif;
+    font-weight:500;
+    font-size: clamp(22px, 3.3vw, 30px);
+    margin: 0 0 4px;
+    color:var(--ink);
+    letter-spacing:-.005em;
+  }
+  h2 .ko{
+    font-family:"Nanum Myeongjo",serif;
+    color:var(--red);
+    font-size:.55em;
+    margin-left:10px;
+    vertical-align: 0.18em;
+  }
+  .h-rule{
+    height:1px;
+    background: linear-gradient(90deg, var(--red) 0 28px, var(--rule) 28px 100%);
+    margin: 6px 0 18px;
+  }
+  p{margin: 0 0 12px; color: var(--ink)}
+  .lede{
+    font-size: 18px;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  /* ========== INGREDIENTS ========== */
+  .ing-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 28px;
+  }
+  @media (max-width:600px){ .ing-grid{grid-template-columns:1fr} }
+  .ing-block h3{
+    font-family:"Fraunces",serif;
+    font-size:13px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--blue);
+    margin: 14px 0 8px;
+    padding-bottom:6px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  ul.ing{
+    list-style:none;
+    padding:0; margin:0;
+  }
+  ul.ing li{
+    display:flex;
+    justify-content:space-between;
+    gap:14px;
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--rule-soft);
+  }
+  ul.ing li:last-child{border-bottom:0}
+  ul.ing .item{ color:var(--ink); flex: 1 1 auto }
+  ul.ing .qty{
+    font-family:"Fraunces",serif;
+    font-variant-numeric: tabular-nums;
+    color:var(--red-deep);
+    font-weight:500;
+    text-align:right;
+    flex-shrink:0;
+    transition: color .25s ease;
+  }
+  ul.ing .qty.flash{
+    color: var(--gold);
+  }
+  ul.ing .note{
+    display:block;
+    font-size:13px;
+    color:var(--ink-faint);
+    font-style:italic;
+    margin-top: 1px;
+  }
+
+  /* ========== STEPS ========== */
+  .step{
+    display:grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    padding: 22px 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+  .step:first-of-type{border-top: 1px solid var(--rule)}
+  .step:last-of-type{border-bottom: 1px solid var(--rule)}
+  @media (max-width:520px){
+    .step{grid-template-columns: 44px 1fr; gap:12px}
+  }
+  .num{
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-weight:300;
+    font-size: 44px;
+    line-height:1;
+    color:var(--red);
+    text-align:center;
+    padding-top: 4px;
+    border-right: 1px solid var(--rule-soft);
+    padding-right: 12px;
+  }
+  .step h3{
+    font-family:"Fraunces",serif;
+    font-weight:600;
+    font-size:20px;
+    margin: 0 0 6px;
+    color:var(--ink);
+  }
+  .step p{ margin-bottom: 10px }
+  .step p:last-child{margin-bottom:0}
+
+  .callout{
+    margin: 14px 0 4px;
+    padding: 12px 14px;
+    background-color: rgba(173,126,47,.13);
+    border-left: 3px solid var(--gold);
+    font-size: 15px;
+    color: var(--ink-soft);
+  }
+  .callout b{ color:var(--ink); font-weight:600; font-family:"Fraunces",serif; letter-spacing:.04em; text-transform:uppercase; font-size:11px; display:block; margin-bottom:3px}
+  .visual{
+    margin: 14px 0 6px;
+    background-color: rgba(255,255,255,.55);
+    border:1px solid var(--rule-soft);
+    padding: 14px;
+    text-align:center;
+  }
+  .visual svg{ display:block; margin: 0 auto; max-width: 100%; height:auto }
+  .visual .cap{
+    margin-top: 8px;
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-size: 13px;
+    color:var(--ink-faint);
+  }
+
+  .two-col{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width:680px){ .two-col{grid-template-columns:1fr} }
+
+  .tip{
+    display:flex;
+    gap:12px;
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--rule-soft);
+  }
+  .tip:last-child{border-bottom:0}
+  .tip .marker{
+    font-family:"Nanum Myeongjo",serif;
+    font-weight:800;
+    color:var(--red);
+    flex-shrink:0;
+    width:18px;
+  }
+
+  .colophon{
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    text-align:center;
+    color: var(--ink-faint);
+    font-size: 13px;
+    font-style: italic;
+  }
+  .colophon .stamp{
+    display:inline-block;
+    border:1.5px solid var(--red);
+    color:var(--red);
+    padding:4px 10px;
+    font-family:"Nanum Myeongjo",serif;
+    font-weight:800;
+    letter-spacing:.1em;
+    margin-bottom:10px;
+    transform: rotate(-2deg);
+  }
+
+  strong{font-weight:600; color: var(--ink)}
+  em.term{ font-style:normal; font-weight:600; color:var(--blue) }
+  .ko-inline{
+    font-family:"Nanum Myeongjo",serif;
+    color:var(--red);
+    font-weight:700;
+  }
+
+  /* ===== Method A / B divider ===== */
+  .method-divider{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin: 22px 0 14px;
+    color: var(--ink-faint);
+    font-family:"Fraunces",serif;
+    font-style:italic;
+    font-size: 14px;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+  }
+  .method-divider::before,
+  .method-divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background: var(--rule-soft);
+  }
+  .method-tag{
+    display:inline-block;
+    font-family:"Fraunces",serif;
+    font-size: 11px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--blue);
+    padding: 3px 9px;
+    margin-bottom: 8px;
+  }
+  .method-tag.alt{ background: var(--red); }
+  .stovetop-panel{
+    margin-top: 6px;
+    padding: 16px 18px;
+    background-color: rgba(154,51,41,.06);
+    border-left: 3px solid var(--red);
+  }
+  .stovetop-panel p:last-child{ margin-bottom: 0 }
+  .stovetop-panel ul.tight{
+    list-style:none;
+    padding: 0;
+    margin: 8px 0 12px;
+  }
+  .stovetop-panel ul.tight li{
+    padding: 6px 0 6px 22px;
+    position: relative;
+    border-bottom: 1px dotted var(--rule-soft);
+  }
+  .stovetop-panel ul.tight li:last-child{ border-bottom: 0 }
+  .stovetop-panel ul.tight li::before{
+    content: "·";
+    position: absolute;
+    left: 6px;
+    top: 4px;
+    font-family: "Nanum Myeongjo", serif;
+    font-weight: 800;
+    color: var(--red);
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow"><span class="dot"></span>Homestyle Korean · Cuckoo Rice Cooker</div>
+        <h1><em>Dakjuk</em><br><span style="font-size:.55em; font-style:italic; color:var(--ink-soft); font-weight:300;">chicken &amp; rice porridge</span></h1>
+        <div class="ko">닭죽 &nbsp;·&nbsp; <span style="color:var(--ink-faint); font-weight:400; font-family:'Newsreader',serif; font-style:italic;">a bowl of healing</span></div>
+        <p class="sub">Silky, garlicky, deeply nourishing. The kind of porridge a Korean grandmother makes when you’re sick — done almost entirely by your rice cooker’s <strong>죽 (Porridge)</strong> button.</p>
+      </div>
+
+      <svg class="hero-svg" viewBox="0 0 320 280" xmlns="http://www.w3.org/2000/svg" aria-label="A bowl of dakjuk topped with scallions, sesame seeds, and nori">
+        <defs>
+          <radialGradient id="porridge" cx="50%" cy="40%" r="55%">
+            <stop offset="0%" stop-color="#f7ecc7"/>
+            <stop offset="70%" stop-color="#e8d8a8"/>
+            <stop offset="100%" stop-color="#cdb478"/>
+          </radialGradient>
+          <linearGradient id="bowl" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3a5a6e"/>
+            <stop offset="100%" stop-color="#1f3849"/>
+          </linearGradient>
+          <radialGradient id="bowlInner" cx="50%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#5b7d92"/>
+            <stop offset="100%" stop-color="#2e4d61"/>
+          </radialGradient>
+        </defs>
+        <g stroke="#b8a984" stroke-width="2" fill="none" stroke-linecap="round" opacity=".55">
+          <path d="M120 60 q -8 -16 4 -28 q 12 -10 0 -22"/>
+          <path d="M165 50 q -10 -18 6 -32 q 12 -10 -2 -22"/>
+          <path d="M210 60 q -8 -16 4 -28 q 12 -10 0 -22"/>
+        </g>
+        <ellipse cx="160" cy="248" rx="120" ry="10" fill="#000" opacity=".10"/>
+        <path d="M40 150 Q 160 280 280 150 Z" fill="url(#bowl)"/>
+        <ellipse cx="160" cy="148" rx="120" ry="20" fill="url(#bowlInner)"/>
+        <ellipse cx="160" cy="146" rx="116" ry="17" fill="url(#porridge)"/>
+        <g opacity=".55" fill="#c8a85e">
+          <circle cx="120" cy="142" r="2"/><circle cx="135" cy="148" r="1.5"/><circle cx="170" cy="140" r="2"/><circle cx="195" cy="146" r="1.7"/><circle cx="150" cy="152" r="1.4"/><circle cx="210" cy="150" r="1.3"/><circle cx="105" cy="146" r="1.6"/>
+        </g>
+        <g fill="#5d6e3a">
+          <ellipse cx="140" cy="142" rx="9" ry="2" transform="rotate(-12 140 142)"/>
+          <ellipse cx="170" cy="148" rx="11" ry="2" transform="rotate(15 170 148)"/>
+          <ellipse cx="195" cy="142" rx="8" ry="2" transform="rotate(-8 195 142)"/>
+          <ellipse cx="125" cy="150" rx="7" ry="1.8" transform="rotate(20 125 150)"/>
+        </g>
+        <g fill="#d8e7b8">
+          <ellipse cx="140" cy="142" rx="9" ry=".7" transform="rotate(-12 140 142)"/>
+          <ellipse cx="170" cy="148" rx="11" ry=".7" transform="rotate(15 170 148)"/>
+        </g>
+        <rect x="155" y="138" width="22" height="3" fill="#1f2a1a" transform="rotate(-8 166 139)"/>
+        <rect x="115" y="148" width="14" height="2.5" fill="#1f2a1a" transform="rotate(18 122 149)"/>
+        <g fill="#f4ead0" stroke="#9b8454" stroke-width=".4">
+          <ellipse cx="148" cy="146" rx="1.4" ry=".8"/><ellipse cx="180" cy="144" rx="1.4" ry=".8"/><ellipse cx="200" cy="148" rx="1.4" ry=".8"/><ellipse cx="160" cy="150" rx="1.4" ry=".8"/><ellipse cx="130" cy="146" rx="1.4" ry=".8"/><ellipse cx="215" cy="144" rx="1.4" ry=".8"/>
+        </g>
+        <ellipse cx="158" cy="143" rx="6" ry="1.5" fill="#d5b06a" opacity=".7"/>
+        <g transform="rotate(-22 240 110)">
+          <rect x="232" y="60" width="3" height="120" fill="#7a5a36"/>
+          <rect x="240" y="58" width="3" height="120" fill="#8a6a44"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="meta">
+      <div><span class="label">Time</span><span class="val">≈ 1 hr 15 min</span></div>
+      <div><span class="label">Active</span><span class="val">15 min</span></div>
+      <div><span class="label">Serves</span><span class="val" id="meta-serves">4</span></div>
+      <div><span class="label">Difficulty</span><span class="val">Beginner</span></div>
+    </div>
+  </header>
+
+  <!-- ============ INTERACTIVE SCALER ============ -->
+  <div class="scaler" id="scaler">
+    <h3>How much jasmine rice do you have?</h3>
+    <div class="scaler-sub">Tell me what’s in your kitchen and the recipe below resizes itself — broth, chicken, the whole thing.</div>
+
+    <div class="tabs" role="tablist">
+      <button id="tab-uncooked" class="active" data-mode="uncooked" role="tab" aria-selected="true">Uncooked</button>
+      <button id="tab-cooked" data-mode="cooked" role="tab" aria-selected="false">Cooked / leftover</button>
+    </div>
+
+    <div class="stepper">
+      <button id="rice-down" aria-label="decrease">−</button>
+      <input id="rice-input" type="number" inputmode="decimal" step="0.25" min="0.25" max="6" value="0.75" />
+      <button id="rice-up" aria-label="increase">+</button>
+      <span class="stepper-unit">cups</span>
+    </div>
+
+    <div class="scaler-readout" id="readout">
+      Using <strong>¾ cup uncooked</strong> jasmine rice · makes about <strong>4 bowls</strong>
+    </div>
+  </div>
+
+  <!-- ============ INTRO ============ -->
+  <section>
+    <p class="lede">In Korea, when you’re sick or tired or just need to feel held, someone makes you <span class="ko-inline">죽</span>. This is the homestyle chicken version — rice toasted in fragrant sesame oil until it smells nutty, then simmered slowly with chicken, lots of garlic, and a thumb of ginger until the grains practically melt into a creamy hug. Your Cuckoo does almost all the work.</p>
+    <p style="font-size:14px; color:var(--ink-faint); font-style:italic;">A note on jasmine: traditional dakjuk uses short-grain rice, which gets creamier. Jasmine works beautifully too — slightly less sticky, a touch more fragrant. If you have both, mix them.</p>
+  </section>
+
+  <!-- ============ INGREDIENTS ============ -->
+  <section>
+    <h2>Ingredients <span class="ko">재료</span></h2>
+    <div class="h-rule"></div>
+
+    <div class="ing-grid">
+
+      <div class="ing-block">
+        <h3>The Porridge</h3>
+        <ul class="ing">
+          <li>
+            <span class="item"><span id="rice-label-text">Jasmine rice, uncooked</span><span class="note" id="rice-note">rinse 3 times before using</span></span>
+            <span class="qty" data-q="rice">¾ cup</span>
+          </li>
+          <li>
+            <span class="item">Boneless skinless chicken thighs<span class="note">thigh, not breast — far more flavor</span></span>
+            <span class="qty" data-q="chicken">0.75 lb</span>
+          </li>
+          <li>
+            <span class="item">Low-sodium chicken broth<span class="note">or water — broth tastes deeper</span></span>
+            <span class="qty" data-q="broth">6 cups</span>
+          </li>
+          <li>
+            <span class="item">Toasted sesame oil<span class="note">the dark, fragrant kind in a small bottle</span></span>
+            <span class="qty" data-q="sesameoil">2 tbsp</span>
+          </li>
+          <li>
+            <span class="item">Garlic cloves, peeled<span class="note">half get mashed into the porridge later</span></span>
+            <span class="qty" data-q="garlic">8 cloves</span>
+          </li>
+          <li>
+            <span class="item">Fresh ginger<span class="note">peeled; about a thumb-tip-sized piece</span></span>
+            <span class="qty" data-q="ginger">1-inch piece</span>
+          </li>
+          <li>
+            <span class="item">Carrot, finely diced</span>
+            <span class="qty" data-q="carrot">0.15 lb</span>
+          </li>
+          <li>
+            <span class="item">Yellow onion, finely diced</span>
+            <span class="qty" data-q="onion">0.15 lb</span>
+          </li>
+          <li>
+            <span class="item">Zucchini, finely diced</span>
+            <span class="qty" data-q="zucchini">0.20 lb</span>
+          </li>
+          <li>
+            <span class="item">Fine sea salt<span class="note">to start; you’ll season more at the table</span></span>
+            <span class="qty" data-q="salt">1 tsp</span>
+          </li>
+          <li>
+            <span class="item">Freshly ground black pepper</span>
+            <span class="qty">to taste</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="ing-block">
+        <h3>To Finish &amp; Serve</h3>
+        <ul class="ing">
+          <li>
+            <span class="item">Scallions, thinly sliced<span class="note">just the green parts, in thin little rings</span></span>
+            <span class="qty">2 stalks</span>
+          </li>
+          <li>
+            <span class="item">Toasted sesame seeds</span>
+            <span class="qty">2 tsp</span>
+          </li>
+          <li>
+            <span class="item">Gim (roasted seaweed)<span class="note">snack-pack nori; crumble or cut into ribbons</span></span>
+            <span class="qty">2 sheets</span>
+          </li>
+          <li>
+            <span class="item">Toasted sesame oil, for drizzling</span>
+            <span class="qty">a little</span>
+          </li>
+          <li>
+            <span class="item">Soy sauce, at the table</span>
+            <span class="qty">a few drops</span>
+          </li>
+          <li>
+            <span class="item">Kimchi, on the side<span class="note">the cold, sour, crunchy contrast is the whole point</span></span>
+            <span class="qty">a small dish</span>
+          </li>
+        </ul>
+
+        <h3 style="margin-top:24px">Equipment</h3>
+        <ul class="ing">
+          <li>
+            <span class="item">Cuckoo rice cooker<span class="note">any model with a <strong>Porridge / 죽</strong> setting</span></span>
+            <span class="qty">1</span>
+          </li>
+          <li>
+            <span class="item">Small skillet or saucepan<span class="note">for toasting the rice</span></span>
+            <span class="qty">1</span>
+          </li>
+          <li>
+            <span class="item">Mesh strainer for rinsing</span>
+            <span class="qty">1</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE CUCKOO BUTTON ============ -->
+  <section>
+    <h2>Find the porridge button <span class="ko">죽</span></h2>
+    <div class="h-rule"></div>
+    <p>Every Cuckoo has it, but it’s not always labeled the same. Look on your control panel for one of these — they all do the same thing:</p>
+
+    <div class="visual" style="background-color:#1f2a35; border-color:#1f2a35; padding:22px;">
+      <svg viewBox="0 0 520 240" xmlns="http://www.w3.org/2000/svg" aria-label="Cuckoo rice cooker control panel showing the porridge button">
+        <rect x="10" y="10" width="500" height="220" rx="14" fill="#2b3744" stroke="#445566" stroke-width="1"/>
+        <rect x="40" y="32" width="200" height="74" rx="6" fill="#0e161e" stroke="#3a4a5a"/>
+        <text x="55" y="68" font-family="Fraunces, serif" font-size="22" fill="#9bd0ff" letter-spacing="2">PORRIDGE</text>
+        <text x="55" y="92" font-family="Nanum Myeongjo, serif" font-weight="800" font-size="18" fill="#ffd166">죽 · 1:00</text>
+        <g fill="#3e4d5d" stroke="#566a7d">
+          <circle cx="280" cy="50" r="16"/><circle cx="320" cy="50" r="16"/><circle cx="360" cy="50" r="16"/><circle cx="400" cy="50" r="16"/><circle cx="440" cy="50" r="16"/>
+          <circle cx="280" cy="100" r="16"/><circle cx="320" cy="100" r="16"/><circle cx="400" cy="100" r="16"/><circle cx="440" cy="100" r="16"/>
+        </g>
+        <circle cx="360" cy="100" r="22" fill="#a63b32" stroke="#ffd166" stroke-width="2.5">
+          <animate attributeName="r" values="20;24;20" dur="1.6s" repeatCount="indefinite"/>
+        </circle>
+        <text x="360" y="106" text-anchor="middle" font-family="Nanum Myeongjo, serif" font-weight="800" font-size="20" fill="#fff">죽</text>
+        <g font-family="Fraunces, serif" font-size="13" fill="#cfd9e3">
+          <text x="40" y="160">Look for any of these labels on your model:</text>
+        </g>
+        <g font-family="Fraunces, serif" font-size="14" fill="#ffd166" font-weight="500">
+          <text x="40" y="190">"Porridge"</text>
+          <text x="155" y="190">"죽"</text>
+          <text x="200" y="190">"Juk"</text>
+          <text x="265" y="190">"Nutritious"</text>
+          <text x="380" y="190">"Multi-Cook → Porridge"</text>
+        </g>
+        <g font-family="Newsreader, serif" font-style="italic" font-size="12" fill="#9aa8b8">
+          <text x="40" y="214">Cooking time runs about 50–70 min depending on model. That’s normal.</text>
+        </g>
+        <path d="M360 138 Q 360 124 360 124" stroke="#ffd166" stroke-width="2" fill="none"/>
+        <path d="M355 134 L360 124 L365 134 Z" fill="#ffd166"/>
+      </svg>
+      <div class="cap" style="color:#cfd9e3">If your Cuckoo only has “Multi-Cook,” select it and choose <strong style="color:#fff">Porridge</strong> from the menu.</div>
+    </div>
+  </section>
+
+  <!-- ============ METHOD ============ -->
+  <section>
+    <h2>Method <span class="ko">조리법</span></h2>
+    <div class="h-rule"></div>
+
+    <!-- ===== STEP 1 ===== -->
+    <div class="step" id="step-rinse">
+      <div class="num">1</div>
+      <div>
+        <h3 id="step1-title">Rinse and soak the rice</h3>
+        <p id="step1-body">Put your jasmine rice in a bowl. Cover with cool water, swish gently with your hand for about 10 seconds, and drain. Repeat <strong>3 times total</strong>. The water won’t go fully clear — and you don’t want it to. That cloudiness is starch, and starch is what makes porridge feel like porridge.</p>
+        <p id="step1-soak">Cover the rinsed rice with fresh cool water and let it <strong>soak for 30 minutes</strong> while you prep everything else. (Skipping the soak is fine; the rice just takes longer to break down.)</p>
+
+        <div class="visual">
+          <svg viewBox="0 0 520 130" xmlns="http://www.w3.org/2000/svg" aria-label="Three glasses showing rinse water going from cloudy to clearer">
+            <defs>
+              <linearGradient id="w1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f1ead6"/><stop offset="1" stop-color="#d9cca4"/></linearGradient>
+              <linearGradient id="w2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5efe1"/><stop offset="1" stop-color="#e6dcc1"/></linearGradient>
+              <linearGradient id="w3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f9f4e8"/><stop offset="1" stop-color="#eee5cf"/></linearGradient>
+            </defs>
+            <g transform="translate(40,18)">
+              <path d="M0 0 h100 l-8 84 q-2 14 -42 14 q-40 0 -42 -14 Z" fill="none" stroke="#8a7965" stroke-width="1.5"/>
+              <path d="M3 8 h94 l-7 76 q-2 12 -40 12 q-38 0 -40 -12 Z" fill="url(#w1)"/>
+              <text x="50" y="118" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-size="12" fill="#574838">1st rinse · very cloudy</text>
+            </g>
+            <g transform="translate(195,18)">
+              <path d="M0 0 h100 l-8 84 q-2 14 -42 14 q-40 0 -42 -14 Z" fill="none" stroke="#8a7965" stroke-width="1.5"/>
+              <path d="M3 8 h94 l-7 76 q-2 12 -40 12 q-38 0 -40 -12 Z" fill="url(#w2)"/>
+              <text x="50" y="118" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-size="12" fill="#574838">2nd rinse · cloudy</text>
+            </g>
+            <g transform="translate(350,18)">
+              <path d="M0 0 h100 l-8 84 q-2 14 -42 14 q-40 0 -42 -14 Z" fill="none" stroke="#8a7965" stroke-width="1.5"/>
+              <path d="M3 8 h94 l-7 76 q-2 12 -40 12 q-38 0 -40 -12 Z" fill="url(#w3)"/>
+              <text x="50" y="118" text-anchor="middle" font-family="Fraunces,serif" font-style="italic" font-size="12" fill="#574838">3rd rinse · stop here ✓</text>
+            </g>
+            <path d="M148 60 L185 60" stroke="#a63b32" stroke-width="1.5" fill="none"/>
+            <path d="M180 56 L188 60 L180 64 Z" fill="#a63b32"/>
+            <path d="M303 60 L340 60" stroke="#a63b32" stroke-width="1.5" fill="none"/>
+            <path d="M335 56 L343 60 L335 64 Z" fill="#a63b32"/>
+          </svg>
+          <div class="cap">Don’t over-rinse — the cloudy starch is what makes the porridge silky.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STEP 2 ===== -->
+    <div class="step">
+      <div class="num">2</div>
+      <div>
+        <h3>Prep the aromatics and vegetables</h3>
+        <p>While the rice soaks, do all your chopping. Smash and roughly chop <strong>4 of the garlic cloves</strong>; thinly slice the other half and set them aside in a separate pile. Peel and thinly slice the ginger.</p>
+        <p>The carrot, onion, and zucchini all need to be cut <em class="term">very small</em> — finer than you think. They should disappear into the porridge, not stand out as chunks. Aim for pieces about the size of a grain of cooked rice.</p>
+
+        <div class="visual">
+          <svg viewBox="0 0 520 130" xmlns="http://www.w3.org/2000/svg" aria-label="Comparison of dice sizes showing the correct very small dice">
+            <g transform="translate(20,20)">
+              <text x="60" y="0" text-anchor="middle" font-family="Fraunces,serif" font-size="11" letter-spacing="2" fill="#a63b32" font-weight="600">TOO BIG</text>
+              <g fill="#e8915c">
+                <rect x="20" y="14" width="22" height="22"/><rect x="50" y="14" width="22" height="22"/><rect x="80" y="14" width="22" height="22"/>
+                <rect x="20" y="44" width="22" height="22"/><rect x="50" y="44" width="22" height="22"/><rect x="80" y="44" width="22" height="22"/>
+              </g>
+              <text x="60" y="92" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="12" fill="#574838">~½ inch chunks</text>
+              <text x="60" y="108" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="11" fill="#8a7965">stew, not porridge</text>
+            </g>
+            <g transform="translate(190,20)">
+              <text x="80" y="0" text-anchor="middle" font-family="Fraunces,serif" font-size="11" letter-spacing="2" fill="#5d6e3a" font-weight="600">JUST RIGHT ✓</text>
+              <g fill="#e8915c">
+                <g>
+                  <rect x="10" y="14" width="6" height="6"/><rect x="20" y="14" width="6" height="6"/><rect x="30" y="14" width="6" height="6"/><rect x="40" y="14" width="6" height="6"/><rect x="50" y="14" width="6" height="6"/><rect x="60" y="14" width="6" height="6"/><rect x="70" y="14" width="6" height="6"/><rect x="80" y="14" width="6" height="6"/><rect x="90" y="14" width="6" height="6"/><rect x="100" y="14" width="6" height="6"/><rect x="110" y="14" width="6" height="6"/><rect x="120" y="14" width="6" height="6"/><rect x="130" y="14" width="6" height="6"/><rect x="140" y="14" width="6" height="6"/>
+                  <rect x="10" y="24" width="6" height="6"/><rect x="20" y="24" width="6" height="6"/><rect x="30" y="24" width="6" height="6"/><rect x="40" y="24" width="6" height="6"/><rect x="50" y="24" width="6" height="6"/><rect x="60" y="24" width="6" height="6"/><rect x="70" y="24" width="6" height="6"/><rect x="80" y="24" width="6" height="6"/><rect x="90" y="24" width="6" height="6"/><rect x="100" y="24" width="6" height="6"/><rect x="110" y="24" width="6" height="6"/><rect x="120" y="24" width="6" height="6"/><rect x="130" y="24" width="6" height="6"/><rect x="140" y="24" width="6" height="6"/>
+                  <rect x="10" y="34" width="6" height="6"/><rect x="20" y="34" width="6" height="6"/><rect x="30" y="34" width="6" height="6"/><rect x="40" y="34" width="6" height="6"/><rect x="50" y="34" width="6" height="6"/><rect x="60" y="34" width="6" height="6"/><rect x="70" y="34" width="6" height="6"/><rect x="80" y="34" width="6" height="6"/><rect x="90" y="34" width="6" height="6"/><rect x="100" y="34" width="6" height="6"/><rect x="110" y="34" width="6" height="6"/><rect x="120" y="34" width="6" height="6"/><rect x="130" y="34" width="6" height="6"/><rect x="140" y="34" width="6" height="6"/>
+                  <rect x="10" y="44" width="6" height="6"/><rect x="20" y="44" width="6" height="6"/><rect x="30" y="44" width="6" height="6"/><rect x="40" y="44" width="6" height="6"/><rect x="50" y="44" width="6" height="6"/><rect x="60" y="44" width="6" height="6"/><rect x="70" y="44" width="6" height="6"/><rect x="80" y="44" width="6" height="6"/><rect x="90" y="44" width="6" height="6"/><rect x="100" y="44" width="6" height="6"/><rect x="110" y="44" width="6" height="6"/><rect x="120" y="44" width="6" height="6"/><rect x="130" y="44" width="6" height="6"/><rect x="140" y="44" width="6" height="6"/>
+                  <rect x="10" y="54" width="6" height="6"/><rect x="20" y="54" width="6" height="6"/><rect x="30" y="54" width="6" height="6"/><rect x="40" y="54" width="6" height="6"/><rect x="50" y="54" width="6" height="6"/><rect x="60" y="54" width="6" height="6"/><rect x="70" y="54" width="6" height="6"/><rect x="80" y="54" width="6" height="6"/><rect x="90" y="54" width="6" height="6"/><rect x="100" y="54" width="6" height="6"/><rect x="110" y="54" width="6" height="6"/><rect x="120" y="54" width="6" height="6"/><rect x="130" y="54" width="6" height="6"/><rect x="140" y="54" width="6" height="6"/>
+                </g>
+              </g>
+              <text x="80" y="92" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="12" fill="#574838">~⅛ inch · rice-grain size</text>
+              <text x="80" y="108" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="11" fill="#8a7965">melts into the porridge</text>
+            </g>
+            <g transform="translate(390,40)">
+              <text x="60" y="-12" text-anchor="middle" font-family="Fraunces,serif" font-size="11" letter-spacing="2" fill="#3a5a6e" font-weight="600">FOR SCALE</text>
+              <line x1="0" y1="20" x2="120" y2="20" stroke="#3a5a6e" stroke-width="1.5"/>
+              <line x1="0" y1="14" x2="0" y2="26" stroke="#3a5a6e" stroke-width="1.5"/>
+              <line x1="60" y1="16" x2="60" y2="24" stroke="#3a5a6e" stroke-width="1"/>
+              <line x1="120" y1="14" x2="120" y2="26" stroke="#3a5a6e" stroke-width="1.5"/>
+              <text x="0" y="42" text-anchor="middle" font-family="Newsreader,serif" font-size="11" fill="#574838">0"</text>
+              <text x="60" y="42" text-anchor="middle" font-family="Newsreader,serif" font-size="11" fill="#574838">½"</text>
+              <text x="120" y="42" text-anchor="middle" font-family="Newsreader,serif" font-size="11" fill="#574838">1"</text>
+            </g>
+          </svg>
+          <div class="cap">Tiny dice = better porridge. If your knife skills aren’t there yet, pulse the veg in a food processor a few times.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STEP 3 ===== -->
+    <div class="step" id="step-toast">
+      <div class="num">3</div>
+      <div>
+        <h3 id="step3-title">Toast the rice in sesame oil</h3>
+        <p id="step3-body">This is the one stove step, and it’s the secret to that nutty, restaurant-quality flavor. Drain your soaked rice well. Heat the <strong>toasted sesame oil</strong> in a small skillet over <em class="term">medium-low</em> heat (sesame oil burns fast — keep the heat gentle).</p>
+        <p id="step3-body2">Add the drained rice along with the chopped garlic and the sliced ginger. Stir constantly for about <strong>2 minutes</strong>, until the rice grains turn slightly translucent at the edges and smell deeply nutty and toasty. Don’t walk away.</p>
+        <div class="callout" id="toast-callout">
+          <b>Why this matters</b>
+          Toasting in sesame oil before adding liquid is what separates homemade-Korean-grandma juk from generic rice cooker congee. Don’t skip it.
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STEP 4 ===== -->
+    <div class="step">
+      <div class="num">4</div>
+      <div>
+        <h3>Load the Cuckoo</h3>
+        <p>Scrape everything from the skillet (oil, rice, aromatics) into the Cuckoo’s inner pot. Add the <strong>raw chicken thighs</strong>, the <strong>remaining sliced garlic</strong>, the diced <strong>carrot</strong>, <strong>onion</strong>, and <strong>zucchini</strong>, the <strong>salt</strong>, and finally the <strong>broth</strong>.</p>
+        <p>Give it one gentle stir to settle everything. Don’t overfill — the liquid should sit comfortably below your pot’s <strong>maximum porridge line</strong>. If it’s close, scoop out a little broth.</p>
+        <div class="callout">
+          <b>Important — do not overfill</b>
+          Porridge expands and bubbles a lot as it cooks. If your liquid sits above the porridge max line, it can spit out the steam vent or trigger the safety shutoff. <strong>If you’re over the line, switch to the stovetop method in step 5</strong> — don’t try to muscle through it.
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STEP 5 ===== -->
+    <div class="step">
+      <div class="num">5</div>
+      <div>
+        <h3>Cook it · pick your method</h3>
+
+        <span class="method-tag">Method A · Cuckoo</span>
+        <p><strong>Press Porridge. Walk away.</strong> Lock the lid, select <strong>Porridge</strong> (죽), press start. Depending on your model, this runs somewhere between <strong>50 minutes and 1 hour 10 minutes</strong>. The cooker counts down and switches to keep-warm automatically.</p>
+        <p>This is your moment to make tea, fold laundry, or lie down if you’re sick — which, let’s be honest, is probably why you’re making this.</p>
+
+        <div class="method-divider"><span>or</span></div>
+
+        <span class="method-tag alt">Method B · Stovetop</span>
+        <p>Use this when you’re cooking a bigger batch and the liquid would go above the Cuckoo’s porridge max line, or if you don’t have a Cuckoo at all. You can actually do steps 1–3 directly in the pot to save dishes.</p>
+
+        <div class="stovetop-panel">
+          <p style="margin-top:0"><strong>Use a heavy-bottomed pot</strong> — a Dutch oven is ideal, otherwise any thick pot at least 5–6 quarts. The thicker the bottom, the less it’ll scorch.</p>
+          <ul class="tight">
+            <li>Bring the loaded pot to a <strong>gentle boil</strong> over medium-high heat, then immediately drop to <em class="term">the lowest simmer your stove can manage</em>.</li>
+            <li><strong>Lid on, but cracked</strong> — leave a finger-width gap so steam can escape (a sealed lid will boil over).</li>
+            <li>Stir every <strong>10–15 minutes</strong>, scraping the bottom each time so nothing sticks. This is the only real difference from the rice cooker version.</li>
+            <li>Cook <strong>45–60 minutes</strong> total, until the rice has broken down and the porridge is creamy.</li>
+            <li>Keep a kettle of <strong>hot broth or water</strong> nearby. Stovetops evaporate more than a sealed Cuckoo — if it gets too thick before the rice is fully soft, stir in a splash. Always add it <em>hot</em>; cold water mid-cook makes the porridge gluey.</li>
+            <li>It should look <em class="term">soupy at the start</em> — way more liquid than seems right. That’s correct. The rice swells and absorbs most of it as it breaks down.</li>
+          </ul>
+        </div>
+
+        <div class="visual">
+          <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" aria-label="Diagram of pot on stove with lid cracked open and steam escaping">
+            <!-- burner glow -->
+            <ellipse cx="260" cy="180" rx="120" ry="8" fill="#a63b32" opacity=".25"/>
+            <ellipse cx="260" cy="180" rx="90" ry="5" fill="#a63b32" opacity=".4"/>
+            <!-- steam wisps -->
+            <g fill="none" stroke="#b8a984" stroke-width="2" stroke-linecap="round" opacity=".7">
+              <path d="M200 50 q -8 -16 4 -28 q 12 -10 0 -22"/>
+              <path d="M250 40 q -10 -18 6 -32 q 12 -10 -2 -22"/>
+              <path d="M310 50 q -8 -16 4 -28 q 12 -10 0 -22"/>
+            </g>
+            <!-- pot body -->
+            <path d="M150 100 L370 100 L350 175 Q 260 188 170 175 Z" fill="#3a4a5a" stroke="#1f2a35" stroke-width="1.5"/>
+            <!-- pot handles -->
+            <rect x="135" y="108" width="18" height="8" rx="2" fill="#2a3744"/>
+            <rect x="367" y="108" width="18" height="8" rx="2" fill="#2a3744"/>
+            <!-- porridge level -->
+            <ellipse cx="260" cy="105" rx="108" ry="8" fill="#e8d8a8"/>
+            <path d="M155 105 Q 155 115 158 122" stroke="#cdb478" stroke-width="2" fill="none" opacity=".5"/>
+            <!-- lid, cracked open -->
+            <g transform="translate(260 88) rotate(-8)">
+              <path d="M-115 0 L 115 0 Q 125 -10 0 -14 Q -125 -10 -115 0 Z" fill="#4a5a6e" stroke="#1f2a35" stroke-width="1.5"/>
+              <rect x="-8" y="-26" width="16" height="14" rx="3" fill="#2a3744"/>
+              <circle cx="0" cy="-30" r="4" fill="#3a4a5a"/>
+            </g>
+            <!-- gap arrow -->
+            <g>
+              <path d="M380 95 L 410 80" stroke="#a63b32" stroke-width="1.5" fill="none"/>
+              <path d="M404 78 L 412 80 L 408 86 Z" fill="#a63b32"/>
+              <text x="416" y="84" font-family="Fraunces,serif" font-style="italic" font-size="12" fill="#a63b32">leave a gap</text>
+              <text x="416" y="98" font-family="Newsreader,serif" font-style="italic" font-size="11" fill="#574838">so steam escapes</text>
+            </g>
+            <!-- low flame indicator -->
+            <g transform="translate(40 150)">
+              <text x="0" y="0" font-family="Fraunces,serif" font-size="11" letter-spacing="2" fill="#3a5a6e" font-weight="600">HEAT</text>
+              <line x1="0" y1="14" x2="80" y2="14" stroke="#cdb478" stroke-width="3"/>
+              <circle cx="12" cy="14" r="6" fill="#a63b32"/>
+              <text x="0" y="36" font-family="Newsreader,serif" font-style="italic" font-size="11" fill="#574838">lowest simmer</text>
+              <text x="0" y="50" font-family="Newsreader,serif" font-style="italic" font-size="11" fill="#574838">you can manage</text>
+            </g>
+          </svg>
+          <div class="cap">Heavy pot · lowest simmer · lid cracked · stir every 10–15 min.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ===== STEP 6 ===== -->
+    <div class="step">
+      <div class="num">6</div>
+      <div>
+        <h3>Shred the chicken &amp; mash the garlic</h3>
+        <p>When the cycle ends, carefully open the lid (lots of steam — lean back). Fish out the chicken thighs with tongs onto a plate. They’ll be very tender. Use two forks to shred them into small, bite-sized pieces.</p>
+        <p>Find the <em class="term">soft, mellow</em> cooked garlic cloves still in the pot and gently mash them against the side with the back of a spoon — they’ll dissolve into the porridge and add a sweet, deep garlic flavor without any harshness.</p>
+        <p>Stir the shredded chicken back in. Taste, and add more salt a pinch at a time until it tastes <em class="term">gently savory</em> — not aggressive. Korean juk is meant to be soothing, not seasoned to death.</p>
+      </div>
+    </div>
+
+    <!-- ===== STEP 7 ===== -->
+    <div class="step">
+      <div class="num">7</div>
+      <div>
+        <h3>Check the consistency</h3>
+        <p>The porridge should fall slowly off a spoon — neither soupy nor pasty. Use this as your guide:</p>
+        <div class="visual">
+          <svg viewBox="0 0 520 165" xmlns="http://www.w3.org/2000/svg" aria-label="Three spoons showing too thin, just right, and too thick consistency">
+            <g transform="translate(30,20)">
+              <text x="60" y="-2" text-anchor="middle" font-family="Fraunces,serif" font-size="11" letter-spacing="2" fill="#3a5a6e" font-weight="600">TOO THIN</text>
+              <ellipse cx="60" cy="40" rx="48" ry="22" fill="#dccda3" stroke="#8a7965"/>
+              <rect x="105" y="36" width="60" height="8" rx="3" fill="#8a7965"/>
+              <path d="M30 60 Q 30 80 28 100" stroke="#dccda3" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <path d="M55 62 Q 55 90 52 115" stroke="#dccda3" stroke-width="5" fill="none" stroke-linecap="round"/>
+              <path d="M80 60 Q 80 85 78 108" stroke="#dccda3" stroke-width="6" fill="none" stroke-linecap="round"/>
+              <text x="60" y="138" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="12" fill="#574838">runs off like soup</text>
+              <text x="60" y="152" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="11" fill="#8a7965">→ keep on Warm 10 min</text>
+            </g>
+            <g transform="translate(200,20)">
+              <text x="60" y="-2" text-anchor="middle" font-family="Fraunces,serif" font-size="11" letter-spacing="2" fill="#5d6e3a" font-weight="600">JUST RIGHT ✓</text>
+              <ellipse cx="60" cy="40" rx="48" ry="22" fill="#e8d8a8" stroke="#8a7965"/>
+              <rect x="105" y="36" width="60" height="8" rx="3" fill="#8a7965"/>
+              <path d="M55 60 Q 56 80 54 92 Q 52 100 56 105" stroke="#e8d8a8" stroke-width="9" fill="none" stroke-linecap="round"/>
+              <circle cx="56" cy="108" r="6" fill="#e8d8a8"/>
+              <text x="60" y="138" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="12" fill="#574838">slow, lazy drop</text>
+              <text x="60" y="152" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="11" fill="#8a7965">creamy &amp; spoonable</text>
+            </g>
+            <g transform="translate(370,20)">
+              <text x="60" y="-2" text-anchor="middle" font-family="Fraunces,serif" font-size="11" letter-spacing="2" fill="#a63b32" font-weight="600">TOO THICK</text>
+              <ellipse cx="60" cy="40" rx="48" ry="22" fill="#cdb478" stroke="#8a7965"/>
+              <rect x="105" y="36" width="60" height="8" rx="3" fill="#8a7965"/>
+              <ellipse cx="60" cy="32" rx="38" ry="14" fill="#bfa363"/>
+              <text x="60" y="138" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="12" fill="#574838">sits in a paste</text>
+              <text x="60" y="152" text-anchor="middle" font-family="Newsreader,serif" font-style="italic" font-size="11" fill="#8a7965">→ stir in ¼–½ cup hot broth</text>
+            </g>
+          </svg>
+        </div>
+        <p>Korean juk also <strong>thickens dramatically as it cools</strong>, so aim a touch thinner than your final goal. If you’re reheating leftovers tomorrow, you’ll definitely add water.</p>
+      </div>
+    </div>
+
+    <!-- ===== STEP 8 ===== -->
+    <div class="step">
+      <div class="num">8</div>
+      <div>
+        <h3>Bowl &amp; finish</h3>
+        <p>Ladle the hot porridge into deep bowls. Don’t fill them to the brim — leave room for the toppings, which are half the joy.</p>
+        <p>Top each bowl with a generous pinch of <strong>scallions</strong>, a sprinkle of <strong>toasted sesame seeds</strong>, a few crumbled or ribbon-cut sheets of <strong>gim</strong>, and a small drizzle of <strong>toasted sesame oil</strong> right at the end.</p>
+        <p>Serve <em class="term">immediately</em>, with kimchi on the side and a little soy sauce at the table.</p>
+
+        <div class="visual">
+          <svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" aria-label="Bowl of dakjuk showing toppings">
+            <ellipse cx="260" cy="115" rx="150" ry="28" fill="#e8d8a8" stroke="#8a7965"/>
+            <path d="M110 115 Q 260 200 410 115" fill="#1f3849" stroke="#1f3849"/>
+            <ellipse cx="260" cy="115" rx="150" ry="28" fill="#e8d8a8" stroke="#8a7965"/>
+            <g>
+              <ellipse cx="220" cy="113" rx="10" ry="2" fill="#5d6e3a" transform="rotate(-12 220 113)"/>
+              <ellipse cx="270" cy="118" rx="12" ry="2" fill="#5d6e3a" transform="rotate(15 270 118)"/>
+              <line x1="220" y1="100" x2="170" y2="40" stroke="#574838" stroke-width="1"/>
+              <text x="40" y="36" font-family="Fraunces,serif" font-size="13" font-style="italic" fill="#574838">scallions, thinly sliced</text>
+            </g>
+            <g>
+              <ellipse cx="290" cy="112" rx="1.6" ry=".9" fill="#f4ead0" stroke="#9b8454" stroke-width=".4"/>
+              <ellipse cx="300" cy="116" rx="1.6" ry=".9" fill="#f4ead0" stroke="#9b8454" stroke-width=".4"/>
+              <ellipse cx="310" cy="113" rx="1.6" ry=".9" fill="#f4ead0" stroke="#9b8454" stroke-width=".4"/>
+              <line x1="305" y1="105" x2="380" y2="40" stroke="#574838" stroke-width="1"/>
+              <text x="380" y="36" font-family="Fraunces,serif" font-size="13" font-style="italic" fill="#574838">toasted sesame seeds</text>
+            </g>
+            <g>
+              <rect x="240" y="113" width="22" height="3" fill="#1f2a1a" transform="rotate(-8 251 114)"/>
+              <line x1="250" y1="105" x2="190" y2="180" stroke="#574838" stroke-width="1"/>
+              <text x="40" y="190" font-family="Fraunces,serif" font-size="13" font-style="italic" fill="#574838">gim (seaweed) ribbons</text>
+            </g>
+            <g>
+              <ellipse cx="245" cy="115" rx="14" ry="2" fill="#d5b06a" opacity=".7"/>
+              <line x1="255" y1="118" x2="380" y2="180" stroke="#574838" stroke-width="1"/>
+              <text x="380" y="190" font-family="Fraunces,serif" font-size="13" font-style="italic" fill="#574838">drizzle of sesame oil</text>
+            </g>
+          </svg>
+          <div class="cap">Add the sesame oil <em>last</em>, off the heat — heat destroys its perfume.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIPS & STORAGE ============ -->
+  <section class="two-col">
+    <div>
+      <h2>Pro tips <span class="ko">팁</span></h2>
+      <div class="h-rule"></div>
+      <div class="tip"><div class="marker">·</div><div><strong>Use thighs, not breast.</strong> The little bit of fat in thighs gives the broth that mouth-coating richness you can’t fake with breast.</div></div>
+      <div class="tip"><div class="marker">·</div><div><strong>Under-season at first.</strong> Korean juk is meant to taste mild and gentle — the toppings and kimchi at the table do the heavy seasoning. Add salt slowly.</div></div>
+      <div class="tip"><div class="marker">·</div><div><strong>Mixing rices?</strong> A 2:1 ratio of jasmine to short-grain (or sweet rice) gives you the creaminess of Korean juk plus the floral aroma of jasmine.</div></div>
+      <div class="tip"><div class="marker">·</div><div><strong>For abalone juk (jeonbokjuk):</strong> swap chicken for 1 thinly sliced abalone, added in step 4.</div></div>
+      <div class="tip"><div class="marker">·</div><div><strong>For babies/elderly:</strong> blend a portion smooth with extra broth. Skip the salt; let adults season their own bowls.</div></div>
+    </div>
+
+    <div>
+      <h2>Storage <span class="ko">보관</span></h2>
+      <div class="h-rule"></div>
+      <div class="tip"><div class="marker">·</div><div><strong>Fridge:</strong> up to 3 days in an airtight container. It will set into a thick custard — totally normal.</div></div>
+      <div class="tip"><div class="marker">·</div><div><strong>Reheating:</strong> stovetop over low heat with a generous splash of water or broth, stirring constantly. Microwave works in a pinch — stir every 60 seconds.</div></div>
+      <div class="tip"><div class="marker">·</div><div><strong>Freezer:</strong> portion into individual containers; freezes well up to 2 months. Thaw in the fridge before reheating.</div></div>
+      <div class="tip"><div class="marker">·</div><div><strong>Don’t pre-top:</strong> only add scallions, sesame oil, sesame seeds, and gim to the bowl you’re eating <em>now</em>. They go limp in storage.</div></div>
+    </div>
+  </section>
+
+  <div class="colophon">
+    <div class="stamp">맛있게</div>
+    <div>Eat well — and feel better soon. <span style="color:var(--red)">·</span> A homestyle recipe, for a Cuckoo kitchen.</div>
+  </div>
+
+</main>
+
+<script>
+(function(){
+  // Reference recipe: 0.75 cup uncooked rice (~4 servings).
+  // Uncooked: broth = rice × 8
+  // Cooked:   broth = rice × 4 (cooked rice already holds water)
+  // Other items scale by uncooked-equivalent. 1 cup cooked ≈ 1/3 cup uncooked.
+
+  var BASE_UNCOOKED = 0.75;
+  var base = {
+    chicken:  0.75,   // lb
+    sesameoil: 2,     // tbsp
+    garlic:   8,      // cloves
+    ginger:   1,      // inches
+    carrot:   0.15,   // lb
+    onion:    0.15,   // lb
+    zucchini: 0.20,   // lb
+    salt:     1       // tsp
+  };
+
+  function $(id){ return document.getElementById(id); }
+  var qEls = document.querySelectorAll('[data-q]');
+
+  var mode = 'uncooked';
+
+  function fracDisplay(n){
+    if (n <= 0) return '0';
+    var whole = Math.floor(n + 1e-6);
+    var rem = n - whole;
+    var eps = 0.05;
+    var frac = '';
+    if (Math.abs(rem) < eps) frac = '';
+    else if (Math.abs(rem - 0.25) < eps) frac = '¼';
+    else if (Math.abs(rem - 1/3)  < eps) frac = '⅓';
+    else if (Math.abs(rem - 0.5)  < eps) frac = '½';
+    else if (Math.abs(rem - 2/3)  < eps) frac = '⅔';
+    else if (Math.abs(rem - 0.75) < eps) frac = '¾';
+    else {
+      // fall back: round to nearest 0.25
+      var r = Math.round(n * 4) / 4;
+      return fracDisplay(r);
+    }
+    if (whole === 0 && frac) return frac;
+    if (whole && frac) return whole + ' ' + frac;
+    return String(whole);
+  }
+
+  function roundTo(n, step){ return Math.round(n / step) * step; }
+
+  function lbDisplay(n){
+    var v = roundTo(n, 0.05);
+    // Trim trailing zeros but keep at least 2 decimals visually clean
+    return v.toFixed(2).replace(/0+$/,'').replace(/\.$/,'') + ' lb';
+  }
+
+  function gingerLabel(inches){
+    var v = roundTo(inches, 0.5);
+    if (v <= 0.5) return '½-inch piece';
+    if (Math.abs(v - 1) < 1e-6) return '1-inch piece';
+    var whole = Math.floor(v);
+    var rem = v - whole;
+    if (rem > 0.4) return whole + '½-inch piece';
+    return whole + '-inch piece';
+  }
+
+  function update(){
+    var input = $('rice-input');
+    var rice = parseFloat(input.value);
+    if (isNaN(rice) || rice < 0.25) rice = 0.25;
+    if (rice > 6) rice = 6;
+
+    var uncookedEquiv = (mode === 'uncooked') ? rice : rice / 3;
+    var scale = uncookedEquiv / BASE_UNCOOKED;
+
+    var broth = (mode === 'uncooked') ? rice * 8 : rice * 4;
+
+    var values = {
+      rice:     fracDisplay(rice) + ' cup' + (rice > 1.001 ? 's' : ''),
+      chicken:  lbDisplay(base.chicken * scale),
+      broth:    fracDisplay(roundTo(broth, 0.5)) + ' cup' + (broth > 1.001 ? 's' : ''),
+      sesameoil: fracDisplay(roundTo(base.sesameoil * scale, 0.5)) + ' tbsp',
+      garlic:   Math.max(2, Math.round(base.garlic * scale)) + ' cloves',
+      ginger:   gingerLabel(base.ginger * scale),
+      carrot:   lbDisplay(base.carrot * scale),
+      onion:    lbDisplay(base.onion * scale),
+      zucchini: lbDisplay(base.zucchini * scale),
+      salt:     fracDisplay(roundTo(base.salt * scale, 0.25)) + ' tsp'
+    };
+
+    for (var i = 0; i < qEls.length; i++){
+      var el = qEls[i];
+      var key = el.getAttribute('data-q');
+      if (values[key] !== undefined && el.textContent !== values[key]){
+        el.textContent = values[key];
+        el.classList.add('flash');
+        (function(e){ setTimeout(function(){ e.classList.remove('flash'); }, 350); })(el);
+      }
+    }
+
+    // Update labels & step text based on mode
+    if (mode === 'uncooked'){
+      $('rice-label-text').textContent = 'Jasmine rice, uncooked';
+      $('rice-note').textContent = 'rinse 3 times before using';
+      $('step1-title').textContent = 'Rinse and soak the rice';
+      $('step1-body').innerHTML = 'Put your jasmine rice in a bowl. Cover with cool water, swish gently with your hand for about 10 seconds, and drain. Repeat <strong>3 times total</strong>. The water won’t go fully clear — and you don’t want it to. That cloudiness is starch, and starch is what makes porridge feel like porridge.';
+      $('step1-soak').style.display = '';
+      $('step3-title').textContent = 'Toast the rice in sesame oil';
+      $('step3-body').innerHTML = 'This is the one stove step, and it’s the secret to that nutty, restaurant-quality flavor. Drain your soaked rice well. Heat the <strong>toasted sesame oil</strong> in a small skillet over <em class="term">medium-low</em> heat (sesame oil burns fast — keep the heat gentle).';
+      $('step3-body2').innerHTML = 'Add the drained rice along with the chopped garlic and the sliced ginger. Stir constantly for about <strong>2 minutes</strong>, until the rice grains turn slightly translucent at the edges and smell deeply nutty and toasty. Don’t walk away.';
+      $('toast-callout').style.display = '';
+    } else {
+      $('rice-label-text').textContent = 'Jasmine rice, cooked (leftover)';
+      $('rice-note').textContent = 'cold leftover rice from the fridge is perfect';
+      $('step1-title').textContent = 'Break up the cooked rice';
+      $('step1-body').innerHTML = 'Tip your cooked jasmine rice into a bowl. Use a fork or your fingers to <strong>break up any big clumps</strong> so the grains are loose. If the rice is fridge-cold, that’s great — break up the clumps under a quick rinse of cool water, then drain.';
+      $('step1-soak').style.display = 'none';
+      $('step3-title').textContent = 'Bloom the sesame oil &amp; aromatics';
+      $('step3-body').innerHTML = 'Skip the rice-toasting (already cooked!). Instead, heat the <strong>toasted sesame oil</strong> in a small skillet over <em class="term">medium-low</em> heat. Add the chopped garlic and sliced ginger and stir for about <strong>60 seconds</strong>, just until very fragrant.';
+      $('step3-body2').innerHTML = 'This perfumed oil is your flavor base — you’ll add the cooked rice in step 4 instead of toasting it here.';
+      $('toast-callout').style.display = 'none';
+    }
+
+    // Servings ≈ 1.5 cups of liquid per bowl as final yield baseline
+    var servings = Math.max(1, Math.round(broth / 1.5));
+    $('meta-serves').textContent = servings;
+
+    var modeWord = (mode === 'uncooked') ? 'uncooked' : 'cooked';
+    $('readout').innerHTML =
+      'Using <strong>' + fracDisplay(rice) + ' cup ' + modeWord + '</strong> jasmine rice · makes about <strong>' + servings + ' bowl' + (servings>1?'s':'') + '</strong>';
+  }
+
+  $('rice-up').addEventListener('click', function(){
+    var i = $('rice-input');
+    i.value = (parseFloat(i.value) + 0.25).toFixed(2);
+    update();
+  });
+  $('rice-down').addEventListener('click', function(){
+    var i = $('rice-input');
+    var v = parseFloat(i.value) - 0.25;
+    i.value = Math.max(0.25, v).toFixed(2);
+    update();
+  });
+  $('rice-input').addEventListener('input', update);
+  $('rice-input').addEventListener('change', update);
+
+  function setMode(newMode){
+    mode = newMode;
+    $('tab-uncooked').classList.toggle('active', mode === 'uncooked');
+    $('tab-cooked').classList.toggle('active', mode === 'cooked');
+    $('tab-uncooked').setAttribute('aria-selected', mode === 'uncooked');
+    $('tab-cooked').setAttribute('aria-selected', mode === 'cooked');
+    if (mode === 'uncooked') $('rice-input').value = '0.75';
+    else                     $('rice-input').value = '2';
+    update();
+  }
+  $('tab-uncooked').addEventListener('click', function(){ setMode('uncooked'); });
+  $('tab-cooked').addEventListener('click', function(){ setMode('cooked'); });
+
+  update();
+})();
+</script>
+</body>
+</html>

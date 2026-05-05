@@ -22,9 +22,23 @@ CREATE TABLE IF NOT EXISTS recipes (
   theme JSONB NOT NULL DEFAULT '{}',
   svg_illustrations JSONB NOT NULL DEFAULT '[]',
   source_notes TEXT NOT NULL DEFAULT '',
+  cultural_context TEXT,
+  pro_tips TEXT[] DEFAULT '{}',
+  storage TEXT,
+  alternative_methods JSONB DEFAULT '[]',
+  equipment_notes TEXT,
+  original_title TEXT,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- Migration: add new columns (safe to re-run)
+ALTER TABLE recipes ADD COLUMN IF NOT EXISTS cultural_context TEXT;
+ALTER TABLE recipes ADD COLUMN IF NOT EXISTS pro_tips TEXT[] DEFAULT '{}';
+ALTER TABLE recipes ADD COLUMN IF NOT EXISTS storage TEXT;
+ALTER TABLE recipes ADD COLUMN IF NOT EXISTS alternative_methods JSONB DEFAULT '[]';
+ALTER TABLE recipes ADD COLUMN IF NOT EXISTS equipment_notes TEXT;
+ALTER TABLE recipes ADD COLUMN IF NOT EXISTS original_title TEXT;
 
 -- Chat messages table
 CREATE TABLE IF NOT EXISTS chat_messages (

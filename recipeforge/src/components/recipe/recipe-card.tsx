@@ -82,14 +82,16 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
         >
           {active.title}
         </h1>
-        <p className="text-base md:text-lg mt-1 leading-relaxed opacity-90" style={{ color: "rgba(255,255,255,0.9)" }}>
+        {active.originalTitle && (
+          <p className="text-base opacity-80 mt-1" style={{ color: "rgba(255,255,255,0.8)" }}>
+            {active.originalTitle}
+          </p>
+        )}
+        <p className="text-base md:text-lg mt-2 leading-relaxed opacity-90" style={{ color: "rgba(255,255,255,0.9)" }}>
           {active.description}
         </p>
 
-        <div
-          className="flex gap-4 mt-4 text-sm font-medium"
-          style={{ color: "rgba(255,255,255,0.85)" }}
-        >
+        <div className="flex gap-4 mt-4 text-sm font-medium" style={{ color: "rgba(255,255,255,0.85)" }}>
           <span>Prep {active.prepTime}m</span>
           <span>Cook {active.cookTime}m</span>
           <span>Total {active.totalTime}m</span>
@@ -171,10 +173,17 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
       <div className="overflow-y-auto max-h-[55vh] overscroll-contain">
         <div className="px-6 py-5 md:px-8 md:py-6 space-y-6">
 
-          {/* Mobile: stacked; Desktop: ingredients + instructions side by side */}
+          {/* Cultural context */}
+          {active.culturalContext && (
+            <p className="text-base md:text-lg leading-relaxed italic opacity-80">
+              {active.culturalContext}
+            </p>
+          )}
+
+          {/* Mobile: stacked; Desktop: ingredients left, instructions right */}
           <div className="md:grid md:grid-cols-5 md:gap-8 md:space-y-0 space-y-6">
 
-            {/* Left column: ingredients + nutrition + equipment */}
+            {/* Left column */}
             <div className="md:col-span-2 space-y-6">
               <section>
                 <h2
@@ -187,18 +196,50 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
                   {scaledIngredients.map((ing, i) => (
                     <li
                       key={i}
-                      className="flex justify-between items-baseline text-base py-1.5 border-b border-dashed"
+                      className="text-base py-1.5 border-b border-dashed"
                       style={{ borderColor: active.theme.muted }}
                     >
-                      <span className="font-medium">{ing.name}</span>
-                      <span className="font-semibold tabular-nums ml-4 shrink-0">
-                        {ing.amount}
-                        {ing.unit}
-                      </span>
+                      <div className="flex justify-between items-baseline">
+                        <span className="font-medium">{ing.name}</span>
+                        <span className="font-semibold tabular-nums ml-4 shrink-0">
+                          {ing.amount}
+                          {ing.unit}
+                        </span>
+                      </div>
+                      {ing.notes && (
+                        <span className="text-xs italic opacity-60 mt-0.5 block">{ing.notes}</span>
+                      )}
                     </li>
                   ))}
                 </ul>
               </section>
+
+              {/* Equipment */}
+              {active.equipment.length > 0 && (
+                <section>
+                  <h2
+                    className="text-xl font-bold mb-3"
+                    style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
+                  >
+                    Equipment
+                  </h2>
+                  <div className="flex flex-wrap gap-2 mb-2">
+                    {active.equipment.map((item) => (
+                      <Badge
+                        key={item}
+                        variant="outline"
+                        className="text-sm font-medium"
+                        style={{ borderColor: active.theme.secondary, color: active.theme.text }}
+                      >
+                        {item}
+                      </Badge>
+                    ))}
+                  </div>
+                  {active.equipmentNotes && (
+                    <p className="text-sm italic opacity-70 leading-relaxed">{active.equipmentNotes}</p>
+                  )}
+                </section>
+              )}
 
               <section>
                 <h2
@@ -208,62 +249,19 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
                   Nutrition
                 </h2>
                 <div className="grid grid-cols-2 gap-2 text-center">
-                  <div
-                    className="p-3 rounded-xl"
-                    style={{ backgroundColor: active.theme.muted }}
-                  >
-                    <div className="text-lg font-bold">{active.nutrition.calories}</div>
-                    <div className="text-xs font-medium opacity-70">cal</div>
-                  </div>
-                  <div
-                    className="p-3 rounded-xl"
-                    style={{ backgroundColor: active.theme.muted }}
-                  >
-                    <div className="text-lg font-bold">{active.nutrition.protein}g</div>
-                    <div className="text-xs font-medium opacity-70">protein</div>
-                  </div>
-                  <div
-                    className="p-3 rounded-xl"
-                    style={{ backgroundColor: active.theme.muted }}
-                  >
-                    <div className="text-lg font-bold">{active.nutrition.carbs}g</div>
-                    <div className="text-xs font-medium opacity-70">carbs</div>
-                  </div>
-                  <div
-                    className="p-3 rounded-xl"
-                    style={{ backgroundColor: active.theme.muted }}
-                  >
-                    <div className="text-lg font-bold">{active.nutrition.fat}g</div>
-                    <div className="text-xs font-medium opacity-70">fat</div>
-                  </div>
+                  {[
+                    ["cal", active.nutrition.calories],
+                    ["protein", `${active.nutrition.protein}g`],
+                    ["carbs", `${active.nutrition.carbs}g`],
+                    ["fat", `${active.nutrition.fat}g`],
+                  ].map(([label, val]) => (
+                    <div key={label} className="p-3 rounded-xl" style={{ backgroundColor: active.theme.muted }}>
+                      <div className="text-lg font-bold">{val}</div>
+                      <div className="text-xs font-medium opacity-70">{label}</div>
+                    </div>
+                  ))}
                 </div>
               </section>
-
-              {active.equipment.length > 0 && (
-                <section>
-                  <h2
-                    className="text-xl font-bold mb-3"
-                    style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
-                  >
-                    Equipment
-                  </h2>
-                  <div className="flex flex-wrap gap-2">
-                    {active.equipment.map((item) => (
-                      <Badge
-                        key={item}
-                        variant="outline"
-                        className="text-sm font-medium"
-                        style={{
-                          borderColor: active.theme.secondary,
-                          color: active.theme.text,
-                        }}
-                      >
-                        {item}
-                      </Badge>
-                    ))}
-                  </div>
-                </section>
-              )}
             </div>
 
             {/* Right column: instructions */}
@@ -275,7 +273,7 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
                 >
                   Instructions
                 </h2>
-                <ol className="space-y-5">
+                <ol className="space-y-6">
                   {active.steps.map((step) => (
                     <li key={step.order} className="flex gap-4">
                       <span
@@ -288,25 +286,59 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
                       >
                         {step.order}
                       </span>
-                      <div className="flex-1 min-w-0">
+                      <div className="flex-1 min-w-0 space-y-2">
                         <p className="text-base leading-relaxed">{step.instruction}</p>
+
+                        {step.why && (
+                          <p className="text-sm italic opacity-70 leading-relaxed">{step.why}</p>
+                        )}
+
+                        {step.sensoryCue && (
+                          <p className="text-sm leading-relaxed flex gap-1.5 items-start">
+                            <span style={{ color: active.theme.accent }}>Look for:</span>
+                            <span className="opacity-80">{step.sensoryCue}</span>
+                          </p>
+                        )}
+
+                        {step.callout && (
+                          <div
+                            className="text-sm leading-relaxed rounded-lg p-3"
+                            style={{
+                              backgroundColor: `${active.theme.primary}10`,
+                              borderLeft: `3px solid ${active.theme.primary}`,
+                            }}
+                          >
+                            {step.callout}
+                          </div>
+                        )}
+
                         {step.duration && (
                           <span
-                            className="inline-block mt-1 text-sm font-medium"
+                            className="inline-block text-sm font-medium"
                             style={{ color: active.theme.accent }}
                           >
                             ~{step.duration} min
                           </span>
                         )}
+
                         {step.svg && (
                           <div
-                            className="mt-3 rounded-xl overflow-hidden"
+                            className="rounded-xl overflow-hidden"
                             style={{
                               boxShadow: `0 2px 12px ${active.theme.primary}15`,
                               border: `1px solid ${active.theme.muted}`,
                             }}
-                            dangerouslySetInnerHTML={{ __html: step.svg }}
-                          />
+                          >
+                            <div dangerouslySetInnerHTML={{ __html: step.svg }} />
+                            {step.svgCaption && (
+                              <p
+                                className="text-xs italic p-3 pt-0 opacity-70 text-center"
+                                style={{ color: active.theme.accent }}
+                              >
+                                {step.svgCaption}
+                              </p>
+                            )}
+                          </div>
                         )}
                       </div>
                     </li>
@@ -316,28 +348,88 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
             </div>
           </div>
 
-          <Separator style={{ backgroundColor: active.theme.muted }} />
+          {/* Alternative methods */}
+          {active.alternativeMethods && active.alternativeMethods.length > 0 && (
+            <>
+              <Separator style={{ backgroundColor: active.theme.muted }} />
+              <section>
+                <h2
+                  className="text-xl font-bold mb-4"
+                  style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
+                >
+                  Alternative Methods
+                </h2>
+                <div className="space-y-4">
+                  {active.alternativeMethods.map((m, i) => (
+                    <div key={i}>
+                      <h3 className="text-base font-semibold mb-1">{m.name}</h3>
+                      <p className="text-sm opacity-70 mb-2">{m.description}</p>
+                      <ul className="space-y-2">
+                        {m.steps.map((s, j) => (
+                          <li key={j} className="text-sm flex gap-2">
+                            <span style={{ color: active.theme.accent }}>{j + 1}.</span>
+                            <span className="opacity-80">{s}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </>
+          )}
+
+          {/* Pro tips */}
+          {active.proTips && active.proTips.length > 0 && (
+            <>
+              <Separator style={{ backgroundColor: active.theme.muted }} />
+              <section>
+                <h2
+                  className="text-xl font-bold mb-3"
+                  style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
+                >
+                  Pro Tips
+                </h2>
+                <div className="space-y-2">
+                  {active.proTips.map((tip, i) => (
+                    <div key={i} className="flex gap-2 text-sm">
+                      <span style={{ color: active.theme.accent }}>&middot;</span>
+                      <span className="opacity-80 leading-relaxed">{tip}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            </>
+          )}
+
+          {/* Storage */}
+          {active.storage && (
+            <>
+              <Separator style={{ backgroundColor: active.theme.muted }} />
+              <section>
+                <h2
+                  className="text-xl font-bold mb-2"
+                  style={{ color: active.theme.primary, fontFamily: "var(--font-heading)" }}
+                >
+                  Storage
+                </h2>
+                <p className="text-sm opacity-80 leading-relaxed">{active.storage}</p>
+              </section>
+            </>
+          )}
 
           {/* Tags */}
           <div className="flex flex-wrap gap-1.5">
             {active.tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="secondary"
-                className="text-xs font-medium"
-              >
+              <Badge key={tag} variant="secondary" className="text-xs font-medium">
                 {tag}
               </Badge>
             ))}
           </div>
 
-          {/* Source notes */}
           {active.sourceNotes && (
-            <p
-              className="text-sm italic leading-relaxed"
-              style={{ color: active.theme.accent }}
-            >
-              Sources: {active.sourceNotes}
+            <p className="text-sm italic leading-relaxed opacity-60">
+              {active.sourceNotes}
             </p>
           )}
         </div>

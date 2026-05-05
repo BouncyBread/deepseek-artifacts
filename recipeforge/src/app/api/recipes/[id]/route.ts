@@ -24,6 +24,12 @@ function dbToRecipe(r: Record<string, unknown>): Recipe {
     theme: r.theme as Recipe["theme"],
     svgIllustrations: (r.svg_illustrations as Recipe["svgIllustrations"]) ?? [],
     sourceNotes: (r.source_notes as string) ?? "",
+    culturalContext: (r.cultural_context as string) ?? undefined,
+    proTips: (r.pro_tips as string[]) ?? undefined,
+    storage: (r.storage as string) ?? undefined,
+    alternativeMethods: (r.alternative_methods as Recipe["alternativeMethods"]) ?? undefined,
+    equipmentNotes: (r.equipment_notes as string) ?? undefined,
+    originalTitle: (r.original_title as string) ?? undefined,
     createdAt: r.created_at as string,
     updatedAt: r.updated_at as string,
   };

@@ -24,9 +24,13 @@ export interface Ingredient {
 export interface Step {
   order: number;
   instruction: string;
+  why?: string;
+  sensoryCue?: string;
   svg?: string;
+  svgCaption?: string;
   duration?: number;
   needsIllustration?: boolean;
+  callout?: string;
 }
 
 export interface Nutrition {
@@ -53,6 +57,12 @@ export interface SvgIllustration {
   svg: string;
 }
 
+export interface AlternativeMethod {
+  name: string;
+  description: string;
+  steps: string[];
+}
+
 export interface Recipe {
   id: string;
   title: string;
@@ -67,11 +77,17 @@ export interface Recipe {
   ingredients: Ingredient[];
   steps: Step[];
   equipment: string[];
+  equipmentNotes?: string;
   nutrition: Nutrition;
   tags: string[];
   version: RecipeVersion;
   theme: RecipeTheme;
   svgIllustrations: SvgIllustration[];
+  culturalContext?: string;
+  proTips?: string[];
+  storage?: string;
+  alternativeMethods?: AlternativeMethod[];
+  originalTitle?: string;
   sourceUrl?: string;
   sourceNotes?: string;
   createdAt: string;

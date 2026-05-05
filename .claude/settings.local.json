@@ -8,7 +8,16 @@
       "Bash(git init *)",
       "Bash(git config *)",
       "Bash(export PATH=\"$HOME/bin/gh_extract/bin:$PATH\")",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "WebSearch",
+      "WebFetch(domain:docs.anthropic.com)",
+      "Bash(npx create-next-app@latest recipeforge --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack --use-npm)",
+      "Bash(npx shadcn@latest init -d --force)",
+      "Bash(npm install *)",
+      "Bash(npx shadcn@latest add drawer card input button dialog select textarea badge separator scroll-area sheet tabs toggle toggle-group command popover tooltip avatar sonner -y)",
+      "Bash(npx vitest *)",
+      "Bash(npx tsc *)",
+      "Bash(node -e \"console.log\\(require\\('crypto'\\).randomBytes\\(32\\).toString\\('hex'\\)\\)\")"
     ]
   }
 }

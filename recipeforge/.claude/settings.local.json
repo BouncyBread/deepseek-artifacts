@@ -11,7 +11,13 @@
       "PowerShell(if \\($?\\) { \"installed\" } else { \"not-installed\" })",
       "PowerShell(npm i -g vercel)",
       "Bash(npm run *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(vercel --cwd \"L:\\\\Claude working folder\\\\DeepSeek Artifacts\\\\recipeforge\" --yes)",
+      "Bash(vercel env *)",
+      "Bash(node push-env.mjs)",
+      "Bash(node -e ' *)",
+      "Bash(git push *)"
     ]
   }
 }
