@@ -174,8 +174,7 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
         </div>
       )}
 
-      <div className="overflow-y-auto max-h-[55vh] overscroll-contain">
-        <div className="px-6 py-5 md:px-8 md:py-6 space-y-6">
+      <div className="px-6 py-5 md:px-8 md:py-6 space-y-6">
 
           {/* Cultural context */}
           {active.culturalContext && (
@@ -440,7 +439,6 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
             </p>
           )}
         </div>
-      </div>
     </article>
   );
 }

@@ -5,7 +5,7 @@ import { deepseek } from "@/lib/deepseek";
 
 const SYSTEM_PROMPT = `You are a James Beard award-winning chef and cookbook author. Create richly detailed, authentic recipes.
 
-Your recipes include: warm cultural context, sensory language (smell, texture, visual cues), WHY behind each technique, precise measurements, instructional SVG illustrations, pro tips, storage guidance, and alternative methods.
+Your recipes include: warm cultural context, sensory language, WHY behind each technique, precise measurements, pro tips, storage guidance, and alternative methods.
 
 Return ONLY valid JSON, no markdown wrapping.`;
 
@@ -49,7 +49,6 @@ Return ONLY valid JSON:
       "why": "Why this technique matters",
       "sensoryCue": "What to look, smell, or feel for",
       "duration": optional_minutes,
-      "needsIllustration": true_if_visual_technique,
       "callout": "Critical warning or tip — null if not needed"
     }
   ],
@@ -64,9 +63,7 @@ Return ONLY valid JSON:
   ],
   "version": "${version}",
   "sourceNotes": "Sources used and key decisions"
-}
-
-BE THOROUGH: write detailed steps with context, include multiple pro tips, provide genuine storage guidance. This should feel like a complete cookbook entry.`;
+}`;
 }
 
 async function parseJSON(text: string): Promise<Record<string, unknown>> {
@@ -82,11 +79,10 @@ async function parseJSON(text: string): Promise<Record<string, unknown>> {
   try {
     return JSON.parse(cleaned);
   } catch {
-    // Ask LLM to fix the malformed JSON
     const fixResponse = await deepseek.chat.completions.create({
       model: "deepseek-chat",
       messages: [
-        { role: "system", content: "Fix the following malformed JSON. Return ONLY the corrected, valid JSON. No markdown, no explanation." },
+        { role: "system", content: "Fix this malformed JSON. Return ONLY corrected valid JSON, no markdown." },
         { role: "user", content: cleaned.slice(0, 12000) },
       ],
       temperature: 0,
@@ -94,22 +90,14 @@ async function parseJSON(text: string): Promise<Record<string, unknown>> {
     });
     const fixed = fixResponse.choices[0]?.message?.content ?? "";
     let reCleaned = fixed.trim();
-    if (reCleaned.startsWith("```")) {
-      reCleaned = reCleaned.replace(/```(?:json)?\n?/g, "").trim();
-    }
-    const fb = reCleaned.indexOf("{");
-    const lb = reCleaned.lastIndexOf("}");
-    if (fb !== -1 && lb > fb) {
-      reCleaned = reCleaned.slice(fb, lb + 1);
-    }
+    if (reCleaned.startsWith("```")) reCleaned = reCleaned.replace(/```(?:json)?\n?/g, "").trim();
+    const fb = reCleaned.indexOf("{"), lb = reCleaned.lastIndexOf("}");
+    if (fb !== -1 && lb > fb) reCleaned = reCleaned.slice(fb, lb + 1);
     return JSON.parse(reCleaned);
   }
 }
 
-function assemble(
-  parsed: Record<string, unknown>,
-  svgIllustrations: Array<{ id: string; label: string; svg: string; caption?: string }> = []
-): Recipe {
+function assembleRecipe(parsed: Record<string, unknown>): Recipe {
   const stepsArr = (parsed.steps as Array<Record<string, unknown>>) ?? [];
   const nutritionObj = parsed.nutrition as Record<string, number> | undefined;
   const cuisineStr = (parsed.cuisine as string) ?? "other";
@@ -117,9 +105,7 @@ function assemble(
   const altMethodsArr = (parsed.alternativeMethods as Array<Record<string, unknown>>) ?? [];
 
   return {
-    id: crypto.randomUUID
-      ? crypto.randomUUID()
-      : `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+    id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random().toString(36).slice(2)}`,
     title: (parsed.title as string) ?? "Untitled",
     description: (parsed.description as string) ?? "",
     cuisine: cuisineStr,
@@ -130,18 +116,13 @@ function assemble(
     difficulty: (parsed.difficulty as Recipe["difficulty"]) ?? "medium",
     servings: (parsed.servings as number) ?? 4,
     ingredients: (parsed.ingredients as Recipe["ingredients"]) ?? [],
-    steps: stepsArr.map((s) => {
-      const ill = svgIllustrations.find((i) => i.id === `step-${s.order}`);
-      return {
-        order: (s.order as number) ?? 0,
-        instruction: (s.instruction as string) ?? "",
-        why: s.why as string | undefined,
-        sensoryCue: s.sensoryCue as string | undefined,
-        callout: s.callout as string | undefined,
-        svg: ill?.svg,
-        svgCaption: ill?.caption,
-      };
-    }),
+    steps: stepsArr.map((s) => ({
+      order: (s.order as number) ?? 0,
+      instruction: (s.instruction as string) ?? "",
+      why: s.why as string | undefined,
+      sensoryCue: s.sensoryCue as string | undefined,
+      callout: s.callout as string | undefined,
+    })),
     equipment: (parsed.equipment as string[]) ?? [],
     equipmentNotes: (parsed.equipmentNotes as string) ?? undefined,
     nutrition: {
@@ -154,22 +135,17 @@ function assemble(
     tags: (parsed.tags as string[]) ?? [],
     version: (parsed.version as "home" | "restaurant") ?? "home",
     theme: getTheme(cuisineStr),
-    svgIllustrations: svgIllustrations.map((ill) => ({
-      id: ill.id,
-      label: ill.label,
-      svg: ill.svg,
-    })),
+    svgIllustrations: [],
     culturalContext: (parsed.culturalContext as string) ?? undefined,
     proTips: (parsed.proTips as string[]) ?? undefined,
     storage: (parsed.storage as string) ?? undefined,
-    alternativeMethods:
-      altMethodsArr.length > 0
-        ? altMethodsArr.map((m) => ({
-            name: (m.name as string) ?? "",
-            description: (m.description as string) ?? "",
-            steps: (m.steps as string[]) ?? [],
-          }))
-        : undefined,
+    alternativeMethods: altMethodsArr.length > 0
+      ? altMethodsArr.map((m) => ({
+          name: (m.name as string) ?? "",
+          description: (m.description as string) ?? "",
+          steps: (m.steps as string[]) ?? [],
+        }))
+      : undefined,
     originalTitle: (parsed.originalTitle as string) ?? undefined,
     sourceNotes: (parsed.sourceNotes as string) ?? "",
     createdAt: now,
@@ -177,11 +153,12 @@ function assemble(
   };
 }
 
+// ── Main recipe generation (fast, no SVGs) ──
+
 export async function generateRecipeStreaming(
   userRequest: string,
   version: "home" | "restaurant" = "home"
 ): Promise<Recipe> {
-  // 1. Brave Search
   let searchContext = "";
   try {
     const results = await braveSearch(`${userRequest} authentic recipe`);
@@ -189,14 +166,10 @@ export async function generateRecipeStreaming(
       const pages = await Promise.all(
         results.slice(0, 2).map((r) => fetchPageContent(r.url))
       );
-      searchContext = pages
-        .filter(Boolean)
-        .join("\n\n---\n\n")
-        .slice(0, 6000);
+      searchContext = pages.filter(Boolean).join("\n\n---\n\n").slice(0, 6000);
     }
   } catch {}
 
-  // 2. Generate via streaming to keep connection alive
   const stream = await deepseek.chat.completions.create({
     model: "deepseek-chat",
     messages: [
@@ -215,67 +188,69 @@ export async function generateRecipeStreaming(
   }
 
   const parsed = await parseJSON(content);
+  return assembleRecipe(parsed);
+}
 
-  // 3. Always generate SVGs for key steps (first, middle, last)
-  const stepsArr = (parsed.steps as Array<Record<string, unknown>>) ?? [];
-  const allSteps = stepsArr.map((s) => ({
-    order: s.order as number,
-    instruction: s.instruction as string,
+// ── Async SVG generation (called separately after recipe is created) ──
+
+export async function generateSvgsForRecipe(recipe: Recipe): Promise<
+  Array<{ id: string; label: string; svg: string; caption?: string }>
+> {
+  const stepsArr = recipe.steps.map((s) => ({
+    order: s.order,
+    instruction: s.instruction,
   }));
 
-  // Pick up to 3 representative steps: first, last, and one from the middle
-  const keySteps = allSteps.length <= 2
-    ? allSteps
-    : [
-        allSteps[0],
-        allSteps[Math.floor(allSteps.length / 2)],
-        allSteps[allSteps.length - 1],
-      ].filter((s, i, arr) => arr.findIndex((x) => x.order === s.order) === i);
+  if (stepsArr.length === 0) return [];
 
-  let svgIllustrations: Array<{ id: string; label: string; svg: string; caption?: string }> = [];
+  const keySteps = stepsArr.length <= 2
+    ? stepsArr
+    : [stepsArr[0], stepsArr[Math.floor(stepsArr.length / 2)], stepsArr[stepsArr.length - 1]]
+        .filter((s, i, arr) => arr.findIndex((x) => x.order === s.order) === i);
 
-  if (keySteps.length > 0) {
-    try {
-      const svgResponse = await deepseek.chat.completions.create({
-        model: "deepseek-chat",
-        messages: [
-          {
-            role: "system",
-            content: "You are a cookbook illustrator. Create instructional SVGs. Return ONLY valid JSON.",
-          },
-          {
-            role: "user",
-            content: `Create SVG illustrations for these cooking steps. Each SVG should TEACH a technique.
+  try {
+    const response = await deepseek.chat.completions.create({
+      model: "deepseek-chat",
+      messages: [
+        {
+          role: "system",
+          content: "You are a cookbook illustrator. Create beautiful, realistic SVG illustrations of the actual dish being cooked. Use warm, appetizing colors. Return ONLY valid JSON.",
+        },
+        {
+          role: "user",
+          content: `Create instructional SVG illustrations for this recipe.
 
-Return ONLY valid JSON: {"illustrations": [{"id": "step-N", "label": "description", "svg": "<svg>...</svg>", "caption": "What the cook should notice"}]}
+DISH: "${recipe.title}" (${recipe.cuisine})
+DESCRIPTION: ${recipe.description}
+FULL RECIPE CONTEXT: ${recipe.ingredients.map((i) => i.name).join(", ")}
 
-STEPS: ${JSON.stringify(keySteps)}
+Draw the ACTUAL DISH and its preparation — show the real ingredients, the real cooking process, the real finished plate. Make it look like the dish, not generic cooking clip-art.
+
+STEPS TO ILLUSTRATE:
+${JSON.stringify(keySteps)}
+
+Return ONLY valid JSON: {"illustrations": [{"id": "step-N", "label": "description", "svg": "<svg>...</svg>", "caption": "What to notice"}]}
 
 SVG REQUIREMENTS:
-- viewBox="0 0 520 200"
-- Warm, cookbook-illustration style
-- Show technique, comparison, or visual cue
-- Under 3000 characters each`,
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 4096,
-      });
+- viewBox="0 0 520 220"
+- Beautiful, realistic food illustration style — warm, appetizing colors
+- Show the actual dish and its ingredients, not generic shapes
+- Each illustration should look like it belongs in a cookbook
+- Under 4000 characters each`,
+        },
+      ],
+      temperature: 0.8,
+      max_tokens: 4096,
+    });
 
-      const svgText = svgResponse.choices[0]?.message?.content ?? "";
-      let svgCleaned = svgText.trim();
-      if (svgCleaned.startsWith("```")) {
-        svgCleaned = svgCleaned.replace(/```(?:json)?\n?/g, "").trim();
-      }
-      const fb = svgCleaned.indexOf("{");
-      const lb = svgCleaned.lastIndexOf("}");
-      if (fb !== -1 && lb > fb) svgCleaned = svgCleaned.slice(fb, lb + 1);
-      const svgData = JSON.parse(svgCleaned);
-      svgIllustrations = (svgData.illustrations as typeof svgIllustrations) ?? [];
-    } catch {
-      // SVGs are non-critical
-    }
+    const text = response.choices[0]?.message?.content ?? "";
+    let cleaned = text.trim();
+    if (cleaned.startsWith("```")) cleaned = cleaned.replace(/```(?:json)?\n?/g, "").trim();
+    const fb = cleaned.indexOf("{"), lb = cleaned.lastIndexOf("}");
+    if (fb !== -1 && lb > fb) cleaned = cleaned.slice(fb, lb + 1);
+    const data = JSON.parse(cleaned);
+    return (data.illustrations as Array<{ id: string; label: string; svg: string; caption?: string }>) ?? [];
+  } catch {
+    return [];
   }
-
-  return assemble(parsed, svgIllustrations);
 }

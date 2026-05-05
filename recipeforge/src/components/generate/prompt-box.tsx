@@ -69,6 +69,9 @@ export function PromptBox({ onRecipeGenerated, onLoading }: PromptBoxProps) {
       onRecipeGenerated(data.recipe);
       setPrompt("");
       setActiveSuggestions([]);
+
+      // Fire-and-forget: generate SVGs in the background
+      fetch(`/api/recipes/${data.recipe.id}/generate-svgs`, { method: "POST" }).catch(() => {});
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {
