@@ -174,7 +174,7 @@ export function RecipeGrid({ onSelectRecipe, refreshKey }: RecipeGridProps) {
                     e.stopPropagation();
                     setDeleteTarget(recipe);
                   }}
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center opacity-0 group-hover/card:opacity-100 transition-opacity bg-background/90 hover:bg-destructive hover:text-destructive-foreground text-muted-foreground shadow-sm"
+                  className="absolute top-3 right-3 w-9 h-9 rounded-full flex items-center justify-center bg-background/90 active:bg-destructive active:text-destructive-foreground text-muted-foreground shadow-sm transition-colors"
                   aria-label={`Delete ${recipe.title}`}
                 >
                   <Trash2 className="h-4 w-4" />
