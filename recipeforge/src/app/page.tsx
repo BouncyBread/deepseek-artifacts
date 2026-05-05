@@ -147,6 +147,23 @@ export default function Home() {
     setSelectedRecipe(recipe);
     setRefreshKey((k) => k + 1);
     setGenerateOpen(false);
+
+    // Poll for SVG updates if recipe has no illustrations yet
+    if (!recipe.svgIllustrations?.length) {
+      let attempts = 0;
+      const poll = setInterval(async () => {
+        attempts++;
+        try {
+          const res = await fetch(`/api/recipes/${recipe.id}`);
+          const data = await res.json();
+          if (data.recipe?.svgIllustrations?.length > 0) {
+            setSelectedRecipe(data.recipe);
+            clearInterval(poll);
+          }
+        } catch {}
+        if (attempts >= 15) clearInterval(poll); // stop after 30s
+      }, 2000);
+    }
   }, []);
 
   const handleRecipeUpdate = useCallback((recipe: Recipe) => {
