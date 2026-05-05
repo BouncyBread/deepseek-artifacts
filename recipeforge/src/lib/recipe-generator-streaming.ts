@@ -69,7 +69,7 @@ Return ONLY valid JSON:
 BE THOROUGH: write detailed steps with context, include multiple pro tips, provide genuine storage guidance. This should feel like a complete cookbook entry.`;
 }
 
-function parseJSON(text: string): Record<string, unknown> {
+async function parseJSON(text: string): Promise<Record<string, unknown>> {
   let cleaned = text.trim();
   if (cleaned.startsWith("```")) {
     cleaned = cleaned.replace(/```(?:json)?\n?/g, "").trim();
@@ -79,7 +79,31 @@ function parseJSON(text: string): Record<string, unknown> {
   if (firstBrace !== -1 && lastBrace > firstBrace) {
     cleaned = cleaned.slice(firstBrace, lastBrace + 1);
   }
-  return JSON.parse(cleaned);
+  try {
+    return JSON.parse(cleaned);
+  } catch {
+    // Ask LLM to fix the malformed JSON
+    const fixResponse = await deepseek.chat.completions.create({
+      model: "deepseek-chat",
+      messages: [
+        { role: "system", content: "Fix the following malformed JSON. Return ONLY the corrected, valid JSON. No markdown, no explanation." },
+        { role: "user", content: cleaned.slice(0, 12000) },
+      ],
+      temperature: 0,
+      max_tokens: 4096,
+    });
+    const fixed = fixResponse.choices[0]?.message?.content ?? "";
+    let reCleaned = fixed.trim();
+    if (reCleaned.startsWith("```")) {
+      reCleaned = reCleaned.replace(/```(?:json)?\n?/g, "").trim();
+    }
+    const fb = reCleaned.indexOf("{");
+    const lb = reCleaned.lastIndexOf("}");
+    if (fb !== -1 && lb > fb) {
+      reCleaned = reCleaned.slice(fb, lb + 1);
+    }
+    return JSON.parse(reCleaned);
+  }
 }
 
 function assemble(parsed: Record<string, unknown>): Recipe {
@@ -178,6 +202,6 @@ export async function generateRecipeStreaming(
     if (delta) content += delta;
   }
 
-  const parsed = parseJSON(content);
+  const parsed = await parseJSON(content);
   return assemble(parsed);
 }
