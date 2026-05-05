@@ -4,6 +4,8 @@ import { generateRecipe } from "@/lib/recipe-generator";
 import { supabase } from "@/lib/supabase";
 import type { Recipe } from "@/types/recipe";
 
+export const maxDuration = 60;
+
 export async function POST(request: NextRequest) {
   if (!(await verifyAuth())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

@@ -18,7 +18,14 @@
       "Bash(node push-env.mjs)",
       "Bash(node -e ' *)",
       "Bash(git push *)",
-      "Bash(vercel --prod --yes)"
+      "Bash(vercel --prod --yes)",
+      "Bash(vercel logs *)",
+      "Bash(curl -s -X POST http://localhost:3000/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cookies2.txt)",
+      "Bash(curl -s -X POST http://localhost:3000/api/recipes -H \"Content-Type: application/json\" -d '{\"prompt\":\"simple garlic pasta\"}' -b /tmp/cookies2.txt --max-time 120)",
+      "Bash(curl -s -X POST http://localhost:3000/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cookies3.txt)",
+      "Bash(curl -s -X POST http://localhost:3000/api/recipes -H \"Content-Type: application/json\" -d '{\"prompt\":\"aglio e olio\"}' -b /tmp/cookies3.txt --max-time 90)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cookies5.txt)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes -H \"Content-Type: application/json\" -d '{\"prompt\":\"garlic butter pasta\"}' -b /tmp/cookies5.txt --max-time 90)"
     ]
   }
 }
