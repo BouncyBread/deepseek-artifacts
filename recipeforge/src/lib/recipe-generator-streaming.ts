@@ -106,7 +106,10 @@ async function parseJSON(text: string): Promise<Record<string, unknown>> {
   }
 }
 
-function assemble(parsed: Record<string, unknown>): Recipe {
+function assemble(
+  parsed: Record<string, unknown>,
+  svgIllustrations: Array<{ id: string; label: string; svg: string; caption?: string }> = []
+): Recipe {
   const stepsArr = (parsed.steps as Array<Record<string, unknown>>) ?? [];
   const nutritionObj = parsed.nutrition as Record<string, number> | undefined;
   const cuisineStr = (parsed.cuisine as string) ?? "other";
@@ -127,13 +130,18 @@ function assemble(parsed: Record<string, unknown>): Recipe {
     difficulty: (parsed.difficulty as Recipe["difficulty"]) ?? "medium",
     servings: (parsed.servings as number) ?? 4,
     ingredients: (parsed.ingredients as Recipe["ingredients"]) ?? [],
-    steps: stepsArr.map((s) => ({
-      order: (s.order as number) ?? 0,
-      instruction: (s.instruction as string) ?? "",
-      why: s.why as string | undefined,
-      sensoryCue: s.sensoryCue as string | undefined,
-      callout: s.callout as string | undefined,
-    })),
+    steps: stepsArr.map((s) => {
+      const ill = svgIllustrations.find((i) => i.id === `step-${s.order}`);
+      return {
+        order: (s.order as number) ?? 0,
+        instruction: (s.instruction as string) ?? "",
+        why: s.why as string | undefined,
+        sensoryCue: s.sensoryCue as string | undefined,
+        callout: s.callout as string | undefined,
+        svg: ill?.svg,
+        svgCaption: ill?.caption,
+      };
+    }),
     equipment: (parsed.equipment as string[]) ?? [],
     equipmentNotes: (parsed.equipmentNotes as string) ?? undefined,
     nutrition: {
@@ -146,7 +154,11 @@ function assemble(parsed: Record<string, unknown>): Recipe {
     tags: (parsed.tags as string[]) ?? [],
     version: (parsed.version as "home" | "restaurant") ?? "home",
     theme: getTheme(cuisineStr),
-    svgIllustrations: [],
+    svgIllustrations: svgIllustrations.map((ill) => ({
+      id: ill.id,
+      label: ill.label,
+      svg: ill.svg,
+    })),
     culturalContext: (parsed.culturalContext as string) ?? undefined,
     proTips: (parsed.proTips as string[]) ?? undefined,
     storage: (parsed.storage as string) ?? undefined,
@@ -203,5 +215,57 @@ export async function generateRecipeStreaming(
   }
 
   const parsed = await parseJSON(content);
-  return assemble(parsed);
+
+  // 3. Generate SVGs for flagged steps
+  const stepsArr = (parsed.steps as Array<Record<string, unknown>>) ?? [];
+  const stepsNeedingSvg = stepsArr
+    .filter((s) => s.needsIllustration)
+    .map((s) => ({ order: s.order as number, instruction: s.instruction as string }));
+
+  let svgIllustrations: Array<{ id: string; label: string; svg: string; caption?: string }> = [];
+
+  if (stepsNeedingSvg.length > 0) {
+    try {
+      const svgResponse = await deepseek.chat.completions.create({
+        model: "deepseek-chat",
+        messages: [
+          {
+            role: "system",
+            content: "You are a cookbook illustrator. Create instructional SVGs. Return ONLY valid JSON.",
+          },
+          {
+            role: "user",
+            content: `Create SVG illustrations for these cooking steps. Each SVG should TEACH a technique.
+
+Return ONLY valid JSON: {"illustrations": [{"id": "step-N", "label": "description", "svg": "<svg>...</svg>", "caption": "What the cook should notice"}]}
+
+STEPS: ${JSON.stringify(stepsNeedingSvg)}
+
+SVG REQUIREMENTS:
+- viewBox="0 0 520 200"
+- Warm, cookbook-illustration style
+- Show technique, comparison, or visual cue
+- Under 3000 characters each`,
+          },
+        ],
+        temperature: 0.7,
+        max_tokens: 4096,
+      });
+
+      const svgText = svgResponse.choices[0]?.message?.content ?? "";
+      let svgCleaned = svgText.trim();
+      if (svgCleaned.startsWith("```")) {
+        svgCleaned = svgCleaned.replace(/```(?:json)?\n?/g, "").trim();
+      }
+      const fb = svgCleaned.indexOf("{");
+      const lb = svgCleaned.lastIndexOf("}");
+      if (fb !== -1 && lb > fb) svgCleaned = svgCleaned.slice(fb, lb + 1);
+      const svgData = JSON.parse(svgCleaned);
+      svgIllustrations = (svgData.illustrations as typeof svgIllustrations) ?? [];
+    } catch {
+      // SVGs are non-critical
+    }
+  }
+
+  return assemble(parsed, svgIllustrations);
 }
