@@ -1,0 +1,315 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+  --font-recipe: var(--font-recipe);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+  --color-warmth: var(--warmth);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --font-sans: var(--font-geist-sans);
+  --font-heading: var(--font-heading, var(--font-geist-sans));
+  --font-recipe: var(--font-recipe, var(--font-geist-sans));
+
+  /* ── Paper-toned neutrals (hue 70, chroma 0.005-0.015) ── */
+  --background: oklch(0.98 0.005 75);
+  --foreground: oklch(0.18 0.012 70);
+  --card: oklch(0.99 0.004 75);
+  --card-foreground: oklch(0.18 0.012 70);
+  --popover: oklch(0.99 0.004 75);
+  --popover-foreground: oklch(0.18 0.012 70);
+  --surface: oklch(0.97 0.006 75);
+  --surface-foreground: oklch(0.22 0.012 70);
+
+  /* ── Terra cotta accent ── */
+  --primary: oklch(0.48 0.18 35);
+  --primary-foreground: oklch(0.97 0.005 75);
+  --warmth: oklch(0.65 0.16 55);
+
+  /* ── Warm cream secondary ── */
+  --secondary: oklch(0.94 0.015 75);
+  --secondary-foreground: oklch(0.22 0.018 65);
+
+  /* ── Muted paper shadow ── */
+  --muted: oklch(0.92 0.01 78);
+  --muted-foreground: oklch(0.48 0.015 70);
+
+  /* ── Accent surface ── */
+  --accent: oklch(0.92 0.03 65);
+  --accent-foreground: oklch(0.2 0.02 50);
+
+  /* ── Semantic ── */
+  --destructive: oklch(0.48 0.19 25);
+  --destructive-foreground: oklch(0.97 0.005 75);
+
+  /* ── Warm tan borders ── */
+  --border: oklch(0.87 0.018 75);
+  --input: oklch(0.87 0.018 75);
+  --ring: oklch(0.55 0.18 35);
+
+  /* ── Radius ── */
+  --radius: 0.75rem;
+
+  /* ── Shadows (warm-tinted) ── */
+  --shadow-sm: 0 1px 3px oklch(0.15 0.01 70 / 0.06);
+  --shadow-md: 0 4px 12px oklch(0.15 0.01 70 / 0.08);
+  --shadow-lg: 0 8px 30px oklch(0.15 0.01 70 / 0.1);
+  --shadow-glow: 0 0 24px oklch(0.55 0.18 35 / 0.25);
+
+  /* ── Easing tokens ── */
+  --ease-quart-out: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-quint-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-expo-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-expo-in: cubic-bezier(0.7, 0, 0.84, 0);
+
+  /* ── Sidebar (same as surface for now) ── */
+  --sidebar: oklch(0.97 0.006 75);
+  --sidebar-foreground: oklch(0.18 0.012 70);
+  --sidebar-primary: oklch(0.48 0.18 35);
+  --sidebar-primary-foreground: oklch(0.97 0.005 75);
+  --sidebar-accent: oklch(0.92 0.03 65);
+  --sidebar-accent-foreground: oklch(0.2 0.02 50);
+  --sidebar-border: oklch(0.87 0.018 75);
+  --sidebar-ring: oklch(0.55 0.18 35);
+
+  /* ── Charts (warm spectrum) ── */
+  --chart-1: oklch(0.55 0.18 35);
+  --chart-2: oklch(0.6 0.15 75);
+  --chart-3: oklch(0.5 0.12 100);
+  --chart-4: oklch(0.45 0.1 50);
+  --chart-5: oklch(0.4 0.08 30);
+}
+
+/* ── Paper texture ── */
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(ellipse at 30% 10%, oklch(0.99 0.005 75) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 90%, oklch(0.97 0.008 80) 0%, transparent 50%),
+      radial-gradient(ellipse at 10% 60%, oklch(0.98 0.003 70) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Animations
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Steam rise — for loading states */
+@keyframes steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.95);
+    filter: blur(2px);
+  }
+  40% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) scale(1.05);
+    filter: blur(4px);
+  }
+}
+
+/* Warm pulse glow — for FAB / primary actions */
+@keyframes warm-pulse {
+  0%, 100% {
+    box-shadow: 0 0 12px oklch(0.55 0.18 35 / 0.2),
+                0 0 32px oklch(0.55 0.18 35 / 0.08);
+  }
+  50% {
+    box-shadow: 0 0 20px oklch(0.55 0.18 35 / 0.35),
+                0 0 48px oklch(0.55 0.18 35 / 0.15);
+  }
+}
+
+/* Slide up + fade in — for list entrances */
+@keyframes slide-up-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Blur reveal — for sheets / modals */
+@keyframes blur-in {
+  from {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Page enter — slightly richer */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Gentle simmer — subtle scale breathing for loading indicators */
+@keyframes simmer {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.04);
+  }
+}
+
+/* Warm shimmer sweep */
+@keyframes warm-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   Utility classes
+   ═══════════════════════════════════════════════════════════════════ */
+
+@utility animate-steam {
+  animation: steam-rise 2s var(--ease-quart-out) infinite;
+}
+
+@utility animate-warm-pulse {
+  animation: warm-pulse 2.5s var(--ease-quart-out) infinite;
+}
+
+@utility animate-slide-up-in {
+  animation: slide-up-in 400ms var(--ease-quart-out) both;
+}
+
+@utility animate-blur-in {
+  animation: blur-in 350ms var(--ease-expo-out) both;
+}
+
+@utility animate-page-enter {
+  animation: page-enter 300ms var(--ease-quart-out) both;
+}
+
+@utility animate-simmer {
+  animation: simmer 2s var(--ease-quart-out) infinite;
+}
+
+/* Stagger children */
+@utility stagger-children {
+  & > * {
+    opacity: 0;
+    animation: slide-up-in 400ms var(--ease-quart-out) forwards;
+  }
+  & > *:nth-child(1) { animation-delay: 0ms; }
+  & > *:nth-child(2) { animation-delay: 60ms; }
+  & > *:nth-child(3) { animation-delay: 120ms; }
+  & > *:nth-child(4) { animation-delay: 180ms; }
+  & > *:nth-child(5) { animation-delay: 240ms; }
+  & > *:nth-child(6) { animation-delay: 300ms; }
+  & > *:nth-child(7) { animation-delay: 360ms; }
+  & > *:nth-child(8) { animation-delay: 420ms; }
+  & > *:nth-child(9) { animation-delay: 480ms; }
+  & > *:nth-child(10) { animation-delay: 540ms; }
+}
+
+/* Warm paper card surface */
+@utility paper {
+  background-color: var(--card);
+  background-image:
+    linear-gradient(135deg, oklch(0.99 0.003 75 / 0.6) 0%, transparent 50%),
+    linear-gradient(225deg, oklch(0.98 0.006 80 / 0.4) 0%, transparent 50%);
+  border-color: var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .animate-steam,
+  .animate-warm-pulse,
+  .animate-slide-up-in,
+  .animate-blur-in,
+  .animate-page-enter,
+  .animate-simmer {
+    animation: none !important;
+  }
+
+  .stagger-children > * {
+    opacity: 1;
+    animation: none !important;
+  }
+}

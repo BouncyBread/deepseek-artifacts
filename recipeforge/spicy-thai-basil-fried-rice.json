@@ -1,0 +1,58 @@
+{
+  "recipe": {
+    "title": "Spicy Thai Basil Fried Rice (Khao Pad Kra Pao)",
+    "description": "Fiery Thai street-food fried rice with holy basil, chilies, and a crispy fried egg. The rice absorbs the savory-sweet oyster sauce while the basil adds a peppery, aromatic finish. Day-old rice and screaming-hot wok heat are the secrets to the elusive wok hei char.",
+    "cuisine": "thai",
+    "category": "fried-rice",
+    "prepTime": 10,
+    "cookTime": 10,
+    "totalTime": 20,
+    "difficulty": "easy",
+    "servings": 2,
+    "ingredients": [
+      {"name": "day-old jasmine rice", "amount": 3, "unit": "cup", "notes": "cold, preferably 1-2 days refrigerated"},
+      {"name": "Thai holy basil leaves", "amount": 1, "unit": "cup", "notes": "packed; sub Italian basil if unavailable — NOT Thai basil"},
+      {"name": "ground pork", "amount": 200, "unit": "g", "notes": "or chicken, beef, or tofu"},
+      {"name": "bird's eye chilies", "amount": 4, "unit": "piece", "notes": "adjust 2-6 to taste"},
+      {"name": "garlic", "amount": 5, "unit": "clove"},
+      {"name": "shallot", "amount": 1, "unit": "piece", "notes": "small, thinly sliced; optional but traditional in fried rice version"},
+      {"name": "oyster sauce", "amount": 1.5, "unit": "tbsp"},
+      {"name": "fish sauce", "amount": 1.5, "unit": "tbsp"},
+      {"name": "soy sauce", "amount": 1, "unit": "tsp"},
+      {"name": "dark soy sauce", "amount": 0.5, "unit": "tsp", "notes": "for color; optional"},
+      {"name": "white sugar", "amount": 1, "unit": "tsp"},
+      {"name": "vegetable oil", "amount": 3, "unit": "tbsp", "notes": "high smoke-point divided"},
+      {"name": "eggs", "amount": 2, "unit": "piece", "notes": "for frying, 1 per serving"},
+      {"name": "prik nam pla", "amount": 1, "unit": "serving", "notes": "fish sauce with sliced chilies and lime — condiment, optional"}
+    ],
+    "steps": [
+      {"order": 1, "instruction": "Pound the bird's eye chilies in a mortar to a fine paste. Add garlic and pound to a rough, broken paste — you want texture, not a smooth puree.", "needsIllustration": true},
+      {"order": 2, "instruction": "Combine oyster sauce, fish sauce, soy sauce, dark soy sauce, and sugar in a small bowl. Stir until sugar dissolves. This is your seasoning sauce."},
+      {"order": 3, "instruction": "Heat a wok over highest heat until smoking. Add 1 tbsp oil, then add the ground pork and spread into a thin layer. Let sear undisturbed for 45 seconds, then stir-fry until cooked through. Remove and set aside."},
+      {"order": 4, "instruction": "Add remaining 2 tbsp oil to the wok. Add the chili-garlic paste and shallot (if using). Stir-fry 30-45 seconds until very fragrant but not burnt."},
+      {"order": 5, "instruction": "Add the cold rice, breaking up any clumps with your spatula. Spread rice across the wok surface, let it sit 15-20 seconds to develop char, then toss. Repeat 2-3 times.", "duration": 2},
+      {"order": 6, "instruction": "Pour the seasoning sauce over the rice and toss vigorously until every grain is evenly coated and rice is sizzling.", "duration": 1},
+      {"order": 7, "instruction": "Return the cooked pork to the wok. Toss to combine and heat through.", "duration": 1},
+      {"order": 8, "instruction": "Kill the heat. Add holy basil leaves and fold gently until they just wilt — residual heat is enough.", "needsIllustration": true},
+      {"order": 9, "instruction": "In a separate pan, fry eggs in oil over medium-high heat, spooning hot oil over the whites until the edges are crispy-lacy but yolk stays runny.", "duration": 2},
+      {"order": 10, "instruction": "Plate rice, top with fried egg. Serve immediately with prik nam pla on the side."}
+    ],
+    "equipment": ["Wok (carbon steel preferred)", "Mortar and pestle", "Spatula / wok chan", "Small bowl"],
+    "nutrition": {"calories": 635, "protein": 28, "carbs": 68, "fat": 27},
+    "tags": ["thai", "spicy", "quick", "street-food", "fried-rice", "basil", "wok"],
+    "version": "home",
+    "sourceNotes": "Adapted from Hot Thai Kitchen (Pailin Chongchitnant) — pad kra pao technique applied to fried rice method."
+  },
+  "illustrations": [
+    {
+      "id": "step-1",
+      "label": "Pounding chili-garlic paste",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\" width=\"400\" height=\"300\"><defs><linearGradient id=\"mortar\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0%\" stop-color=\"#8B8B8B\"/><stop offset=\"100%\" stop-color=\"#5A5A5A\"/></linearGradient><linearGradient id=\"pestle\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\"><stop offset=\"0%\" stop-color=\"#A0886A\"/><stop offset=\"100%\" stop-color=\"#7A6650\"/></linearGradient></defs><rect width=\"400\" height=\"300\" fill=\"#FFF9F0\" rx=\"8\"/><text x=\"200\" y=\"30\" text-anchor=\"middle\" font-family=\"Georgia, serif\" font-size=\"15\" fill=\"#444\">Pounding Chili-Garlic Paste</text><!-- mortar bowl --><ellipse cx=\"200\" cy=\"210\" rx=\"100\" ry=\"30\" fill=\"#4A4A4A\"/><path d=\"M100 210 C100 210 110 140 130 120 C150 100 170 90 200 90 C230 90 250 100 270 120 C290 140 300 210 300 210\" fill=\"url(#mortar)\" stroke=\"#3A3A3A\" stroke-width=\"2\"/><ellipse cx=\"200\" cy=\"130\" rx=\"60\" ry=\"18\" fill=\"#6B5B4E\"/><!-- inner mortar / contents --><ellipse cx=\"200\" cy=\"128\" rx=\"45\" ry=\"12\" fill=\"#8B7355\"/><!-- chili dots --><circle cx=\"190\" cy=\"125\" r=\"4\" fill=\"#C0392B\"/><circle cx=\"198\" cy=\"122\" r=\"3\" fill=\"#E74C3C\"/><circle cx=\"208\" cy=\"126\" r=\"3.5\" fill=\"#C0392B\"/><circle cx=\"195\" cy=\"130\" r=\"2.5\" fill=\"#E74C3C\"/><!-- garlic bits --><ellipse cx=\"200\" cy=\"132\" rx=\"5\" ry=\"3\" fill=\"#F5E6C8\"/><ellipse cx=\"192\" cy=\"129\" rx=\"4\" ry=\"2.5\" fill=\"#EDD9A8\"/><ellipse cx=\"207\" cy=\"130\" rx=\"3.5\" ry=\"2\" fill=\"#F5E6C8\"/><!-- pestle --><rect x=\"195\" y=\"30\" width=\"14\" height=\"100\" rx=\"7\" fill=\"url(#pestle)\" transform=\"rotate(-15, 202, 80)\"/><ellipse cx=\"200\" cy=\"128\" rx=\"12\" ry=\"6\" fill=\"#8B7355\" transform=\"rotate(-15, 200, 128)\"/><!-- motion lines --><path d=\"M160 80 Q150 95 155 105\" stroke=\"#999\" stroke-width=\"1.5\" fill=\"none\" opacity=\"0.6\"/><path d=\"M240 75 Q248 90 242 102\" stroke=\"#999\" stroke-width=\"1.5\" fill=\"none\" opacity=\"0.6\"/><path d=\"M155 55 L150 48\" stroke=\"#AAA\" stroke-width=\"1\" fill=\"none\" opacity=\"0.4\"/><path d=\"M245 50 L250 43\" stroke=\"#AAA\" stroke-width=\"1\" fill=\"none\" opacity=\"0.4\"/><!-- label --><text x=\"200\" y=\"275\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"11\" fill=\"#888\">Mortar and pestle: pound chilies to paste, then add garlic</text></svg>"
+    },
+    {
+      "id": "step-8",
+      "label": "Folding in holy basil",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\" width=\"400\" height=\"300\"><defs><linearGradient id=\"wok\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0%\" stop-color=\"#2C2C2C\"/><stop offset=\"100%\" stop-color=\"#1A1A1A\"/></linearGradient><linearGradient id=\"riceGrad\" x1=\"0\" y1=\"0\" x2=\"0\" y2=\"1\"><stop offset=\"0%\" stop-color=\"#F5EDD6\"/><stop offset=\"100%\" stop-color=\"#E8DDB0\"/></linearGradient></defs><rect width=\"400\" height=\"300\" fill=\"#FFF9F0\" rx=\"8\"/><text x=\"200\" y=\"30\" text-anchor=\"middle\" font-family=\"Georgia, serif\" font-size=\"15\" fill=\"#444\">Folding in Holy Basil</text><!-- wok body --><ellipse cx=\"200\" cy=\"200\" rx=\"130\" ry=\"35\" fill=\"#333\"/><path d=\"M70 200 C70 200 80 120 100 100 C130 75 160 70 200 70 C240 70 270 75 300 100 C320 120 330 200 330 200\" fill=\"url(#wok)\" stroke=\"#222\" stroke-width=\"2\"/><ellipse cx=\"200\" cy=\"120\" rx=\"90\" ry=\"25\" fill=\"#D4C891\"/><!-- wok heat lines / char --><ellipse cx=\"200\" cy=\"120\" rx=\"70\" ry=\"20\" fill=\"url(#riceGrad)\"/><!-- rice grains --><rect x=\"165\" y=\"112\" width=\"16\" height=\"6\" rx=\"3\" fill=\"#F8F0D8\" transform=\"rotate(-10, 173, 115)\"/><rect x=\"185\" y=\"110\" width=\"16\" height=\"6\" rx=\"3\" fill=\"#F8F0D8\" transform=\"rotate(5, 193, 113)\"/><rect x=\"205\" y=\"115\" width=\"16\" height=\"6\" rx=\"3\" fill=\"#F0E8C8\" transform=\"rotate(-5, 213, 118)\"/><rect x=\"225\" y=\"112\" width=\"14\" height=\"5\" rx=\"3\" fill=\"#F8F0D8\" transform=\"rotate(8, 232, 114)\"/><rect x=\"175\" y=\"122\" width=\"14\" height=\"5\" rx=\"3\" fill=\"#EDE5BF\" transform=\"rotate(-15, 182, 124)\"/><rect x=\"195\" y=\"125\" width=\"16\" height=\"6\" rx=\"3\" fill=\"#F5EDD6\" transform=\"rotate(3, 203, 128)\"/><rect x=\"215\" y=\"122\" width=\"14\" height=\"5\" rx=\"3\" fill=\"#F0E8C8\" transform=\"rotate(-8, 222, 124)\"/><!-- small char spots --><ellipse cx=\"180\" cy=\"118\" rx=\"4\" ry=\"2\" fill=\"#C4803F\" opacity=\"0.5\"/><ellipse cx=\"218\" cy=\"121\" rx=\"3\" ry=\"1.5\" fill=\"#B87333\" opacity=\"0.4\"/><ellipse cx=\"200\" cy=\"116\" rx=\"2.5\" ry=\"1\" fill=\"#8B5E3C\" opacity=\"0.3\"/><!-- basil leaves being folded in --><path d=\"M160 105 C145 90 135 80 145 70 C155 60 170 75 165 90 C162 98 160 105 160 105Z\" fill=\"#4A7C3F\" opacity=\"0.9\"/><path d=\"M150 100 C140 95 125 90 130 80 C135 70 150 85 148 95 C147 98 150 100 150 100Z\" fill=\"#3D6B34\" opacity=\"0.85\"/><path d=\"M240 110 C255 95 265 85 255 75 C245 65 230 80 235 95 C238 103 240 110 240 110Z\" fill=\"#4A7C3F\" opacity=\"0.9\"/><path d=\"M250 105 C260 100 275 95 270 85 C265 75 250 90 252 100 C253 103 250 105 250 105Z\" fill=\"#3D6B34\" opacity=\"0.85\"/><path d=\"M170 130 C155 118 148 108 158 100 C168 92 180 108 175 120 C173 125 170 130 170 130Z\" fill=\"#5A8F4E\" opacity=\"0.8\"/><path d=\"M230 128 C242 118 248 108 240 100 C232 92 222 108 227 120 C228 124 230 128 230 128Z\" fill=\"#5A8F4E\" opacity=\"0.8\"/><!-- spatula --><rect x=\"80\" y=\"75\" width=\"6\" height=\"100\" rx=\"3\" fill=\"#C0A070\" transform=\"rotate(25, 83, 125)\"/><rect x=\"72\" y=\"72\" width=\"22\" height=\"10\" rx=\"3\" fill=\"#D0B080\" transform=\"rotate(25, 83, 125)\"/><text x=\"65\" y=\"55\" font-family=\"Arial, sans-serif\" font-size=\"20\" fill=\"#999\" transform=\"rotate(25, 65, 55)\">&#x21E7;</text><!-- steam / aromatic lines --><path d=\"M175 85 Q170 70 175 55\" stroke=\"#AAA\" stroke-width=\"1\" fill=\"none\" opacity=\"0.4\"/><path d=\"M200 80 Q198 65 202 50\" stroke=\"#AAA\" stroke-width=\"1\" fill=\"none\" opacity=\"0.5\"/><path d=\"M225 85 Q228 70 224 55\" stroke=\"#AAA\" stroke-width=\"1\" fill=\"none\" opacity=\"0.4\"/><!-- label --><text x=\"200\" y=\"280\" text-anchor=\"middle\" font-family=\"Arial, sans-serif\" font-size=\"11\" fill=\"#888\">Kill heat, add basil, fold gently until just wilted</text></svg>"
+    }
+  ]
+}

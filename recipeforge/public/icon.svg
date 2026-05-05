@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="30%">
+      <stop offset="0%" stop-color="#faf6f0"/>
+      <stop offset="100%" stop-color="#f0e8d8"/>
+    </radialGradient>
+    <linearGradient id="hat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#c24a2e"/>
+      <stop offset="100%" stop-color="#9e3520"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="512" height="512" rx="100" fill="url(#bg)"/>
+  <!-- Chef hat -->
+  <g transform="translate(256,230)">
+    <!-- Hat base band -->
+    <rect x="-120" y="40" width="240" height="50" rx="10" fill="url(#hat)"/>
+    <!-- Hat poof -->
+    <ellipse cx="0" cy="-20" rx="140" ry="80" fill="url(#hat)"/>
+    <ellipse cx="-50" cy="-40" rx="50" ry="35" fill="url(#hat)"/>
+    <ellipse cx="50" cy="-45" rx="45" ry="38" fill="url(#hat)"/>
+    <ellipse cx="0" cy="-55" rx="40" ry="30" fill="#d45a3e"/>
+    <!-- Subtle highlight -->
+    <ellipse cx="-60" cy="-55" rx="30" ry="20" fill="white" opacity="0.08"/>
+  </g>
+  <!-- Steam wisps -->
+  <g opacity="0.3">
+    <path d="M180 150 Q175 130 180 110 Q185 90 180 70" stroke="#c24a2e" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.5"/>
+    <path d="M256 130 Q252 110 256 90 Q260 70 256 50" stroke="#c24a2e" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.4"/>
+    <path d="M332 150 Q328 130 332 110 Q336 90 332 70" stroke="#c24a2e" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.5"/>
+  </g>
+  <!-- Bowl/plate suggestion at bottom -->
+  <ellipse cx="256" cy="420" rx="100" ry="20" fill="#c24a2e" opacity="0.12"/>
+</svg>

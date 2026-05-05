@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__0q0zsqm._.css)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s 'http://localhost:3000/_next/static/chunks/%5Broot-of-the-server%5D__0q0zsqm._.css')",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Force)",
+      "Bash(curl -s http://localhost:3000/api/auth)",
+      "PowerShell(Get-Command vercel -ErrorAction SilentlyContinue)",
+      "PowerShell(if \\($?\\) { \"installed\" } else { \"not-installed\" })",
+      "PowerShell(npm i -g vercel)",
+      "Bash(npm run *)",
+      "Bash(git add *)"
+    ]
+  }
+}

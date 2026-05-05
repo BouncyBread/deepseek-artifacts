@@ -1,0 +1,17 @@
+{
+  "name": "RecipeForge",
+  "short_name": "RecipeForge",
+  "description": "AI-powered cookbook with authentic recipes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf6f0",
+  "theme_color": "#b8442a",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
