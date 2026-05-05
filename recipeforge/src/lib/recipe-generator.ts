@@ -3,15 +3,22 @@ import { getTheme } from "@/lib/themes";
 import { braveSearch, fetchPageContent } from "@/lib/brave-search";
 import { deepseek } from "@/lib/deepseek";
 
-async function callLLM(system: string, prompt: string): Promise<string> {
+const RESEARCH_MODEL = process.env.DEEPSEEK_RESEARCH_MODEL || "deepseek-v4-pro";
+
+async function callLLM(
+  system: string,
+  prompt: string,
+  opts?: { research?: boolean }
+): Promise<string> {
+  const isResearch = opts?.research !== false;
   const response = await deepseek.chat.completions.create({
-    model: "deepseek-chat",
+    model: isResearch ? RESEARCH_MODEL : "deepseek-chat",
     messages: [
       { role: "system", content: system },
       { role: "user", content: prompt },
     ],
-    temperature: 0.7,
-    max_tokens: 4096,
+    temperature: isResearch ? 0.9 : 0.7,
+    max_tokens: isResearch ? 8192 : 4096,
   });
   return response.choices[0]?.message?.content ?? "";
 }
@@ -26,13 +33,20 @@ function buildRecipePrompt(
       ? "Create a RESTAURANT-QUALITY version — chef techniques, premium ingredients, elevated plating."
       : "Create a HOME-COOK version — practical for a home kitchen, accessible ingredients.";
 
-  return `You are an expert chef and recipe developer. Create an authentic recipe.
+  return `You are an expert chef and recipe developer. Create an authentic, meticulously researched recipe.
 
 User request: "${userRequest}"
 
 ${versionHint}
 
-${searchContext ? `RESEARCH FROM AUTHENTIC SOURCES:\n${searchContext}\n\nSynthesize the above sources. Note where they agree and differ.` : "Rely on your expertise for the most authentic version of this dish."}
+${searchContext ? `RESEARCH FROM AUTHENTIC SOURCES:\n${searchContext}\n\nSYNTHESIZE the above sources critically. Note where they agree and where they differ. Pull the best elements from each. If sources conflict on key details (cooking time, spice ratios, core technique), explain your choice in sourceNotes. Prefer the most traditional or widely respected source.` : "Rely on your deep expertise for the most authentic version of this dish. Be specific about regional origins and traditional techniques."}
+
+QUALITY REQUIREMENTS:
+- Every ingredient must have a precise, realistic amount and unit
+- Every step must be actionable — a home cook should be able to follow it
+- Include sensory cues: what should it look like? smell like? what texture?
+- Technique descriptions should teach, not just instruct
+- Quantities must scale sensibly for the stated servings
 
 Return ONLY valid JSON (no markdown, no code fences):
 {
@@ -164,7 +178,7 @@ export async function generateRecipe(
   // 3. Generate recipe JSON
   const recipePrompt = buildRecipePrompt(userRequest, searchContext, version);
   const recipeJson = await callLLM(
-    "You are an expert chef and recipe developer. Return ONLY valid JSON, no markdown.",
+    "You are a James Beard award-winning chef and cookbook author. Your recipes are meticulously researched, culturally authentic, and written with warmth and precision. Every recipe must be genuinely cookable — no placeholder measurements, no vague instructions. Include specific techniques, visual cues (what to look for), and the WHY behind key steps. Quantities must be realistic and tested. Return ONLY valid JSON, no markdown.",
     recipePrompt
   );
   const parsed = parseJSON(recipeJson);
@@ -183,7 +197,8 @@ export async function generateRecipe(
     try {
       const svgJson = await callLLM(
         "You are an SVG illustrator. Return ONLY valid JSON, no markdown.",
-        buildSvgPrompt(stepsNeedingSvg)
+        buildSvgPrompt(stepsNeedingSvg),
+        { research: false }
       );
       svgData = parseJSON(svgJson) as typeof svgData;
     } catch {
