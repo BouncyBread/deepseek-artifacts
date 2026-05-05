@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import type { Recipe } from "@/types/recipe";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface RecipeCardProps {
   recipe: Recipe;
@@ -169,7 +168,7 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
         </div>
       )}
 
-      <ScrollArea className="max-h-[65vh]">
+      <div className="overflow-y-auto max-h-[55vh] overscroll-contain">
         <div className="px-6 py-5 space-y-6">
           {/* Ingredients */}
           <section>
@@ -340,7 +339,7 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
             </p>
           )}
         </div>
-      </ScrollArea>
+      </div>
     </article>
   );
 }
