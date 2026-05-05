@@ -173,6 +173,30 @@ export default function Home() {
   }
 
   if (selectedRecipe) {
+    if (selectedRecipe.html) {
+      return (
+        <div className="relative min-h-screen animate-page-enter flex flex-col">
+          <div className="p-4 md:p-6">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSelectedRecipe(null)}
+              className="mb-3 text-muted-foreground hover:text-foreground"
+            >
+              &larr; Back to library
+            </Button>
+          </div>
+          <iframe
+            srcDoc={selectedRecipe.html}
+            className="flex-1 w-full border-0"
+            sandbox="allow-scripts"
+            title={selectedRecipe.title}
+          />
+          <ChatDrawer recipeId={selectedRecipe.id} onRecipeUpdate={handleRecipeUpdate} />
+        </div>
+      );
+    }
+
     return (
       <div className="relative min-h-screen animate-page-enter">
         <div className="p-4 md:p-6 max-w-4xl mx-auto">

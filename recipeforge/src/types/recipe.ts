@@ -77,7 +77,6 @@ export interface Recipe {
   ingredients: Ingredient[];
   steps: Step[];
   equipment: string[];
-  equipmentNotes?: string;
   nutrition: Nutrition;
   tags: string[];
   version: RecipeVersion;
@@ -87,7 +86,9 @@ export interface Recipe {
   proTips?: string[];
   storage?: string;
   alternativeMethods?: AlternativeMethod[];
+  equipmentNotes?: string;
   originalTitle?: string;
+  html?: string;
   sourceUrl?: string;
   sourceNotes?: string;
   createdAt: string;

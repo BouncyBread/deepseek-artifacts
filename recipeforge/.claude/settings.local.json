@@ -17,7 +17,8 @@
       "Bash(vercel env *)",
       "Bash(node push-env.mjs)",
       "Bash(node -e ' *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(vercel --prod --yes)"
     ]
   }
 }

@@ -30,6 +30,7 @@ function dbToRecipe(r: Record<string, unknown>): Recipe {
     alternativeMethods: (r.alternative_methods as Recipe["alternativeMethods"]) ?? undefined,
     equipmentNotes: (r.equipment_notes as string) ?? undefined,
     originalTitle: (r.original_title as string) ?? undefined,
+    html: (r.html as string) ?? undefined,
     createdAt: r.created_at as string,
     updatedAt: r.updated_at as string,
   };

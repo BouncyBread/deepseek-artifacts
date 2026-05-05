@@ -44,6 +44,7 @@ export async function POST(request: NextRequest) {
       alternative_methods: recipe.alternativeMethods ?? null,
       equipment_notes: recipe.equipmentNotes ?? null,
       original_title: recipe.originalTitle ?? null,
+      html: recipe.html ?? null,
       created_at: recipe.createdAt,
       updated_at: recipe.updatedAt,
     });
@@ -122,6 +123,7 @@ export async function GET(request: NextRequest) {
     alternativeMethods: (r.alternative_methods as Recipe["alternativeMethods"]) ?? undefined,
     equipmentNotes: (r.equipment_notes as string) ?? undefined,
     originalTitle: (r.original_title as string) ?? undefined,
+    html: (r.html as string) ?? undefined,
     createdAt: r.created_at as string,
     updatedAt: r.updated_at as string,
   }));
