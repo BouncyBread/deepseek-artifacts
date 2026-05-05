@@ -216,15 +216,25 @@ export async function generateRecipeStreaming(
 
   const parsed = await parseJSON(content);
 
-  // 3. Generate SVGs for flagged steps
+  // 3. Always generate SVGs for key steps (first, middle, last)
   const stepsArr = (parsed.steps as Array<Record<string, unknown>>) ?? [];
-  const stepsNeedingSvg = stepsArr
-    .filter((s) => s.needsIllustration)
-    .map((s) => ({ order: s.order as number, instruction: s.instruction as string }));
+  const allSteps = stepsArr.map((s) => ({
+    order: s.order as number,
+    instruction: s.instruction as string,
+  }));
+
+  // Pick up to 3 representative steps: first, last, and one from the middle
+  const keySteps = allSteps.length <= 2
+    ? allSteps
+    : [
+        allSteps[0],
+        allSteps[Math.floor(allSteps.length / 2)],
+        allSteps[allSteps.length - 1],
+      ].filter((s, i, arr) => arr.findIndex((x) => x.order === s.order) === i);
 
   let svgIllustrations: Array<{ id: string; label: string; svg: string; caption?: string }> = [];
 
-  if (stepsNeedingSvg.length > 0) {
+  if (keySteps.length > 0) {
     try {
       const svgResponse = await deepseek.chat.completions.create({
         model: "deepseek-chat",
@@ -239,7 +249,7 @@ export async function generateRecipeStreaming(
 
 Return ONLY valid JSON: {"illustrations": [{"id": "step-N", "label": "description", "svg": "<svg>...</svg>", "caption": "What the cook should notice"}]}
 
-STEPS: ${JSON.stringify(stepsNeedingSvg)}
+STEPS: ${JSON.stringify(keySteps)}
 
 SVG REQUIREMENTS:
 - viewBox="0 0 520 200"
