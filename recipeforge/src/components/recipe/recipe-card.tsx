@@ -32,7 +32,7 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
   return (
     <article
       data-testid="recipe-card"
-      className="w-full max-w-3xl mx-auto overflow-hidden rounded-2xl shadow-lg animate-page-enter"
+      className="w-full max-w-5xl mx-auto rounded-2xl shadow-lg animate-page-enter"
       style={
         {
           "--primary": active.theme.primary,
@@ -105,10 +105,14 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
           style={{ backgroundColor: active.theme.muted }}
         >
           <div
-            className="rounded-xl overflow-hidden w-full max-w-md"
+            className="rounded-xl overflow-hidden w-full max-w-2xl"
             style={{ boxShadow: `0 4px 20px ${active.theme.primary}20` }}
-            dangerouslySetInnerHTML={{ __html: active.svgIllustrations[0].svg }}
-          />
+          >
+            <div
+              className="[&>svg]:w-full [&>svg]:h-auto [&>svg]:block"
+              dangerouslySetInnerHTML={{ __html: active.svgIllustrations[0].svg }}
+            />
+          </div>
         </div>
       )}
 
@@ -323,13 +327,16 @@ export function RecipeCard({ recipe, onToggleVersion, alternateVersion }: Recipe
 
                         {step.svg && (
                           <div
-                            className="rounded-xl overflow-hidden"
+                            className="rounded-xl overflow-hidden w-full"
                             style={{
                               boxShadow: `0 2px 12px ${active.theme.primary}15`,
                               border: `1px solid ${active.theme.muted}`,
                             }}
                           >
-                            <div dangerouslySetInnerHTML={{ __html: step.svg }} />
+                            <div
+                              className="[&>svg]:w-full [&>svg]:h-auto [&>svg]:block"
+                              dangerouslySetInnerHTML={{ __html: step.svg }}
+                            />
                             {step.svgCaption && (
                               <p
                                 className="text-xs italic p-3 pt-0 opacity-70 text-center"

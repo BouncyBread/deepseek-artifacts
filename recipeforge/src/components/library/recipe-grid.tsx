@@ -43,10 +43,18 @@ export function RecipeGrid({ onSelectRecipe, refreshKey }: RecipeGridProps) {
   const [deleteTarget, setDeleteTarget] = useState<Recipe | null>(null);
   const [deleting, setDeleting] = useState(false);
 
+  const [debouncedQuery, setDebouncedQuery] = useState("");
+
+  // Debounce search input by 300ms
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQuery(query), 300);
+    return () => clearTimeout(timer);
+  }, [query]);
+
   const fetchRecipes = useCallback(async () => {
     setLoading(true);
     const params = new URLSearchParams();
-    if (query) params.set("q", query);
+    if (debouncedQuery) params.set("q", debouncedQuery);
     if (activeCategory !== "All") params.set("category", activeCategory.toLowerCase());
     if (activeTag) params.set("tag", activeTag);
 
@@ -59,7 +67,7 @@ export function RecipeGrid({ onSelectRecipe, refreshKey }: RecipeGridProps) {
     } finally {
       setLoading(false);
     }
-  }, [query, activeCategory, activeTag]);
+  }, [debouncedQuery, activeCategory, activeTag]);
 
   useEffect(() => {
     fetchRecipes();
