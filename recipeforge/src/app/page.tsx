@@ -13,8 +13,9 @@ import {
 import { RecipeCard } from "@/components/recipe/recipe-card";
 import { ChatDrawer } from "@/components/chat/chat-drawer";
 import { PromptBox } from "@/components/generate/prompt-box";
+import { RequestForm } from "@/components/generate/request-form";
 import { RecipeGrid } from "@/components/library/recipe-grid";
-import { ChefHat, Plus } from "lucide-react";
+import { ChefHat, Plus, Sparkles } from "lucide-react";
 import type { Recipe } from "@/types/recipe";
 
 function SteamLoader({ text }: { text: string }) {
@@ -109,6 +110,7 @@ export default function Home() {
   const [generating, setGenerating] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const [generateOpen, setGenerateOpen] = useState(false);
+  const [requestOpen, setRequestOpen] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -273,6 +275,25 @@ export default function Home() {
               onRecipeGenerated={handleRecipeGenerated}
               onLoading={setGenerating}
             />
+          </div>
+        </SheetContent>
+      </Sheet>
+
+      <Sheet open={requestOpen} onOpenChange={setRequestOpen}>
+        <SheetTrigger className="fixed bottom-6 right-24 z-40 rounded-full shadow-lg h-14 w-14 p-0 bg-background border-2 border-primary/20 flex items-center justify-center transition-transform hover:scale-105 active:scale-95">
+          <Sparkles className="h-6 w-6 text-primary" />
+        </SheetTrigger>
+        <SheetContent side="bottom" className="h-[70vh] rounded-t-2xl">
+          <SheetHeader>
+            <SheetTitle
+              className="text-xl"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              Request from Claude Opus
+            </SheetTitle>
+          </SheetHeader>
+          <div className="pt-4">
+            <RequestForm />
           </div>
         </SheetContent>
       </Sheet>
