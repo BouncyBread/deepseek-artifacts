@@ -27,7 +27,18 @@
       "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cookies5.txt)",
       "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes -H \"Content-Type: application/json\" -d '{\"prompt\":\"garlic butter pasta\"}' -b /tmp/cookies5.txt --max-time 90)",
       "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cookies6.txt)",
-      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes -H \"Content-Type: application/json\" -d '{\"prompt\":\"simple garlic spaghetti\"}' -b /tmp/cookies6.txt --max-time 75)"
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes -H \"Content-Type: application/json\" -d '{\"prompt\":\"simple garlic spaghetti\"}' -b /tmp/cookies6.txt --max-time 75)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cookies_test.txt)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes -H \"Content-Type: application/json\" -d '{\"prompt\":\"quick garlic green beans\"}' -b /tmp/cookies_test.txt --max-time 90)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('Recipe ID:', d['recipe']['id']\\); print\\('Has SVGs:', len\\(d['recipe'].get\\('svgIllustrations',[]\\)\\)\\)\")",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cookies_x1.txt)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes -H \"Content-Type: application/json\" -d '{\"prompt\":\"simple garlic rice\"}' -b /tmp/cookies_x1.txt --max-time 90 -o /tmp/recipe_test.json -w '%{http_code}')",
+      "Bash(node -e \"const d=require\\('/tmp/recipe_test.json'\\); console.log\\('ID:', d.recipe?.id\\); console.log\\('SVGs:', d.recipe?.svgIllustrations?.length || 0\\)\")",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cookies_x2.txt)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes -H \"Content-Type: application/json\" -d '{\"prompt\":\"simple garlic rice\"}' -b /tmp/cookies_x2.txt --max-time 90)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes/f9b0a1e7-c82d-42b2-9816-7f66504f4e8f/generate-svgs -b /tmp/cookies_x2.txt --max-time 60)",
+      "Bash(curl -s https://recipeforge-three.vercel.app/api/recipes/f9b0a1e7-c82d-42b2-9816-7f66504f4e8f -b /tmp/cookies_x2.txt)",
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\)\\); const s=d.recipe.steps; console.log\\('Steps with SVGs:', s.filter\\(x=>x.svg\\).length, '/', s.length\\)\")"
     ]
   }
 }
