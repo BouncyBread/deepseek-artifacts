@@ -52,7 +52,8 @@ export function RecipeGrid({ onSelectRecipe, refreshKey }: RecipeGridProps) {
   }, [query]);
 
   const fetchRecipes = useCallback(async () => {
-    setLoading(true);
+    // Only show full spinner on initial load; subsequent filters are backgrounded
+    if (recipes.length === 0) setLoading(true);
     const params = new URLSearchParams();
     if (debouncedQuery) params.set("q", debouncedQuery);
     if (activeCategory !== "All") params.set("category", activeCategory.toLowerCase());
@@ -67,7 +68,7 @@ export function RecipeGrid({ onSelectRecipe, refreshKey }: RecipeGridProps) {
     } finally {
       setLoading(false);
     }
-  }, [debouncedQuery, activeCategory, activeTag]);
+  }, [debouncedQuery, activeCategory, activeTag, recipes.length]);
 
   useEffect(() => {
     fetchRecipes();
@@ -87,7 +88,7 @@ export function RecipeGrid({ onSelectRecipe, refreshKey }: RecipeGridProps) {
     }
   };
 
-  if (loading) {
+  if (loading && recipes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 gap-3">
         <div className="relative flex items-center justify-center">
