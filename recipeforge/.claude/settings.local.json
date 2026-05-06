@@ -44,7 +44,19 @@
       "WebSearch",
       "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cron_cookies3.txt)",
       "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes/import -H \"Content-Type: application/json\" -b /tmp/cron_cookies3.txt -d @/tmp/black-bean-ribs.json --max-time 15)",
-      "Bash(curl -s -X PATCH https://recipeforge-three.vercel.app/api/requests/b086b6e2-23bb-48b6-89ed-976df82a4541 -H \"Content-Type: application/json\" -b /tmp/cron_cookies3.txt -d '{\"status\":\"completed\",\"recipe_id\":\"921c986b-efb7-4e2f-a0dc-13c4017e7de7\"}')"
+      "Bash(curl -s -X PATCH https://recipeforge-three.vercel.app/api/requests/b086b6e2-23bb-48b6-89ed-976df82a4541 -H \"Content-Type: application/json\" -b /tmp/cron_cookies3.txt -d '{\"status\":\"completed\",\"recipe_id\":\"921c986b-efb7-4e2f-a0dc-13c4017e7de7\"}')",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cron_cookies4.txt)",
+      "Bash(curl -s -X PATCH https://recipeforge-three.vercel.app/api/requests/b086b6e2-23bb-48b6-89ed-976df82a4541 -H \"Content-Type: application/json\" -b /tmp/cron_cookies4.txt -d '{\"status\":\"completed\",\"recipe_id\":\"921c986b-efb7-4e2f-a0dc-13c4017e7de7\"}')",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cron5.txt)",
+      "Bash(curl -s https://recipeforge-three.vercel.app/api/requests?status=pending -b /tmp/cron5.txt)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cron6.txt)",
+      "Bash(curl -s https://recipeforge-three.vercel.app/api/requests?status=pending -b /tmp/cron6.txt)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cron7.txt)",
+      "Bash(curl -s https://recipeforge-three.vercel.app/api/requests?status=pending -b /tmp/cron7.txt)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cron8.txt)",
+      "Bash(curl -s https://recipeforge-three.vercel.app/api/requests?status=pending -b /tmp/cron8.txt)"
     ]
   }
 }
