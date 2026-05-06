@@ -38,7 +38,13 @@
       "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes -H \"Content-Type: application/json\" -d '{\"prompt\":\"simple garlic rice\"}' -b /tmp/cookies_x2.txt --max-time 90)",
       "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes/f9b0a1e7-c82d-42b2-9816-7f66504f4e8f/generate-svgs -b /tmp/cookies_x2.txt --max-time 60)",
       "Bash(curl -s https://recipeforge-three.vercel.app/api/recipes/f9b0a1e7-c82d-42b2-9816-7f66504f4e8f -b /tmp/cookies_x2.txt)",
-      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\)\\); const s=d.recipe.steps; console.log\\('Steps with SVGs:', s.filter\\(x=>x.svg\\).length, '/', s.length\\)\")"
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('/dev/stdin','utf8'\\)\\); const s=d.recipe.steps; console.log\\('Steps with SVGs:', s.filter\\(x=>x.svg\\).length, '/', s.length\\)\")",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cron_cookies.txt)",
+      "Bash(curl -s https://recipeforge-three.vercel.app/api/requests?status=pending -b /tmp/cron_cookies.txt)",
+      "WebSearch",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cron_cookies3.txt)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/recipes/import -H \"Content-Type: application/json\" -b /tmp/cron_cookies3.txt -d @/tmp/black-bean-ribs.json --max-time 15)",
+      "Bash(curl -s -X PATCH https://recipeforge-three.vercel.app/api/requests/b086b6e2-23bb-48b6-89ed-976df82a4541 -H \"Content-Type: application/json\" -b /tmp/cron_cookies3.txt -d '{\"status\":\"completed\",\"recipe_id\":\"921c986b-efb7-4e2f-a0dc-13c4017e7de7\"}')"
     ]
   }
 }

@@ -20,7 +20,7 @@ export async function PATCH(
       return NextResponse.json({ error: "status or recipe_id required" }, { status: 400 });
     }
 
-    const update: Record<string, unknown> = { updated_at: new Date().toISOString() };
+    const update: Record<string, unknown> = {};
     if (status) update.status = status;
     if (recipe_id) update.recipe_id = recipe_id;
 
