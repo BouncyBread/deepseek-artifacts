@@ -2,7 +2,7 @@
 Same pattern as the wow bot's claude_runner.py — no permission prompts.
 Usage: python process_queue.py
 """
-import json, os, re, subprocess, time, traceback, urllib.request, sys
+import json, os, re, subprocess, time, traceback, urllib.request, sys, glob
 
 APP = "https://recipeforge-three.vercel.app"
 PASS = "bready"
@@ -158,4 +158,25 @@ finally:
             os.remove(LOCK_FILE)
         except:
             pass
+    # Rotate log: keep only last 2 days of entries
+    try:
+        if os.path.exists(LOG_FILE) and os.path.getsize(LOG_FILE) > 500_000:
+            with open(LOG_FILE) as f:
+                lines = f.readlines()
+            cutoff = time.time() - 172800  # 48 hours
+            kept = []
+            for line in lines:
+                try:
+                    ts_str = line[1:20]  # [YYYY-MM-DD HH:MM:SS]
+                    ts = time.mktime(time.strptime(ts_str, "%Y-%m-%d %H:%M:%S"))
+                    if ts > cutoff:
+                        kept.append(line)
+                except:
+                    kept.append(line)  # keep lines without parseable timestamps
+            with open(LOG_FILE, "w") as f:
+                f.writelines(kept)
+            log(f"Log rotated: {len(lines)} -> {len(kept)} lines")
+    except:
+        pass
+
     log("=== Queue processor exiting ===")
