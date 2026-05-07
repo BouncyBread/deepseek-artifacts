@@ -56,7 +56,23 @@
       "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cron7.txt)",
       "Bash(curl -s https://recipeforge-three.vercel.app/api/requests?status=pending -b /tmp/cron7.txt)",
       "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/cron8.txt)",
-      "Bash(curl -s https://recipeforge-three.vercel.app/api/requests?status=pending -b /tmp/cron8.txt)"
+      "Bash(curl -s https://recipeforge-three.vercel.app/api/requests?status=pending -b /tmp/cron8.txt)",
+      "PowerShell(Get-ScheduledTask -TaskName \"RecipeForge Queue Processor\")",
+      "Bash(where bash *)",
+      "Bash(where claude *)",
+      "Bash(where python *)",
+      "PowerShell(Unregister-ScheduledTask -TaskName \"RecipeForge Queue Processor\" -Confirm:$false; $action = New-ScheduledTaskAction -Execute \"J:\\\\Program Files \\(x86\\)\\\\Git\\\\usr\\\\bin\\\\bash.exe\" -Argument \"L:\\\\Claude working folder\\\\DeepSeek Artifacts\\\\recipeforge\\\\process-queue.sh\" -WorkingDirectory \"L:\\\\Claude working folder\\\\DeepSeek Artifacts\\\\recipeforge\"; $trigger = New-ScheduledTaskTrigger -Once -At \\(Get-Date\\) -RepetitionInterval \\(New-TimeSpan -Minutes 5\\) -RepetitionDuration \\(New-TimeSpan -Days 365\\); $principal = New-ScheduledTaskPrincipal -UserId \"$env:USERNAME\" -RunLevel Limited; Register-ScheduledTask -TaskName \"RecipeForge Queue Processor\" -Action $action -Trigger $trigger -Principal $principal -Force; Write-Host \"Recreated\")",
+      "PowerShell(Start-ScheduledTask -TaskName \"RecipeForge Queue Processor\"; Start-Sleep -Seconds 10; $info = Get-ScheduledTaskInfo -TaskName \"RecipeForge Queue Processor\"; Write-Host \"Last Run: $\\($info.LastRunTime\\)\"; Write-Host \"Last Result: $\\($info.LastTaskResult\\)\")",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/auth -H \"Content-Type: application/json\" -d '{\"passphrase\":\"bready\"}' -c /tmp/rf-test2.txt)",
+      "Bash(curl -s -X POST https://recipeforge-three.vercel.app/api/requests -H \"Content-Type: application/json\" -b /tmp/rf-test2.txt -d '{\"prompt\":\"test\"}')",
+      "PowerShell(Start-ScheduledTask -TaskName \"RecipeForge Queue Processor\"; Start-Sleep -Seconds 30; $info = Get-ScheduledTaskInfo -TaskName \"RecipeForge Queue Processor\"; Write-Host \"Last Result: $\\($info.LastTaskResult\\)\"; $req = Invoke-RestMethod -Uri \"https://recipeforge-three.vercel.app/api/requests?status=pending\" -Method Get; Write-Host \"Pending requests: $\\($req.requests.Count\\)\"; $done = Invoke-RestMethod -Uri \"https://recipeforge-three.vercel.app/api/requests?status=completed\" -Method Get; Write-Host \"Completed requests: $\\($done.requests.Count\\)\")",
+      "PowerShell(Get-PSDrive -PSProvider FileSystem | Where-Object { $_.Name -match '^[A-Z]$' } | Format-Table Name, Root)",
+      "Bash(npx vitest *)",
+      "PowerShell(Start-ScheduledTask -TaskName \"RecipeForge Queue Processor\")",
+      "PowerShell(Get-ChildItem \"L:\\\\Claude working folder\\\\DeepSeek Artifacts\\\\recipeforge\\\\.queue-lock\" -ErrorAction SilentlyContinue; Get-ChildItem \"C:\\\\Windows\\\\System32\\\\queue-processor.log\" -ErrorAction SilentlyContinue; Get-ChildItem \"$env:USERPROFILE\\\\queue-processor.log\" -ErrorAction SilentlyContinue)",
+      "PowerShell($task = Get-ScheduledTask -TaskName \"RecipeForge Queue Processor\"; $task.Actions | ForEach-Object { Write-Host \"Exec: $\\($_.Execute\\)\"; Write-Host \"Args: $\\($_.Arguments\\)\"; Write-Host \"CWD: $\\($_.WorkingDirectory\\)\" })",
+      "PowerShell($events = Get-WinEvent -LogName \"Microsoft-Windows-TaskScheduler/Operational\" -MaxEvents 20 | Where-Object { $_.Message -match \"RecipeForge\" }; $events | ForEach-Object { Write-Host \"$\\($_.TimeCreated\\) $\\($_.Message.Split\\([Environment]::NewLine\\)[0]\\)\" })",
+      "PowerShell(Unregister-ScheduledTask -TaskName \"RecipeForge Queue Processor\" -Confirm:$false; $arg = '/c \"C:\\\\Users\\\\bounc\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python312\\\\python.exe\" \"L:\\\\Claude working folder\\\\DeepSeek Artifacts\\\\recipeforge\\\\process_queue.py\" >> \"C:\\\\Users\\\\bounc\\\\recipeforge-cron.log\" 2>&1'; $action = New-ScheduledTaskAction -Execute \"cmd.exe\" -Argument $arg; $trigger = New-ScheduledTaskTrigger -Once -At \\(Get-Date\\) -RepetitionInterval \\(New-TimeSpan -Minutes 10\\) -RepetitionDuration \\(New-TimeSpan -Days 365\\); Register-ScheduledTask -TaskName \"RecipeForge Queue Processor\" -Action $action -Trigger $trigger -Force; Write-Host \"Fixed: cmd.exe wrapper with C: drive log\")"
     ]
   }
 }
