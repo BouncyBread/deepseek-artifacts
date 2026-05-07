@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterAll } from "vitest";
 import { spawnSync } from "child_process";
-import { existsSync, unlinkSync, writeFileSync, readFileSync } from "fs";
+import { existsSync, unlinkSync, writeFileSync, readFileSync, statSync } from "fs";
 import { resolve } from "path";
 
 const PYTHON = "C:/Users/bounc/AppData/Local/Programs/Python/Python312/python.exe";
@@ -92,6 +92,49 @@ describe("Env vars", () => {
     expect(/DEEPSEEK_API_KEY\s*=\s*\S+/.test(env)).toBe(true);
     expect(/DEEPSEEK_ANTHROPIC_URL\s*=\s*\S+/.test(env)).toBe(true);
     expect(/DEEPSEEK_RESEARCH_MODEL\s*=\s*\S+/.test(env)).toBe(true);
+  });
+});
+
+describe("Log rotation", () => {
+  const LOG_FILE = resolve(__dirname, "../../queue-processor.log");
+
+  it("strips entries older than 2 days when log exceeds 500KB", () => {
+    // Build a 500KB+ log with old and recent entries
+    const oldDate = new Date(Date.now() - 3 * 86400 * 1000);
+    const recentDate = new Date();
+    const fmt = (d: Date) =>
+      `[${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}:${String(d.getSeconds()).padStart(2,"0")}]`;
+    const oldLine = `${fmt(oldDate)} old entry\n`;
+    const recentLine = `${fmt(recentDate)} recent entry\n`;
+
+    // Generate ~510KB of log: 1 recent line + lots of old lines
+    let content = recentLine;
+    while (Buffer.byteLength(content) < 510_000) {
+      content += oldLine;
+    }
+    writeFileSync(LOG_FILE, content);
+
+    // Run the processor — log rotation should trigger
+    const r = spawnSync(PYTHON, [SCRIPT], { timeout: 30000, encoding: "utf-8" });
+    expect(r.status).toBe(0);
+
+    // After rotation, old entries should be gone, recent kept
+    const rotated = readFileSync(LOG_FILE, "utf-8");
+    expect(rotated).toContain("recent entry");
+    expect(rotated).not.toContain("old entry");
+    expect(rotated).toContain("Log rotated");
+
+    // File should be much smaller
+    expect(Buffer.byteLength(rotated)).toBeLessThan(100_000);
+  });
+
+  it("does not rotate when under 500KB", () => {
+    writeFileSync(LOG_FILE, "[2026-05-07 12:00:00] small log\n");
+    const r = spawnSync(PYTHON, [SCRIPT], { timeout: 30000, encoding: "utf-8" });
+    expect(r.status).toBe(0);
+    const rotated = readFileSync(LOG_FILE, "utf-8");
+    expect(rotated).toContain("small log");
+    expect(rotated).not.toContain("Log rotated");
   });
 });
 
