@@ -9,6 +9,8 @@
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 APP="https://recipeforge-three.vercel.app"
 PASS="bready"
+PYTHON="C:/Users/bounc/AppData/Local/Programs/Python/Python312/python.exe"
+export CLAUDE_BIN="C:/Users/bounc/.local/bin/claude.exe"
 
 # Load vars from .env.local
 if [ -f "$SCRIPT_DIR/.env.local" ]; then
@@ -21,7 +23,7 @@ curl -s -X POST "$APP/api/auth" -H "Content-Type: application/json" \
 PENDING=$(curl -s "$APP/api/requests?status=pending" -b /tmp/rf-cookies.txt)
 
 # Check if there are pending requests
-COUNT=$(echo "$PENDING" | python -c "import sys,json;print(len(json.load(sys.stdin).get('requests',[])))" 2>/dev/null || echo 0)
+COUNT=$(echo "$PENDING" | "$PYTHON" -c "import sys,json;print(len(json.load(sys.stdin).get('requests',[])))" 2>/dev/null || echo 0)
 
 if [ "$COUNT" = "0" ]; then
   echo "No pending requests."
@@ -31,7 +33,7 @@ fi
 echo "Found $COUNT pending request(s)."
 
 # Process each one via claude -p through DeepSeek backend
-echo "$PENDING" | python -c "
+echo "$PENDING" | "$PYTHON" -c "
 import sys, json, subprocess, urllib.request, os
 
 data = json.load(sys.stdin)
@@ -55,7 +57,7 @@ for req in data.get('requests', []):
 
     # Pipe prompt via stdin (not -p inline) -- DeepSeek hangs on inline
     r = subprocess.run(
-        ['claude', '-p', '--model', MODEL,
+        [os.environ.get('CLAUDE_BIN', 'claude'), '-p', '--model', MODEL,
          '--allowedTools', 'WebSearch,WebFetch',
          '--dangerously-skip-permissions'],
         input=f'''Research \"{prompt}\" and create a beautiful self-contained HTML recipe page. Use WebSearch to find authentic sources.
