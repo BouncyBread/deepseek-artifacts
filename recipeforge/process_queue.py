@@ -92,7 +92,7 @@ try:
                  "--allowedTools", "WebSearch,WebFetch",
                  "--dangerously-skip-permissions"],
                 input=f'Research "{prompt}" and create a beautiful self-contained HTML recipe page. Use WebSearch to find authentic sources.\n\nInclude: Fraunces + Newsreader Google Fonts, warm cookbook colors, paper texture CSS, hand-crafted inline SVGs of the finished dish and key techniques, cultural context, precise ingredients, detailed steps with WHY and sensory cues, 3-5 pro tips, storage guidance.\n\nReturn ONLY the complete HTML starting with <!doctype html>. No markdown wrapping.',
-                capture_output=True, text=True, timeout=600, env=sub_env)
+                capture_output=True, text=True, timeout=900, env=sub_env)
             log(f"Claude exit: {r.returncode}, stdout: {len(r.stdout)} chars")
         except subprocess.TimeoutExpired:
             log(f"  TIMEOUT after 600s")

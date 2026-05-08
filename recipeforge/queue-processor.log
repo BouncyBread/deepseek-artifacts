@@ -27,3 +27,106 @@
 [2026-05-07 19:07:19] Auth OK
 [2026-05-07 19:07:19] Pending requests: 0
 [2026-05-07 19:07:19] === Queue processor exiting ===
+[2026-05-07 19:17:18] === Queue processor starting ===
+[2026-05-07 19:17:18] Lock acquired
+[2026-05-07 19:17:18] Loaded 3 env vars
+[2026-05-07 19:17:18] Authenticating...
+[2026-05-07 19:17:19] Auth OK
+[2026-05-07 19:17:19] Pending requests: 1
+[2026-05-07 19:17:19] Processing: Soon tofu
+[2026-05-07 19:27:19]   TIMEOUT after 600s
+[2026-05-07 19:27:19] All done.
+[2026-05-07 19:27:19] === Queue processor exiting ===
+[2026-05-07 19:37:18] === Queue processor starting ===
+[2026-05-07 19:37:18] Lock acquired
+[2026-05-07 19:37:18] Loaded 3 env vars
+[2026-05-07 19:37:18] Authenticating...
+[2026-05-07 19:37:19] Auth OK
+[2026-05-07 19:37:20] Pending requests: 1
+[2026-05-07 19:37:20] Processing: Soon tofu
+[2026-05-07 19:44:13] Claude exit: 0, stdout: 996 chars
+[2026-05-07 19:44:13]   Bad output: starts with 'The page is saved at `C:/Users/bounc/sundubu-jjigae.html`. It includes:
+
+- **Fraunces + Newsreader**'
+[2026-05-07 19:44:13] All done.
+[2026-05-07 19:44:13] === Queue processor exiting ===
+[2026-05-07 19:47:18] === Queue processor starting ===
+[2026-05-07 19:47:18] Lock acquired
+[2026-05-07 19:47:18] Loaded 3 env vars
+[2026-05-07 19:47:18] Authenticating...
+[2026-05-07 19:47:19] Auth OK
+[2026-05-07 19:47:20] Pending requests: 1
+[2026-05-07 19:47:20] Processing: Soon tofu
+[2026-05-07 19:57:20]   TIMEOUT after 600s
+[2026-05-07 19:57:20] All done.
+[2026-05-07 19:57:20] === Queue processor exiting ===
+[2026-05-07 20:07:18] === Queue processor starting ===
+[2026-05-07 20:07:18] Lock acquired
+[2026-05-07 20:07:18] Loaded 3 env vars
+[2026-05-07 20:07:18] Authenticating...
+[2026-05-07 20:07:19] Auth OK
+[2026-05-07 20:07:20] Pending requests: 1
+[2026-05-07 20:07:20] Processing: Soon tofu
+[2026-05-07 20:17:20]   TIMEOUT after 600s
+[2026-05-07 20:17:20] All done.
+[2026-05-07 20:17:20] === Queue processor exiting ===
+[2026-05-07 20:27:18] === Queue processor starting ===
+[2026-05-07 20:27:18] Lock acquired
+[2026-05-07 20:27:18] Loaded 3 env vars
+[2026-05-07 20:27:18] Authenticating...
+[2026-05-07 20:27:19] Auth OK
+[2026-05-07 20:27:20] Pending requests: 1
+[2026-05-07 20:27:20] Processing: Soon tofu
+[2026-05-07 20:35:23] Claude exit: 0, stdout: 1398 chars
+[2026-05-07 20:35:23]   Bad output: starts with 'The file is ready. Here's a summary of what was built:
+
+**`sundubu-jjigae-recipe.html`** — 768 lin'
+[2026-05-07 20:35:23] All done.
+[2026-05-07 20:35:23] === Queue processor exiting ===
+[2026-05-07 20:37:18] === Queue processor starting ===
+[2026-05-07 20:37:18] Lock acquired
+[2026-05-07 20:37:18] Loaded 3 env vars
+[2026-05-07 20:37:18] Authenticating...
+[2026-05-07 20:37:19] Auth OK
+[2026-05-07 20:37:19] Pending requests: 1
+[2026-05-07 20:37:19] Processing: Soon tofu
+[2026-05-07 20:47:19]   TIMEOUT after 600s
+[2026-05-07 20:47:19] All done.
+[2026-05-07 20:47:19] === Queue processor exiting ===
+[2026-05-07 20:57:18] === Queue processor starting ===
+[2026-05-07 20:57:18] Lock acquired
+[2026-05-07 20:57:18] Loaded 3 env vars
+[2026-05-07 20:57:18] Authenticating...
+[2026-05-07 20:57:19] Auth OK
+[2026-05-07 20:57:20] Pending requests: 1
+[2026-05-07 20:57:20] Processing: Soon tofu
+[2026-05-07 21:07:20]   TIMEOUT after 600s
+[2026-05-07 21:07:20] All done.
+[2026-05-07 21:07:20] === Queue processor exiting ===
+[2026-05-07 21:17:18] === Queue processor starting ===
+[2026-05-07 21:17:18] Lock acquired
+[2026-05-07 21:17:18] Loaded 3 env vars
+[2026-05-07 21:17:18] Authenticating...
+[2026-05-07 21:17:19] Auth OK
+[2026-05-07 21:17:20] Pending requests: 1
+[2026-05-07 21:17:20] Processing: Soon tofu
+[2026-05-07 21:27:20]   TIMEOUT after 600s
+[2026-05-07 21:27:20] All done.
+[2026-05-07 21:27:20] === Queue processor exiting ===
+[2026-05-07 21:37:18] === Queue processor starting ===
+[2026-05-07 21:37:18] Lock acquired
+[2026-05-07 21:37:18] Loaded 3 env vars
+[2026-05-07 21:37:18] Authenticating...
+[2026-05-07 21:37:19] Auth OK
+[2026-05-07 21:37:20] Pending requests: 1
+[2026-05-07 21:37:20] Processing: Soon tofu
+[2026-05-07 21:47:20]   TIMEOUT after 600s
+[2026-05-07 21:47:20] All done.
+[2026-05-07 21:47:20] === Queue processor exiting ===
+[2026-05-07 21:57:18] === Queue processor starting ===
+[2026-05-07 21:57:18] Lock acquired
+[2026-05-07 21:57:18] Loaded 3 env vars
+[2026-05-07 21:57:18] Authenticating...
+[2026-05-07 21:57:19] Auth OK
+[2026-05-07 21:57:20] Pending requests: 1
+[2026-05-07 21:57:20] Processing: Soon tofu
