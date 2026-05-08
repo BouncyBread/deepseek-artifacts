@@ -1,132 +1,32 @@
 [2026-05-07 12:00:00] small log
-[2026-05-07 18:53:17] === Queue processor starting ===
-[2026-05-07 18:53:17] Lock acquired
-[2026-05-07 18:53:17] Loaded 3 env vars
-[2026-05-07 18:53:17] Authenticating...
-[2026-05-07 18:53:17] Auth OK
-[2026-05-07 18:53:17] Pending requests: 0
-[2026-05-07 18:53:17] === Queue processor exiting ===
-[2026-05-07 18:53:17] === Queue processor starting ===
-[2026-05-07 18:53:17] Lock acquired
-[2026-05-07 18:53:18] Loaded 3 env vars
-[2026-05-07 18:53:18] Authenticating...
-[2026-05-07 18:53:18] Auth OK
-[2026-05-07 18:53:18] Pending requests: 0
-[2026-05-07 18:53:18] === Queue processor exiting ===
-[2026-05-07 18:57:18] === Queue processor starting ===
-[2026-05-07 18:57:18] Lock acquired
-[2026-05-07 18:57:18] Loaded 3 env vars
-[2026-05-07 18:57:18] Authenticating...
-[2026-05-07 18:57:18] Auth OK
-[2026-05-07 18:57:18] Pending requests: 0
-[2026-05-07 18:57:18] === Queue processor exiting ===
-[2026-05-07 19:07:18] === Queue processor starting ===
-[2026-05-07 19:07:18] Lock acquired
-[2026-05-07 19:07:18] Loaded 3 env vars
-[2026-05-07 19:07:18] Authenticating...
-[2026-05-07 19:07:19] Auth OK
-[2026-05-07 19:07:19] Pending requests: 0
-[2026-05-07 19:07:19] === Queue processor exiting ===
-[2026-05-07 19:17:18] === Queue processor starting ===
-[2026-05-07 19:17:18] Lock acquired
-[2026-05-07 19:17:18] Loaded 3 env vars
-[2026-05-07 19:17:18] Authenticating...
-[2026-05-07 19:17:19] Auth OK
-[2026-05-07 19:17:19] Pending requests: 1
-[2026-05-07 19:17:19] Processing: Soon tofu
-[2026-05-07 19:27:19]   TIMEOUT after 600s
-[2026-05-07 19:27:19] All done.
-[2026-05-07 19:27:19] === Queue processor exiting ===
-[2026-05-07 19:37:18] === Queue processor starting ===
-[2026-05-07 19:37:18] Lock acquired
-[2026-05-07 19:37:18] Loaded 3 env vars
-[2026-05-07 19:37:18] Authenticating...
-[2026-05-07 19:37:19] Auth OK
-[2026-05-07 19:37:20] Pending requests: 1
-[2026-05-07 19:37:20] Processing: Soon tofu
-[2026-05-07 19:44:13] Claude exit: 0, stdout: 996 chars
-[2026-05-07 19:44:13]   Bad output: starts with 'The page is saved at `C:/Users/bounc/sundubu-jjigae.html`. It includes:
-
-- **Fraunces + Newsreader**'
-[2026-05-07 19:44:13] All done.
-[2026-05-07 19:44:13] === Queue processor exiting ===
-[2026-05-07 19:47:18] === Queue processor starting ===
-[2026-05-07 19:47:18] Lock acquired
-[2026-05-07 19:47:18] Loaded 3 env vars
-[2026-05-07 19:47:18] Authenticating...
-[2026-05-07 19:47:19] Auth OK
-[2026-05-07 19:47:20] Pending requests: 1
-[2026-05-07 19:47:20] Processing: Soon tofu
-[2026-05-07 19:57:20]   TIMEOUT after 600s
-[2026-05-07 19:57:20] All done.
-[2026-05-07 19:57:20] === Queue processor exiting ===
-[2026-05-07 20:07:18] === Queue processor starting ===
-[2026-05-07 20:07:18] Lock acquired
-[2026-05-07 20:07:18] Loaded 3 env vars
-[2026-05-07 20:07:18] Authenticating...
-[2026-05-07 20:07:19] Auth OK
-[2026-05-07 20:07:20] Pending requests: 1
-[2026-05-07 20:07:20] Processing: Soon tofu
-[2026-05-07 20:17:20]   TIMEOUT after 600s
-[2026-05-07 20:17:20] All done.
-[2026-05-07 20:17:20] === Queue processor exiting ===
-[2026-05-07 20:27:18] === Queue processor starting ===
-[2026-05-07 20:27:18] Lock acquired
-[2026-05-07 20:27:18] Loaded 3 env vars
-[2026-05-07 20:27:18] Authenticating...
-[2026-05-07 20:27:19] Auth OK
-[2026-05-07 20:27:20] Pending requests: 1
-[2026-05-07 20:27:20] Processing: Soon tofu
-[2026-05-07 20:35:23] Claude exit: 0, stdout: 1398 chars
-[2026-05-07 20:35:23]   Bad output: starts with 'The file is ready. Here's a summary of what was built:
-
-**`sundubu-jjigae-recipe.html`** — 768 lin'
-[2026-05-07 20:35:23] All done.
-[2026-05-07 20:35:23] === Queue processor exiting ===
-[2026-05-07 20:37:18] === Queue processor starting ===
-[2026-05-07 20:37:18] Lock acquired
-[2026-05-07 20:37:18] Loaded 3 env vars
-[2026-05-07 20:37:18] Authenticating...
-[2026-05-07 20:37:19] Auth OK
-[2026-05-07 20:37:19] Pending requests: 1
-[2026-05-07 20:37:19] Processing: Soon tofu
-[2026-05-07 20:47:19]   TIMEOUT after 600s
-[2026-05-07 20:47:19] All done.
-[2026-05-07 20:47:19] === Queue processor exiting ===
-[2026-05-07 20:57:18] === Queue processor starting ===
-[2026-05-07 20:57:18] Lock acquired
-[2026-05-07 20:57:18] Loaded 3 env vars
-[2026-05-07 20:57:18] Authenticating...
-[2026-05-07 20:57:19] Auth OK
-[2026-05-07 20:57:20] Pending requests: 1
-[2026-05-07 20:57:20] Processing: Soon tofu
-[2026-05-07 21:07:20]   TIMEOUT after 600s
-[2026-05-07 21:07:20] All done.
-[2026-05-07 21:07:20] === Queue processor exiting ===
-[2026-05-07 21:17:18] === Queue processor starting ===
-[2026-05-07 21:17:18] Lock acquired
-[2026-05-07 21:17:18] Loaded 3 env vars
-[2026-05-07 21:17:18] Authenticating...
-[2026-05-07 21:17:19] Auth OK
-[2026-05-07 21:17:20] Pending requests: 1
-[2026-05-07 21:17:20] Processing: Soon tofu
-[2026-05-07 21:27:20]   TIMEOUT after 600s
-[2026-05-07 21:27:20] All done.
-[2026-05-07 21:27:20] === Queue processor exiting ===
-[2026-05-07 21:37:18] === Queue processor starting ===
-[2026-05-07 21:37:18] Lock acquired
-[2026-05-07 21:37:18] Loaded 3 env vars
-[2026-05-07 21:37:18] Authenticating...
-[2026-05-07 21:37:19] Auth OK
-[2026-05-07 21:37:20] Pending requests: 1
-[2026-05-07 21:37:20] Processing: Soon tofu
-[2026-05-07 21:47:20]   TIMEOUT after 600s
-[2026-05-07 21:47:20] All done.
-[2026-05-07 21:47:20] === Queue processor exiting ===
-[2026-05-07 21:57:18] === Queue processor starting ===
-[2026-05-07 21:57:18] Lock acquired
-[2026-05-07 21:57:18] Loaded 3 env vars
-[2026-05-07 21:57:18] Authenticating...
-[2026-05-07 21:57:19] Auth OK
-[2026-05-07 21:57:20] Pending requests: 1
-[2026-05-07 21:57:20] Processing: Soon tofu
+[2026-05-07 22:01:58] === Queue processor starting ===
+[2026-05-07 22:01:58] Lock acquired
+[2026-05-07 22:01:58] Loaded 4 env vars
+[2026-05-07 22:01:58] Authenticating...
+[2026-05-07 22:01:58] Auth OK
+[2026-05-07 22:01:59] Pending requests: 0
+[2026-05-07 22:01:59] === Queue processor exiting ===
+[2026-05-07 22:01:59] === Queue processor starting ===
+[2026-05-07 22:01:59] Lock acquired
+[2026-05-07 22:01:59] Loaded 4 env vars
+[2026-05-07 22:01:59] Authenticating...
+[2026-05-07 22:01:59] Auth OK
+[2026-05-07 22:01:59] Pending requests: 0
+[2026-05-07 22:01:59] === Queue processor exiting ===
+[2026-05-07 22:07:20]   TIMEOUT after 600s
+[2026-05-07 22:07:20] All done.
+[2026-05-07 22:07:20] === Queue processor exiting ===
+[2026-05-07 22:14:33] === Queue processor starting ===
+[2026-05-07 22:14:33] Lock acquired
+[2026-05-07 22:14:33] Loaded 4 env vars
+[2026-05-07 22:14:33] Authenticating...
+[2026-05-07 22:14:34] Auth OK
+[2026-05-07 22:14:35] Pending requests: 0
+[2026-05-07 22:14:35] === Queue processor exiting ===
+[2026-05-07 22:29:32] === Queue processor starting ===
+[2026-05-07 22:29:32] Lock acquired
+[2026-05-07 22:29:32] Loaded 4 env vars
+[2026-05-07 22:29:32] Authenticating...
+[2026-05-07 22:29:33] Auth OK
+[2026-05-07 22:29:34] Pending requests: 0
+[2026-05-07 22:29:34] === Queue processor exiting ===

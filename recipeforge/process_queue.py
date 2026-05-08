@@ -46,7 +46,7 @@ try:
     if os.path.exists(env_path):
         with open(env_path) as f:
             for line in f:
-                m = re.match(r'^(DEEPSEEK_(?:API_KEY|ANTHROPIC_URL|RESEARCH_MODEL))\s*=\s*(.+)', line.strip())
+                m = re.match(r'^(DEEPSEEK_(?:API_KEY|ANTHROPIC_URL|RESEARCH_MODEL)|BRAVE_SEARCH_API_KEY)\s*=\s*(.+)', line.strip())
                 if m:
                     env_vars[m.group(1)] = m.group(2).strip()
     log(f"Loaded {len(env_vars)} env vars")
@@ -87,11 +87,35 @@ try:
         sub_env["ANTHROPIC_AUTH_TOKEN"] = API_KEY
 
         try:
+            # Do web research via Brave Search (DeepSeek doesn't support Claude tools)
+            search_context = ""
+            try:
+                import urllib.parse
+                brave_key = env_vars.get("BRAVE_SEARCH_API_KEY", "")
+                if brave_key:
+                    sq = urllib.parse.quote(f"{prompt} authentic recipe")
+                    sr = urllib.request.Request(
+                        f"https://api.search.brave.com/res/v1/web/search?q={sq}&count=3",
+                        headers={"Accept": "application/json", "Accept-Encoding": "gzip",
+                                 "X-Subscription-Token": brave_key})
+                    sdata = json.loads(urllib.request.urlopen(sr).read())
+                    results = sdata.get("web", {}).get("results", [])
+                    if results:
+                        search_context = "\\n".join(
+                            f"{r['title']}: {r.get('description', '')}" for r in results[:3]
+                        )
+                    log(f"  Brave search: {len(results)} results")
+            except Exception as e:
+                log(f"  Search skipped: {e}")
+
+            prompt_text = f'Create a beautiful self-contained HTML recipe page for "{prompt}".\n\n'
+            if search_context:
+                prompt_text += f'RESEARCH FROM AUTHENTIC SOURCES:\n{search_context}\n\nSynthesize these sources.\n\n'
+            prompt_text += 'Include: Fraunces + Newsreader Google Fonts, warm cookbook colors (no #000 #fff), paper texture CSS, hand-crafted inline SVGs of the finished dish and key techniques, cultural context, precise ingredients, detailed steps with WHY and sensory cues, 3-5 pro tips, storage guidance.\n\nReturn ONLY the complete HTML starting with <!doctype html>. No markdown wrapping.'
+
             r = subprocess.run(
-                ["claude", "-p", "--model", MODEL,
-                 "--allowedTools", "WebSearch,WebFetch",
-                 "--dangerously-skip-permissions"],
-                input=f'Research "{prompt}" and create a beautiful self-contained HTML recipe page. Use WebSearch to find authentic sources.\n\nInclude: Fraunces + Newsreader Google Fonts, warm cookbook colors, paper texture CSS, hand-crafted inline SVGs of the finished dish and key techniques, cultural context, precise ingredients, detailed steps with WHY and sensory cues, 3-5 pro tips, storage guidance.\n\nReturn ONLY the complete HTML starting with <!doctype html>. No markdown wrapping.',
+                ["claude", "-p", "--model", MODEL],
+                input=prompt_text,
                 capture_output=True, text=True, timeout=900, env=sub_env)
             log(f"Claude exit: {r.returncode}, stdout: {len(r.stdout)} chars")
         except subprocess.TimeoutExpired:
