@@ -1,32 +1,337 @@
 [2026-05-07 12:00:00] small log
-[2026-05-07 22:01:58] === Queue processor starting ===
-[2026-05-07 22:01:58] Lock acquired
-[2026-05-07 22:01:58] Loaded 4 env vars
-[2026-05-07 22:01:58] Authenticating...
-[2026-05-07 22:01:58] Auth OK
-[2026-05-07 22:01:59] Pending requests: 0
-[2026-05-07 22:01:59] === Queue processor exiting ===
-[2026-05-07 22:01:59] === Queue processor starting ===
-[2026-05-07 22:01:59] Lock acquired
-[2026-05-07 22:01:59] Loaded 4 env vars
-[2026-05-07 22:01:59] Authenticating...
-[2026-05-07 22:01:59] Auth OK
-[2026-05-07 22:01:59] Pending requests: 0
-[2026-05-07 22:01:59] === Queue processor exiting ===
-[2026-05-07 22:07:20]   TIMEOUT after 600s
-[2026-05-07 22:07:20] All done.
-[2026-05-07 22:07:20] === Queue processor exiting ===
-[2026-05-07 22:14:33] === Queue processor starting ===
-[2026-05-07 22:14:33] Lock acquired
-[2026-05-07 22:14:33] Loaded 4 env vars
-[2026-05-07 22:14:33] Authenticating...
-[2026-05-07 22:14:34] Auth OK
-[2026-05-07 22:14:35] Pending requests: 0
-[2026-05-07 22:14:35] === Queue processor exiting ===
-[2026-05-07 22:29:32] === Queue processor starting ===
-[2026-05-07 22:29:32] Lock acquired
-[2026-05-07 22:29:32] Loaded 4 env vars
-[2026-05-07 22:29:32] Authenticating...
-[2026-05-07 22:29:33] Auth OK
-[2026-05-07 22:29:34] Pending requests: 0
-[2026-05-07 22:29:34] === Queue processor exiting ===
+[2026-05-07 22:42:51] === Queue processor starting ===
+[2026-05-07 22:42:51] Lock acquired
+[2026-05-07 22:42:51] Loaded 4 env vars
+[2026-05-07 22:42:51] Authenticating...
+[2026-05-07 22:42:52] Auth OK
+[2026-05-07 22:42:52] Pending requests: 0
+[2026-05-07 22:42:52] === Queue processor exiting ===
+[2026-05-07 22:42:52] === Queue processor starting ===
+[2026-05-07 22:42:52] Lock acquired
+[2026-05-07 22:42:52] Loaded 4 env vars
+[2026-05-07 22:42:52] Authenticating...
+[2026-05-07 22:42:52] Auth OK
+[2026-05-07 22:42:52] Pending requests: 0
+[2026-05-07 22:42:52] === Queue processor exiting ===
+[2026-05-07 22:44:32] === Queue processor starting ===
+[2026-05-07 22:44:32] Lock acquired
+[2026-05-07 22:44:32] Loaded 4 env vars
+[2026-05-07 22:44:32] Authenticating...
+[2026-05-07 22:44:33] Auth OK
+[2026-05-07 22:44:33] Pending requests: 0
+[2026-05-07 22:44:33] === Queue processor exiting ===
+[2026-05-07 22:59:32] === Queue processor starting ===
+[2026-05-07 22:59:32] Lock acquired
+[2026-05-07 22:59:32] Loaded 4 env vars
+[2026-05-07 22:59:32] Authenticating...
+[2026-05-07 22:59:33] Auth OK
+[2026-05-07 22:59:34] Pending requests: 0
+[2026-05-07 22:59:34] === Queue processor exiting ===
+[2026-05-07 23:14:32] === Queue processor starting ===
+[2026-05-07 23:14:32] Lock acquired
+[2026-05-07 23:14:32] Loaded 4 env vars
+[2026-05-07 23:14:32] Authenticating...
+[2026-05-07 23:14:33] Auth OK
+[2026-05-07 23:14:34] Pending requests: 0
+[2026-05-07 23:14:34] === Queue processor exiting ===
+[2026-05-07 23:29:32] === Queue processor starting ===
+[2026-05-07 23:29:32] Lock acquired
+[2026-05-07 23:29:32] Loaded 4 env vars
+[2026-05-07 23:29:32] Authenticating...
+[2026-05-07 23:29:33] Auth OK
+[2026-05-07 23:29:33] Pending requests: 0
+[2026-05-07 23:29:33] === Queue processor exiting ===
+[2026-05-07 23:44:32] === Queue processor starting ===
+[2026-05-07 23:44:32] Lock acquired
+[2026-05-07 23:44:32] Loaded 4 env vars
+[2026-05-07 23:44:32] Authenticating...
+[2026-05-07 23:44:33] Auth OK
+[2026-05-07 23:44:34] Pending requests: 0
+[2026-05-07 23:44:34] === Queue processor exiting ===
+[2026-05-07 23:59:32] === Queue processor starting ===
+[2026-05-07 23:59:32] Lock acquired
+[2026-05-07 23:59:32] Loaded 4 env vars
+[2026-05-07 23:59:32] Authenticating...
+[2026-05-07 23:59:33] Auth OK
+[2026-05-07 23:59:34] Pending requests: 0
+[2026-05-07 23:59:34] === Queue processor exiting ===
+[2026-05-08 01:59:34] === Queue processor starting ===
+[2026-05-08 01:59:34] Lock acquired
+[2026-05-08 01:59:34] Loaded 4 env vars
+[2026-05-08 01:59:34] Authenticating...
+[2026-05-08 01:59:35] Auth OK
+[2026-05-08 01:59:36] Pending requests: 0
+[2026-05-08 01:59:36] === Queue processor exiting ===
+[2026-05-08 02:14:33] === Queue processor starting ===
+[2026-05-08 02:14:33] Lock acquired
+[2026-05-08 02:14:33] Loaded 4 env vars
+[2026-05-08 02:14:33] Authenticating...
+[2026-05-08 02:14:34] Auth OK
+[2026-05-08 02:14:35] Pending requests: 0
+[2026-05-08 02:14:35] === Queue processor exiting ===
+[2026-05-08 02:29:33] === Queue processor starting ===
+[2026-05-08 02:29:33] Lock acquired
+[2026-05-08 02:29:33] Loaded 4 env vars
+[2026-05-08 02:29:33] Authenticating...
+[2026-05-08 02:29:34] Auth OK
+[2026-05-08 02:29:35] Pending requests: 0
+[2026-05-08 02:29:35] === Queue processor exiting ===
+[2026-05-08 02:44:33] === Queue processor starting ===
+[2026-05-08 02:44:33] Lock acquired
+[2026-05-08 02:44:33] Loaded 4 env vars
+[2026-05-08 02:44:33] Authenticating...
+[2026-05-08 02:44:34] Auth OK
+[2026-05-08 02:44:34] Pending requests: 0
+[2026-05-08 02:44:34] === Queue processor exiting ===
+[2026-05-08 02:59:32] === Queue processor starting ===
+[2026-05-08 02:59:32] Lock acquired
+[2026-05-08 02:59:32] Loaded 4 env vars
+[2026-05-08 02:59:32] Authenticating...
+[2026-05-08 02:59:32] Auth OK
+[2026-05-08 02:59:33] Pending requests: 0
+[2026-05-08 02:59:33] === Queue processor exiting ===
+[2026-05-08 03:14:32] === Queue processor starting ===
+[2026-05-08 03:14:32] Lock acquired
+[2026-05-08 03:14:32] Loaded 4 env vars
+[2026-05-08 03:14:32] Authenticating...
+[2026-05-08 03:14:33] Auth OK
+[2026-05-08 03:14:34] Pending requests: 0
+[2026-05-08 03:14:34] === Queue processor exiting ===
+[2026-05-08 03:29:32] === Queue processor starting ===
+[2026-05-08 03:29:32] Lock acquired
+[2026-05-08 03:29:32] Loaded 4 env vars
+[2026-05-08 03:29:32] Authenticating...
+[2026-05-08 03:29:33] Auth OK
+[2026-05-08 03:29:33] Pending requests: 0
+[2026-05-08 03:29:33] === Queue processor exiting ===
+[2026-05-08 03:44:32] === Queue processor starting ===
+[2026-05-08 03:44:32] Lock acquired
+[2026-05-08 03:44:32] Loaded 4 env vars
+[2026-05-08 03:44:32] Authenticating...
+[2026-05-08 03:44:33] Auth OK
+[2026-05-08 03:44:34] Pending requests: 0
+[2026-05-08 03:44:34] === Queue processor exiting ===
+[2026-05-08 03:59:32] === Queue processor starting ===
+[2026-05-08 03:59:32] Lock acquired
+[2026-05-08 03:59:32] Loaded 4 env vars
+[2026-05-08 03:59:32] Authenticating...
+[2026-05-08 03:59:33] Auth OK
+[2026-05-08 03:59:33] Pending requests: 0
+[2026-05-08 03:59:33] === Queue processor exiting ===
+[2026-05-08 04:14:32] === Queue processor starting ===
+[2026-05-08 04:14:32] Lock acquired
+[2026-05-08 04:14:32] Loaded 4 env vars
+[2026-05-08 04:14:32] Authenticating...
+[2026-05-08 04:14:33] Auth OK
+[2026-05-08 04:14:34] Pending requests: 0
+[2026-05-08 04:14:34] === Queue processor exiting ===
+[2026-05-08 04:29:32] === Queue processor starting ===
+[2026-05-08 04:29:32] Lock acquired
+[2026-05-08 04:29:32] Loaded 4 env vars
+[2026-05-08 04:29:32] Authenticating...
+[2026-05-08 04:29:33] Auth OK
+[2026-05-08 04:29:33] Pending requests: 0
+[2026-05-08 04:29:33] === Queue processor exiting ===
+[2026-05-08 04:44:32] === Queue processor starting ===
+[2026-05-08 04:44:32] Lock acquired
+[2026-05-08 04:44:32] Loaded 4 env vars
+[2026-05-08 04:44:32] Authenticating...
+[2026-05-08 04:44:33] Auth OK
+[2026-05-08 04:44:34] Pending requests: 0
+[2026-05-08 04:44:34] === Queue processor exiting ===
+[2026-05-08 04:59:32] === Queue processor starting ===
+[2026-05-08 04:59:32] Lock acquired
+[2026-05-08 04:59:32] Loaded 4 env vars
+[2026-05-08 04:59:32] Authenticating...
+[2026-05-08 04:59:33] Auth OK
+[2026-05-08 04:59:33] Pending requests: 0
+[2026-05-08 04:59:33] === Queue processor exiting ===
+[2026-05-08 05:14:32] === Queue processor starting ===
+[2026-05-08 05:14:32] Lock acquired
+[2026-05-08 05:14:32] Loaded 4 env vars
+[2026-05-08 05:14:32] Authenticating...
+[2026-05-08 05:14:33] Auth OK
+[2026-05-08 05:14:34] Pending requests: 0
+[2026-05-08 05:14:34] === Queue processor exiting ===
+[2026-05-08 05:29:32] === Queue processor starting ===
+[2026-05-08 05:29:32] Lock acquired
+[2026-05-08 05:29:32] Loaded 4 env vars
+[2026-05-08 05:29:32] Authenticating...
+[2026-05-08 05:29:33] Auth OK
+[2026-05-08 05:29:34] Pending requests: 0
+[2026-05-08 05:29:34] === Queue processor exiting ===
+[2026-05-08 05:44:32] === Queue processor starting ===
+[2026-05-08 05:44:32] Lock acquired
+[2026-05-08 05:44:32] Loaded 4 env vars
+[2026-05-08 05:44:32] Authenticating...
+[2026-05-08 05:44:33] Auth OK
+[2026-05-08 05:44:33] Pending requests: 0
+[2026-05-08 05:44:33] === Queue processor exiting ===
+[2026-05-08 05:59:32] === Queue processor starting ===
+[2026-05-08 05:59:32] Lock acquired
+[2026-05-08 05:59:32] Loaded 4 env vars
+[2026-05-08 05:59:32] Authenticating...
+[2026-05-08 05:59:33] Auth OK
+[2026-05-08 05:59:33] Pending requests: 0
+[2026-05-08 05:59:33] === Queue processor exiting ===
+[2026-05-08 06:14:32] === Queue processor starting ===
+[2026-05-08 06:14:32] Lock acquired
+[2026-05-08 06:14:32] Loaded 4 env vars
+[2026-05-08 06:14:32] Authenticating...
+[2026-05-08 06:14:33] Auth OK
+[2026-05-08 06:14:33] Pending requests: 0
+[2026-05-08 06:14:33] === Queue processor exiting ===
+[2026-05-08 06:29:32] === Queue processor starting ===
+[2026-05-08 06:29:32] Lock acquired
+[2026-05-08 06:29:32] Loaded 4 env vars
+[2026-05-08 06:29:32] Authenticating...
+[2026-05-08 06:29:33] Auth OK
+[2026-05-08 06:29:34] Pending requests: 0
+[2026-05-08 06:29:34] === Queue processor exiting ===
+[2026-05-08 06:44:32] === Queue processor starting ===
+[2026-05-08 06:44:32] Lock acquired
+[2026-05-08 06:44:32] Loaded 4 env vars
+[2026-05-08 06:44:32] Authenticating...
+[2026-05-08 06:44:33] Auth OK
+[2026-05-08 06:44:34] Pending requests: 0
+[2026-05-08 06:44:34] === Queue processor exiting ===
+[2026-05-08 06:59:32] === Queue processor starting ===
+[2026-05-08 06:59:32] Lock acquired
+[2026-05-08 06:59:32] Loaded 4 env vars
+[2026-05-08 06:59:32] Authenticating...
+[2026-05-08 06:59:33] Auth OK
+[2026-05-08 06:59:34] Pending requests: 0
+[2026-05-08 06:59:34] === Queue processor exiting ===
+[2026-05-08 07:14:32] === Queue processor starting ===
+[2026-05-08 07:14:32] Lock acquired
+[2026-05-08 07:14:32] Loaded 4 env vars
+[2026-05-08 07:14:32] Authenticating...
+[2026-05-08 07:14:33] Auth OK
+[2026-05-08 07:14:34] Pending requests: 0
+[2026-05-08 07:14:34] === Queue processor exiting ===
+[2026-05-08 07:29:32] === Queue processor starting ===
+[2026-05-08 07:29:32] Lock acquired
+[2026-05-08 07:29:32] Loaded 4 env vars
+[2026-05-08 07:29:32] Authenticating...
+[2026-05-08 07:29:33] Auth OK
+[2026-05-08 07:29:33] Pending requests: 0
+[2026-05-08 07:29:33] === Queue processor exiting ===
+[2026-05-08 07:44:32] === Queue processor starting ===
+[2026-05-08 07:44:32] Lock acquired
+[2026-05-08 07:44:32] Loaded 4 env vars
+[2026-05-08 07:44:32] Authenticating...
+[2026-05-08 07:44:33] Auth OK
+[2026-05-08 07:44:34] Pending requests: 0
+[2026-05-08 07:44:34] === Queue processor exiting ===
+[2026-05-08 07:59:32] === Queue processor starting ===
+[2026-05-08 07:59:32] Lock acquired
+[2026-05-08 07:59:32] Loaded 4 env vars
+[2026-05-08 07:59:32] Authenticating...
+[2026-05-08 07:59:33] Auth OK
+[2026-05-08 07:59:34] Pending requests: 0
+[2026-05-08 07:59:34] === Queue processor exiting ===
+[2026-05-08 08:14:32] === Queue processor starting ===
+[2026-05-08 08:14:32] Lock acquired
+[2026-05-08 08:14:32] Loaded 4 env vars
+[2026-05-08 08:14:32] Authenticating...
+[2026-05-08 08:14:33] Auth OK
+[2026-05-08 08:14:34] Pending requests: 0
+[2026-05-08 08:14:34] === Queue processor exiting ===
+[2026-05-08 08:29:32] === Queue processor starting ===
+[2026-05-08 08:29:32] Lock acquired
+[2026-05-08 08:29:32] Loaded 4 env vars
+[2026-05-08 08:29:32] Authenticating...
+[2026-05-08 08:29:33] Auth OK
+[2026-05-08 08:29:34] Pending requests: 0
+[2026-05-08 08:29:34] === Queue processor exiting ===
+[2026-05-08 08:44:32] === Queue processor starting ===
+[2026-05-08 08:44:32] Lock acquired
+[2026-05-08 08:44:32] Loaded 4 env vars
+[2026-05-08 08:44:32] Authenticating...
+[2026-05-08 08:44:33] Auth OK
+[2026-05-08 08:44:34] Pending requests: 0
+[2026-05-08 08:44:34] === Queue processor exiting ===
+[2026-05-08 08:59:32] === Queue processor starting ===
+[2026-05-08 08:59:32] Lock acquired
+[2026-05-08 08:59:32] Loaded 4 env vars
+[2026-05-08 08:59:32] Authenticating...
+[2026-05-08 08:59:33] Auth OK
+[2026-05-08 08:59:34] Pending requests: 0
+[2026-05-08 08:59:34] === Queue processor exiting ===
+[2026-05-08 09:14:32] === Queue processor starting ===
+[2026-05-08 09:14:32] Lock acquired
+[2026-05-08 09:14:32] Loaded 4 env vars
+[2026-05-08 09:14:32] Authenticating...
+[2026-05-08 09:14:33] Auth OK
+[2026-05-08 09:14:34] Pending requests: 0
+[2026-05-08 09:14:34] === Queue processor exiting ===
+[2026-05-08 09:29:32] === Queue processor starting ===
+[2026-05-08 09:29:32] Lock acquired
+[2026-05-08 09:29:32] Loaded 4 env vars
+[2026-05-08 09:29:32] Authenticating...
+[2026-05-08 09:29:33] Auth OK
+[2026-05-08 09:29:34] Pending requests: 0
+[2026-05-08 09:29:34] === Queue processor exiting ===
+[2026-05-08 09:44:32] === Queue processor starting ===
+[2026-05-08 09:44:32] Lock acquired
+[2026-05-08 09:44:32] Loaded 4 env vars
+[2026-05-08 09:44:32] Authenticating...
+[2026-05-08 09:44:33] Auth OK
+[2026-05-08 09:44:34] Pending requests: 0
+[2026-05-08 09:44:34] === Queue processor exiting ===
+[2026-05-08 09:59:32] === Queue processor starting ===
+[2026-05-08 09:59:32] Lock acquired
+[2026-05-08 09:59:32] Loaded 4 env vars
+[2026-05-08 09:59:32] Authenticating...
+[2026-05-08 09:59:33] Auth OK
+[2026-05-08 09:59:34] Pending requests: 0
+[2026-05-08 09:59:34] === Queue processor exiting ===
+[2026-05-08 10:14:32] === Queue processor starting ===
+[2026-05-08 10:14:32] Lock acquired
+[2026-05-08 10:14:32] Loaded 4 env vars
+[2026-05-08 10:14:32] Authenticating...
+[2026-05-08 10:14:33] Auth OK
+[2026-05-08 10:14:34] Pending requests: 0
+[2026-05-08 10:14:34] === Queue processor exiting ===
+[2026-05-08 10:29:32] === Queue processor starting ===
+[2026-05-08 10:29:32] Lock acquired
+[2026-05-08 10:29:32] Loaded 4 env vars
+[2026-05-08 10:29:32] Authenticating...
+[2026-05-08 10:29:33] Auth OK
+[2026-05-08 10:29:34] Pending requests: 0
+[2026-05-08 10:29:34] === Queue processor exiting ===
+[2026-05-08 10:44:32] === Queue processor starting ===
+[2026-05-08 10:44:32] Lock acquired
+[2026-05-08 10:44:32] Loaded 4 env vars
+[2026-05-08 10:44:32] Authenticating...
+[2026-05-08 10:44:33] Auth OK
+[2026-05-08 10:44:34] Pending requests: 0
+[2026-05-08 10:44:34] === Queue processor exiting ===
+[2026-05-08 10:59:32] === Queue processor starting ===
+[2026-05-08 10:59:32] Lock acquired
+[2026-05-08 10:59:32] Loaded 4 env vars
+[2026-05-08 10:59:32] Authenticating...
+[2026-05-08 10:59:33] Auth OK
+[2026-05-08 10:59:34] Pending requests: 0
+[2026-05-08 10:59:34] === Queue processor exiting ===
+[2026-05-08 11:14:32] === Queue processor starting ===
+[2026-05-08 11:14:32] Lock acquired
+[2026-05-08 11:14:32] Loaded 4 env vars
+[2026-05-08 11:14:32] Authenticating...
+[2026-05-08 11:14:33] Auth OK
+[2026-05-08 11:14:34] Pending requests: 0
+[2026-05-08 11:14:34] === Queue processor exiting ===
+[2026-05-08 11:29:32] === Queue processor starting ===
+[2026-05-08 11:29:32] Lock acquired
+[2026-05-08 11:29:32] Loaded 4 env vars
+[2026-05-08 11:29:32] Authenticating...
+[2026-05-08 11:29:33] Auth OK
+[2026-05-08 11:29:34] Pending requests: 0
+[2026-05-08 11:29:34] === Queue processor exiting ===
+[2026-05-08 11:44:32] === Queue processor starting ===
+[2026-05-08 11:44:32] Lock acquired
+[2026-05-08 11:44:32] Loaded 4 env vars
+[2026-05-08 11:44:32] Authenticating...
+[2026-05-08 11:44:33] Auth OK
+[2026-05-08 11:44:34] Pending requests: 0
+[2026-05-08 11:44:34] === Queue processor exiting ===

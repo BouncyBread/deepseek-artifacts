@@ -87,34 +87,41 @@ try:
         sub_env["ANTHROPIC_AUTH_TOKEN"] = API_KEY
 
         try:
-            # Do web research via Brave Search (DeepSeek doesn't support Claude tools)
+            # Brave Search to find authentic sources
+            search_urls = []
             search_context = ""
             try:
                 import urllib.parse
                 brave_key = env_vars.get("BRAVE_SEARCH_API_KEY", "")
                 if brave_key:
-                    sq = urllib.parse.quote(f"{prompt} authentic recipe")
+                    sq = urllib.parse.quote(f"{prompt} authentic recipe traditional")
                     sr = urllib.request.Request(
                         f"https://api.search.brave.com/res/v1/web/search?q={sq}&count=3",
                         headers={"Accept": "application/json", "Accept-Encoding": "gzip",
                                  "X-Subscription-Token": brave_key})
-                    sdata = json.loads(urllib.request.urlopen(sr).read())
+                    sdata = json.loads(urllib.request.urlopen(sr, timeout=10).read())
                     results = sdata.get("web", {}).get("results", [])
-                    if results:
-                        search_context = "\\n".join(
-                            f"{r['title']}: {r.get('description', '')}" for r in results[:3]
-                        )
+                    search_urls = [r["url"] for r in results[:3] if r.get("url")]
+                    search_context = "\n".join(
+                        f"{r['title']}: {r.get('description', '')}" for r in results[:3]
+                    )
                     log(f"  Brave search: {len(results)} results")
             except Exception as e:
                 log(f"  Search skipped: {e}")
 
+            # Build prompt — pass URLs so Claude can WebFetch them for deep research
             prompt_text = f'Create a beautiful self-contained HTML recipe page for "{prompt}".\n\n'
-            if search_context:
-                prompt_text += f'RESEARCH FROM AUTHENTIC SOURCES:\n{search_context}\n\nSynthesize these sources.\n\n'
-            prompt_text += 'Include: Fraunces + Newsreader Google Fonts, warm cookbook colors (no #000 #fff), paper texture CSS, hand-crafted inline SVGs of the finished dish and key techniques, cultural context, precise ingredients, detailed steps with WHY and sensory cues, 3-5 pro tips, storage guidance.\n\nReturn ONLY the complete HTML starting with <!doctype html>. No markdown wrapping.'
+            if search_urls:
+                prompt_text += "FETCH THESE SOURCES FIRST using WebFetch. Read each one to understand the authentic recipe.\n"
+                for i, url in enumerate(search_urls, 1):
+                    prompt_text += f"  {i}. {url}\n"
+                prompt_text += "\nAfter reading, synthesize the best elements from each source.\n\n"
+            elif search_context:
+                prompt_text += f"RESEARCH:\n{search_context}\n\n"
+            prompt_text += 'Include: Fraunces + Newsreader Google Fonts (via @import), warm cookbook colors (no #000 #fff), paper texture CSS, hand-crafted inline SVGs of the finished dish and key techniques, cultural context, precise ingredients, detailed steps with WHY and sensory cues, 3-5 pro tips, storage guidance.\n\nReturn ONLY the complete HTML starting with <!doctype html>. No markdown wrapping.'
 
             r = subprocess.run(
-                ["claude", "-p", "--model", MODEL],
+                ["claude", "-p", "--model", MODEL, "--allowedTools", "WebFetch"],
                 input=prompt_text,
                 capture_output=True, text=True, timeout=900, env=sub_env)
             log(f"Claude exit: {r.returncode}, stdout: {len(r.stdout)} chars")
